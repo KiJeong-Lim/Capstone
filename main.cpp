@@ -27,16 +27,16 @@ int main(void)
     can.attach(&onMsgReceived);
     can.filter(CAN_ID<<21, 0xFFE00004, CANStandard, 0);
 
-    txMsg1.len = 8;                         //transmit 8 bytes
-    txMsg2.len = 8;                         //transmit 8 bytes
-    txMsg3.len = 8;                         //transmit 8 bytes
-    rxMsg.len = 6;                          //receive 5 bytes
+    txMsg1.len = 8;
+    txMsg2.len = 8;
+    txMsg3.len = 8;
+    rxMsg.len = 6;
 
-    txMsg1.id = 1;                        //1st motor ID
-    txMsg2.id = 2;                        //2nd motor ID
-    txMsg3.id = 3;                        //3rd motor ID
+    txMsg1.id = 1;
+    txMsg2.id = 2;
+    txMsg3.id = 3;
 
-    pack_cmd(txMsg1, 0, 0, 0, 0, 0);       //Start out by sending all 0's
+    pack_cmd(txMsg1, 0, 0, 0, 0, 0);
     pack_cmd(txMsg2, 0, 0, 0, 0, 0);
     pack_cmd(txMsg3, 0, 0, 0, 0, 0);
 }
