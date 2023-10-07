@@ -101,7 +101,7 @@ def load_ref(ref_file):
                 t3 = t3 + [float(tmp[14])]
                 m = m + 1
 
-def gen_new_ref_tbl(tbl_file):
+def gen_new_ref_tbl(tbl_file, no):
     global p1
     global p2
     global p3
@@ -123,7 +123,7 @@ def gen_new_ref_tbl(tbl_file):
 
     with open(tbl_file, 'w+') as tbl_txt:
         tbl_txt.write("#include \"capstone.h\"\n")
-        tbl_txt.write("\n")
+        tbl_txt.write("#if usingRef == %d\n", no)
         tbl_txt.write("struct refs refs_tbl[1000][3] = {\n")
         for i in range(m):
             tbl_txt.write("{ ")
@@ -152,7 +152,7 @@ def gen_new_ref_tbl(tbl_file):
                 tbl_txt.write(" .t_ref = %lf," % t3[i])
                 tbl_txt.write(" }, ")
             tbl_txt.write("},\n")
-        tbl_txt.write("};\n")
+        tbl_txt.write("};\n#endif\n")
         tbl_txt.flush()
 
 def plot_err(val_name):
@@ -215,9 +215,10 @@ if __name__ == '__main__':
             if cmd == "read cur":
                 file = input('dir: ')
                 load_cur(file)
-            if cmd == "gen ref":
+            if cmd == "mknew ref":
                 file = input('dir: ')
-                gen_new_ref_tbl(file)
+                no = input('no: ')
+                gen_new_ref_tbl(file, no)
             if cmd == "plot error":
                 val_name = input('value: ')
                 plot_err(val_name)
