@@ -123,7 +123,7 @@ def gen_new_ref_tbl(tbl_file, no):
 
     with open(tbl_file, 'w+') as tbl_txt:
         tbl_txt.write("#include \"capstone.h\"\n")
-        tbl_txt.write("#if usingRef == %d\n", no)
+        tbl_txt.write("#if usingRef == %s\n" % no)
         tbl_txt.write("struct refs refs_tbl[1000][3] = {\n")
         for i in range(m):
             tbl_txt.write("{ ")
