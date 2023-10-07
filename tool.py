@@ -136,7 +136,7 @@ def gen_new_ref_tbl(tbl_file):
                 tbl_txt.write(" .t_ref = %lf," % t1[i])
                 tbl_txt.write(" }, ")
             if 2 == 2:
-                tbl_txt.write("{ ")
+                tbl_txt.write("{")
                 tbl_txt.write(" .p_ref = %lf," % upd(p2[i], theta2[i]))
                 tbl_txt.write(" .v_ref = %lf," % upd(v2[i], omega2[i] * dt))
                 tbl_txt.write(" .kp_ref = %lf," % kp2[i])
@@ -144,7 +144,7 @@ def gen_new_ref_tbl(tbl_file):
                 tbl_txt.write(" .t_ref = %lf," % t2[i])
                 tbl_txt.write(" }, ")
             if 3 == 3:
-                tbl_txt.write("{ ")
+                tbl_txt.write("{")
                 tbl_txt.write(" .p_ref = %lf," % upd(p3[i], theta3[i]))
                 tbl_txt.write(" .v_ref = %lf," % upd(v3[i], omega3[i] * dt))
                 tbl_txt.write(" .kp_ref = %lf," % kp3[i])
