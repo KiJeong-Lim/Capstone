@@ -209,16 +209,16 @@ if __name__ == '__main__':
     for i in range(100):
         if b:
             cmd = input('cmd: ')
-            if cmd == "ref":
+            if cmd == "read ref":
                 file = input('dir: ')
                 load_ref(file)
-            if cmd == "cur":
+            if cmd == "read cur":
                 file = input('dir: ')
                 load_cur(file)
-            if cmd == "gen":
+            if cmd == "gen ref":
                 file = input('dir: ')
                 gen_new_ref_tbl(file)
-            if cmd == "plot":
+            if cmd == "plot error":
                 val_name = input('value: ')
                 plot_err(val_name)
             if cmd == "clear":
