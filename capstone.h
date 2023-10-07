@@ -7,6 +7,8 @@
 
 #define CAN_ID 0x01
 
+#define usingRef 0
+
 #define pi      (3.14159265359f)
 
 #define P_MIN   (-12.5f)
