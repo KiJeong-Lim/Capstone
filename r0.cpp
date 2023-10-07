@@ -1,6 +1,6 @@
 #include "capstone.h"
 
-#ifdef usingRef == 0
+#if usingRef == 0
 
 struct refs refs_tbl[1000][3] = {
 { { .p_ref = 0.000000, .v_ref = 0.000000, .kp_ref = 0.000000, .kd_ref = 0.000000, .t_ref = 0.000000, }, {  .p_ref = 0.000000, .v_ref = 0.000000, .kp_ref = 0.000000, .kd_ref = 0.000000, .t_ref = 0.000000, }, {  .p_ref = -0.200000, .v_ref = 0.000000, .kp_ref = 4.000000, .kd_ref = 3.000000, .t_ref = 0.000000, }, },
