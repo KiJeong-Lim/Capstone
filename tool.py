@@ -122,6 +122,9 @@ def gen_new_ref_tbl(tbl_file):
         return ref - alpha * (ref - cur)
 
     with open(tbl_file, 'w+') as tbl_txt:
+        tbl_txt.write("#include \"capstone.h\"\n")
+        tbl_txt.write("\n")
+        tbl_txt.write("struct refs refs_tbl[1000][3] = {\n")
         for i in range(m):
             tbl_txt.write("{ ")
             if 1 == 1:
@@ -149,6 +152,7 @@ def gen_new_ref_tbl(tbl_file):
                 tbl_txt.write(" .t_ref = %lf," % t3[i])
                 tbl_txt.write(" }, ")
             tbl_txt.write("},\n")
+        tbl_txt.write("};\n")
         tbl_txt.flush()
 
 def plot_err(val_name):
