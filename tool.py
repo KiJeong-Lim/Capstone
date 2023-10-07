@@ -25,7 +25,6 @@ kd3 = []
 t3 = []
 
 dt = 0.01
-n = 0
 m = 0
 
 theta1 = []
@@ -43,11 +42,9 @@ def load_cur(cur_file):
     global omega1
     global omega2
     global omega3
-    n = 0
     with open(cur_file, 'r') as data1_txt:
         lns = data1_txt.readlines()
-        n = len(lns)
-        for i in range(n):
+        for i in range(len(lns)):
             tmp = re.findall(r'-?\d+\.\d+', lns[i])
             if i % 4 == 3:
                 pass
@@ -65,13 +62,11 @@ def load_cur(cur_file):
                     omega3 = omega3 + [float(omega)]
 
 def load_ref(ref_file):
-    global n
     global m
     m = 0
     with open(ref_file, 'r') as refs_txt:
         lns = refs_txt.readlines()
-        n = len(lns)
-        for i in range(n):
+        for i in range(len(lns)):
             tmp = re.findall(r'-?\d+\.\d+', lns[i])
             if not (tmp == []):
                 global p1
@@ -106,7 +101,7 @@ def load_ref(ref_file):
                 t3 = t3 + [float(tmp[14])]
                 m = m + 1
 
-def gen_new_tbl(tbl_file):
+def gen_new_ref_tbl(tbl_file):
     global p1
     global p2
     global p3
@@ -178,7 +173,7 @@ def plot_err(val_name):
     omega2_err = []
     omega3_err = []
 
-    t = np.linspace(0, dt * n, m, endpoint=True)
+    t = np.linspace(0, dt * m, m, endpoint=True)
 
     for i in range(m):
         theta1_err = theta1_err + [p1[i] - theta1[i]]
@@ -218,12 +213,11 @@ if __name__ == '__main__':
                 load_cur(file)
             if cmd == "gen":
                 file = input('dir: ')
-                gen_new_tbl(file)
+                gen_new_ref_tbl(file)
             if cmd == "plot":
                 val_name = input('value: ')
                 plot_err(val_name)
             if cmd == "clear":
-                n = 0
                 m = 0
                 theta1 = []
                 theta2 = []
