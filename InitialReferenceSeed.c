@@ -86,11 +86,11 @@ int main(void)
 {
     char file_name[32];
 
-    printf("I'm a program to generate a copy of the reference table.\n");
+    printf("I'm a program to generate a copy of the initial reference table.\n");
     printf("Enter the name of the copy file: ");
     fflush(stdout);
     scanf("%s", file_name);
-    printf("[echo] %s\n", file_name);
+    printf("The given file name was: %s\n", file_name);
 
     file = fopen(file_name, "w+");
 
@@ -98,6 +98,7 @@ int main(void)
     {
         serial_isr();
         fclose(file);
+        printf("Generated.\n");
     }
 
     file = NULL;

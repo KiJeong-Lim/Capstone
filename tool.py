@@ -101,7 +101,99 @@ def load_ref(ref_file):
                 t3 = t3 + [float(tmp[14])]
                 m = m + 1
 
-def gen_new_ref_tbl(tbl_file, no):
+def write_ref_cpp(tbl_file, no):
+    global p1
+    global v1
+    global kp1
+    global kd1
+    global t1
+    global p2
+    global v2
+    global kp2
+    global kd2
+    global t2
+    global p3
+    global v3
+    global kp3
+    global kd3
+    global t3
+
+    with open(tbl_file, 'w+') as tbl_txt:
+        tbl_txt.write("#include \"capstone.h\"\n")
+        tbl_txt.write("#if usingRef == %s\n" % no)
+        tbl_txt.write("struct refs refs_tbl[1000][3] = {\n")
+        for i in range(m):
+            tbl_txt.write("{ ")
+            if 1 == 1:
+                tbl_txt.write("{")
+                tbl_txt.write(" .p_ref = %lf," % p1[i])
+                tbl_txt.write(" .v_ref = %lf," % v1[i])
+                tbl_txt.write(" .kp_ref = %lf," % kp1[i])
+                tbl_txt.write(" .kd_ref = %lf," % kd1[i])
+                tbl_txt.write(" .t_ref = %lf," % t1[i])
+                tbl_txt.write(" }, ")
+            if 2 == 2:
+                tbl_txt.write("{")
+                tbl_txt.write(" .p_ref = %lf," % p2[i])
+                tbl_txt.write(" .v_ref = %lf," % v2[i])
+                tbl_txt.write(" .kp_ref = %lf," % kp2[i])
+                tbl_txt.write(" .kd_ref = %lf," % kd2[i])
+                tbl_txt.write(" .t_ref = %lf," % t2[i])
+                tbl_txt.write(" }, ")
+            if 3 == 3:
+                tbl_txt.write("{")
+                tbl_txt.write(" .p_ref = %lf," % p3[i])
+                tbl_txt.write(" .v_ref = %lf," % v3[i])
+                tbl_txt.write(" .kp_ref = %lf," % kp3[i])
+                tbl_txt.write(" .kd_ref = %lf," % kd3[i])
+                tbl_txt.write(" .t_ref = %lf," % t3[i])
+                tbl_txt.write(" }, ")
+            tbl_txt.write("},\n")
+        tbl_txt.write("};\n#endif\n")
+        tbl_txt.flush()
+
+def write_ref_tbl(tbl_file):
+    global p1
+    global v1
+    global kp1
+    global kd1
+    global t1
+    global p2
+    global v2
+    global kp2
+    global kd2
+    global t2
+    global p3
+    global v3
+    global kp3
+    global kd3
+    global t3
+
+    with open(tbl_file, 'w+') as tbl_txt:
+        for i in range(m):
+            if 1 == 1:
+                tbl_txt.write("%lf\t" % p1[i])
+                tbl_txt.write("%lf\t" % v1[i])
+                tbl_txt.write("%lf\t" % kd1[i])
+                tbl_txt.write("%lf\t" % kd1[i])
+                tbl_txt.write("%lf\t" % t1[i])
+            if 2 == 2:
+                tbl_txt.write("%lf\t" % p2[i])
+                tbl_txt.write("%lf\t" % v2[i])
+                tbl_txt.write("%lf\t" % kd2[i])
+                tbl_txt.write("%lf\t" % kd2[i])
+                tbl_txt.write("%lf\t" % t2[i])
+            if 3 == 3:
+                tbl_txt.write("%lf\t" % p3[i])
+                tbl_txt.write("%lf\t" % v3[i])
+                tbl_txt.write("%lf\t" % kd3[i])
+                tbl_txt.write("%lf\t" % kp3[i])
+                tbl_txt.write("%lf\t" % t3[i])
+            tbl_txt.write("\n")
+        tbl_txt.write("\n")
+        tbl_txt.flush()
+
+def calc_next_ref():
     global p1
     global p2
     global p3
@@ -120,40 +212,23 @@ def gen_new_ref_tbl(tbl_file, no):
 
     def upd(ref, cur):
         return ref - alpha * (ref - cur)
-
-    with open(tbl_file, 'w+') as tbl_txt:
-        tbl_txt.write("#include \"capstone.h\"\n")
-        tbl_txt.write("#if usingRef == %s\n" % no)
-        tbl_txt.write("struct refs refs_tbl[1000][3] = {\n")
-        for i in range(m):
-            tbl_txt.write("{ ")
-            if 1 == 1:
-                tbl_txt.write("{")
-                tbl_txt.write(" .p_ref = %lf," % upd(p1[i], theta1[i]))
-                tbl_txt.write(" .v_ref = %lf," % upd(v1[i], omega1[i] * dt))
-                tbl_txt.write(" .kp_ref = %lf," % kp1[i])
-                tbl_txt.write(" .kd_ref = %lf," % kd1[i])
-                tbl_txt.write(" .t_ref = %lf," % t1[i])
-                tbl_txt.write(" }, ")
-            if 2 == 2:
-                tbl_txt.write("{")
-                tbl_txt.write(" .p_ref = %lf," % upd(p2[i], theta2[i]))
-                tbl_txt.write(" .v_ref = %lf," % upd(v2[i], omega2[i] * dt))
-                tbl_txt.write(" .kp_ref = %lf," % kp2[i])
-                tbl_txt.write(" .kd_ref = %lf," % kd2[i])
-                tbl_txt.write(" .t_ref = %lf," % t2[i])
-                tbl_txt.write(" }, ")
-            if 3 == 3:
-                tbl_txt.write("{")
-                tbl_txt.write(" .p_ref = %lf," % upd(p3[i], theta3[i]))
-                tbl_txt.write(" .v_ref = %lf," % upd(v3[i], omega3[i] * dt))
-                tbl_txt.write(" .kp_ref = %lf," % kp3[i])
-                tbl_txt.write(" .kd_ref = %lf," % kd3[i])
-                tbl_txt.write(" .t_ref = %lf," % t3[i])
-                tbl_txt.write(" }, ")
-            tbl_txt.write("},\n")
-        tbl_txt.write("};\n#endif\n")
-        tbl_txt.flush()
+    p1[i] = upd(p1[i], theta1[i])
+    v1[i] = upd(v1[i], omega1[i] * dt)
+    kd1[i] = kp1[i]
+    kd1[i] = kd1[i]
+    t1[i] = t1[i]
+    
+    p2[i] = upd(p2[i], theta2[i])
+    v2[i] = upd(v2[i], omega2[i] * dt)
+    kd2[i] = kp2[i]
+    kp2[i] = kd2[i]
+    t2[i] = t2[i]
+    
+    p3[i] = upd(p3[i], theta3[i])
+    v3[i] = upd(v3[i], omega3[i] * dt)
+    kd3[i] = kp3[i]
+    kd3[i] = kd3[i]
+    t3[i] = t3[i]
 
 def plot_err(val_name):
     global p1
@@ -215,10 +290,15 @@ if __name__ == '__main__':
             if cmd == "read cur":
                 file = input('dir: ')
                 load_cur(file)
-            if cmd == "mknew ref":
+            if cmd == "calc next ref":
+                calc_next_ref()
+            if cmd == "write ref tbl":
+                file = input("dir: ")
+                write_ref_tbl(file)
+            if cmd == "write ref cpp":
                 file = input('dir: ')
                 no = input('no: ')
-                gen_new_ref_tbl(file, no)
+                write_ref_cpp(file, no)
             if cmd == "plot error":
                 val_name = input('value: ')
                 plot_err(val_name)
