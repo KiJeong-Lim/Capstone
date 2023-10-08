@@ -1,9 +1,9 @@
 #include "capstone.h"
 
-float theta1, theta2, theta3, dtheta1, dtheta2, dtheta3;
-float p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref;
-float p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref;
-float p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref;
+static float theta1, theta2, theta3, dtheta1, dtheta2, dtheta3;
+static float p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref;
+static float p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref;
+static float p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref;
 
 void halt(void)
 {
@@ -26,9 +26,9 @@ void serial_isr(void)
         pack_cmd(txMsg1, p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref);
         pack_cmd(txMsg2, p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref);
         pack_cmd(txMsg3, p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref);
-        printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1 / dt);
-        printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2 / dt);
-        printf("theta3: %lf, omega3: %lf\n", theta3, dtheta3 / dt);
+        printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
+        printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2);
+        printf("theta3: %lf, omega3: %lf\n", theta3, dtheta3);
         printf("\n");
         turn_cnt++;
     }

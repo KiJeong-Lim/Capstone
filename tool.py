@@ -213,19 +213,19 @@ def calc_next_ref():
     def upd(ref, cur):
         return ref - alpha * (ref - cur)
     p1[i] = upd(p1[i], theta1[i])
-    v1[i] = upd(v1[i], omega1[i] * dt)
+    v1[i] = upd(v1[i], omega1[i])
     kd1[i] = kp1[i]
     kd1[i] = kd1[i]
     t1[i] = t1[i]
     
     p2[i] = upd(p2[i], theta2[i])
-    v2[i] = upd(v2[i], omega2[i] * dt)
+    v2[i] = upd(v2[i], omega2[i])
     kd2[i] = kp2[i]
     kp2[i] = kd2[i]
     t2[i] = t2[i]
     
     p3[i] = upd(p3[i], theta3[i])
-    v3[i] = upd(v3[i], omega3[i] * dt)
+    v3[i] = upd(v3[i], omega3[i])
     kd3[i] = kp3[i]
     kd3[i] = kd3[i]
     t3[i] = t3[i]
@@ -258,9 +258,9 @@ def plot_err(val_name):
         theta1_err = theta1_err + [p1[i] - theta1[i]]
         theta2_err = theta2_err + [p2[i] - theta2[i]]
         theta3_err = theta3_err + [p3[i] - theta3[i]]
-        omega1_err = omega1_err + [v1[i] - dt * omega1[i]]
-        omega2_err = omega2_err + [v2[i] - dt * omega2[i]]
-        omega3_err = omega3_err + [v3[i] - dt * omega3[i]]
+        omega1_err = omega1_err + [v1[i] - omega1[i]]
+        omega2_err = omega2_err + [v2[i] - omega2[i]]
+        omega3_err = omega3_err + [v3[i] - omega3[i]]
 
     if val_name == 'theta1':
         val = theta1_err
