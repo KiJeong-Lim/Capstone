@@ -1,0 +1,4000 @@
+theta1: 0.000000, omega1: 0.000000
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.000000
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.208790
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.406593
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.890110
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.912086
+
+theta1: -0.005913, omega1: 0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.978024
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.000000
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.043957
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.131866
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.153847
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.175823
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.197804
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.197804
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.241756
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.241756
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.219780
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.219780
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.241756
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.219780
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.241756
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.175823
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.219780
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.175823
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.175823
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.131866
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.131866
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.131866
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.109890
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.131866
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.087914
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.065933
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.065933
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.065933
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.043957
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.065933
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.043957
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.065933
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.043957
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.021976
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.978024
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.978024
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.021976
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.978024
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.956043
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.956043
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.978024
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.934067
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.890110
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.890110
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.956043
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.956043
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.912086
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.890110
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.890110
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.912086
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.868134
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.868134
+
+theta1: -0.005913, omega1: 0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.890110
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.868134
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.846153
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.890110
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.824177
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.824177
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.890110
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.824177
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.846153
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.868134
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.780220
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.802196
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.824177
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.780220
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.824177
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.758244
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.758244
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.780220
+
+theta1: -0.005913, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.758244
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.736263
+
+theta1: -0.005913, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.758244
+
+theta1: -0.005913, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.758244
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.736263
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.670330
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.692307
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.670330
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.692307
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.648350
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.692307
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.670330
+
+theta1: -0.005913, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.692307
+
+theta1: -0.005913, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.626373
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.670330
+
+theta1: -0.005913, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.648350
+
+theta1: -0.006294, omega1: -0.626373
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.208790
+
+theta1: -0.007439, omega1: -1.373627
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.000000
+
+theta1: -0.009727, omega1: -1.659340
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.527473
+
+theta1: -0.011635, omega1: -1.703297
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.923077
+
+theta1: -0.013924, omega1: -1.703297
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.318680
+
+theta1: -0.015831, omega1: -1.593407
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.560440
+
+theta1: -0.018120, omega1: -1.703297
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.824177
+
+theta1: -0.020409, omega1: -1.835163
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.043957
+
+theta1: -0.022697, omega1: -1.791210
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.131866
+
+theta1: -0.024986, omega1: -1.747253
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.131866
+
+theta1: -0.027275, omega1: -1.835163
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.219780
+
+theta1: -0.029945, omega1: -1.879120
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.109890
+
+theta1: -0.032235, omega1: -1.835163
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.043957
+
+theta1: -0.034524, omega1: -1.725273
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.000000
+
+theta1: -0.036813, omega1: -1.637363
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.912086
+
+theta1: -0.038720, omega1: -1.593407
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.824177
+
+theta1: -0.041009, omega1: -1.505493
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.736263
+
+theta1: -0.042916, omega1: -1.527473
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.604397
+
+theta1: -0.044824, omega1: -1.505493
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.472527
+
+theta1: -0.046731, omega1: -1.395603
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.340660
+
+theta1: -0.048257, omega1: -1.307693
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.186813
+
+theta1: -0.049783, omega1: -1.219780
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.076923
+
+theta1: -0.051309, omega1: -1.175823
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.989010
+
+theta1: -0.052835, omega1: -1.153847
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.901100
+
+theta1: -0.054360, omega1: -1.087914
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.813187
+
+theta1: -0.055886, omega1: -0.978024
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.703297
+
+theta1: -0.057031, omega1: -0.868134
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.615383
+
+theta1: -0.058175, omega1: -0.890110
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.527473
+
+theta1: -0.058938, omega1: -0.758244
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.461540
+
+theta1: -0.060082, omega1: -0.758244
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.329670
+
+theta1: -0.061227, omega1: -0.780220
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.241756
+
+theta1: -0.061990, omega1: -0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.241756
+
+theta1: -0.062753, omega1: -0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.087914
+
+theta1: -0.063516, omega1: -0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.065933
+
+theta1: -0.064279, omega1: -0.626373
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.021976
+
+theta1: -0.065042, omega1: -0.494507
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.934067
+
+theta1: -0.065804, omega1: -0.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.890110
+
+theta1: -0.066567, omega1: -0.428570
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.846153
+
+theta1: -0.066949, omega1: -0.384617
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.736263
+
+theta1: -0.067712, omega1: -0.472527
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.714287
+
+theta1: -0.068093, omega1: -0.406593
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.692307
+
+theta1: -0.068475, omega1: -0.274727
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.648350
+
+theta1: -0.068856, omega1: -0.384617
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.604397
+
+theta1: -0.069238, omega1: -0.362637
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.604397
+
+theta1: -0.069619, omega1: -0.230770
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.604397
+
+theta1: -0.070001, omega1: -0.120880
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.538460
+
+theta1: -0.070001, omega1: -0.186813
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.472527
+
+theta1: -0.070382, omega1: -0.274727
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.450550
+
+theta1: -0.070764, omega1: -0.274727
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.362637
+
+theta1: -0.071145, omega1: -0.186813
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.406593
+
+theta1: -0.071145, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.406593
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.340660
+
+theta1: -0.071145, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.362637
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.296703
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.318680
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.230770
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.274727
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.296703
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.230770
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.186813
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.208790
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.230770
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.252747
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.252747
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.120880
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.054947
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.120880
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.054947
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.164837
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.164837
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.164837
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.054947
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.054947
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.076923
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.384617
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.736263
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.065933
+
+theta1: -0.071145, omega1: 0.142857
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.395603
+
+theta1: -0.070764, omega1: 0.120880
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.659340
+
+theta1: -0.070764, omega1: 0.142857
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.901100
+
+theta1: -0.070382, omega1: 0.120880
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.120880
+
+theta1: -0.070382, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.406593
+
+theta1: -0.070382, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.604397
+
+theta1: -0.070382, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.714287
+
+theta1: -0.070382, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.956043
+
+theta1: -0.070382, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.978024
+
+theta1: -0.070382, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.109890
+
+theta1: -0.070382, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.175823
+
+theta1: -0.070382, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.263737
+
+theta1: -0.070382, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.197804
+
+theta1: -0.070764, omega1: -0.098900
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.197804
+
+theta1: -0.070764, omega1: -0.142857
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.197804
+
+theta1: -0.071145, omega1: -0.120880
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.175823
+
+theta1: -0.071145, omega1: -0.098900
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.153847
+
+theta1: -0.071145, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.065933
+
+theta1: -0.071145, omega1: -0.076923
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.000000
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.912086
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.802197
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.714287
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.604397
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.450550
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.340660
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.230770
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.054947
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.901100
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.725273
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.549450
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.395603
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.263737
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.131866
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.956043
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.802196
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.670330
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.538460
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.406593
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.296703
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.164837
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.054947
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071145, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.054947
+
+theta1: -0.071145, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.208790
+
+theta1: -0.071527, omega1: -0.164837
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.384617
+
+theta1: -0.071908, omega1: -0.428570
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.362637
+
+theta1: -0.072671, omega1: -0.824177
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.252747
+
+theta1: -0.073815, omega1: -1.109890
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.274727
+
+theta1: -0.075723, omega1: -1.439560
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.318680
+
+theta1: -0.077630, omega1: -1.769230
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.340660
+
+theta1: -0.080300, omega1: -2.098900
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.274727
+
+theta1: -0.082971, omega1: -2.252747
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.582417
+
+theta1: -0.086022, omega1: -2.296703
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.021976
+
+theta1: -0.089074, omega1: -2.186813
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.373627
+
+theta1: -0.091744, omega1: -2.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.725273
+
+theta1: -0.094416, omega1: -1.923077
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.054947
+
+theta1: -0.097086, omega1: -2.230770
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.208790
+
+theta1: -0.100138, omega1: -2.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.494507
+
+theta1: -0.103571, omega1: -2.406593
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.670330
+
+theta1: -0.106623, omega1: -2.318680
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.780220
+
+theta1: -0.109674, omega1: -2.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.978024
+
+theta1: -0.113108, omega1: -2.802197
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.065933
+
+theta1: -0.116922, omega1: -3.043957
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.153847
+
+theta1: -0.121119, omega1: -3.241757
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.197804
+
+theta1: -0.125315, omega1: -3.285713
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.109890
+
+theta1: -0.129511, omega1: -3.329670
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.065933
+
+theta1: -0.133707, omega1: -3.153847
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.989010
+
+theta1: -0.137903, omega1: -3.065933
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.692307
+
+theta1: -0.141718, omega1: -2.934067
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.494507
+
+theta1: -0.145533, omega1: -2.868134
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.593407
+
+theta1: -0.148966, omega1: -2.736263
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.670330
+
+theta1: -0.152018, omega1: -1.901100
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.791210
+
+theta1: -0.153925, omega1: -0.890110
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 4.868134
+
+theta1: -0.154306, omega1: 0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 5.637363
+
+theta1: -0.153543, omega1: 0.890110
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 6.296703
+
+theta1: -0.152018, omega1: 1.681320
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 6.978024
+
+theta1: -0.148966, omega1: 2.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 6.120880
+
+theta1: -0.145151, omega1: 3.285713
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 4.868134
+
+theta1: -0.140574, omega1: 3.879120
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.769230
+
+theta1: -0.134851, omega1: 4.714287
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.626373
+
+theta1: -0.127985, omega1: 5.329670
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.681320
+
+theta1: -0.121119, omega1: 5.263737
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.802196
+
+theta1: -0.114634, omega1: 4.824177
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.076923
+
+theta1: -0.108530, omega1: 4.340660
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.626373
+
+theta1: -0.103189, omega1: 3.857144
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.131866
+
+theta1: -0.098230, omega1: 3.483517
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.681320
+
+theta1: -0.094034, omega1: 2.956043
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.186813
+
+theta1: -0.090219, omega1: 3.681320
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.670330
+
+theta1: -0.084115, omega1: 4.824177
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.560440
+
+theta1: -0.078393, omega1: 4.164837
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.065933
+
+theta1: -0.072671, omega1: 4.362637
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.923077
+
+theta1: -0.067330, omega1: 3.945053
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -3.219780
+
+theta1: -0.062371, omega1: 3.263737
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -2.120880
+
+theta1: -0.058938, omega1: 2.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.483517
+
+theta1: -0.055886, omega1: 1.989010
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -1.043957
+
+theta1: -0.053597, omega1: 1.417583
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.384617
+
+theta1: -0.051690, omega1: 1.725273
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.098900
+
+theta1: -0.049401, omega1: 1.549450
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.802196
+
+theta1: -0.047875, omega1: 0.978024
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.208790
+
+theta1: -0.046731, omega1: 0.428570
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.428570
+
+theta1: -0.046731, omega1: 0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.670330
+
+theta1: -0.046731, omega1: -0.274727
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.868134
+
+theta1: -0.047112, omega1: -0.494507
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.131866
+
+theta1: -0.047875, omega1: -0.802196
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.329670
+
+theta1: -0.049020, omega1: -1.065933
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.527473
+
+theta1: -0.050927, omega1: -1.285713
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.549450
+
+theta1: -0.052453, omega1: -1.153847
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.571430
+
+theta1: -0.053597, omega1: -0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.725273
+
+theta1: -0.054360, omega1: -0.890110
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.747253
+
+theta1: -0.055505, omega1: -0.780220
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.725273
+
+theta1: -0.056649, omega1: -0.714287
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.571430
+
+theta1: -0.057412, omega1: -0.736263
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.483517
+
+theta1: -0.058557, omega1: -0.890110
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.417584
+
+theta1: -0.059701, omega1: -0.714287
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.417584
+
+theta1: -0.060464, omega1: -0.780220
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.417584
+
+theta1: -0.061608, omega1: -0.758244
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.395603
+
+theta1: -0.062371, omega1: -0.868134
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.439560
+
+theta1: -0.063897, omega1: -0.956043
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.351650
+
+theta1: -0.065042, omega1: -1.065933
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 3.153847
+
+theta1: -0.066567, omega1: -1.131866
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.956043
+
+theta1: -0.068093, omega1: -1.153847
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.758244
+
+theta1: -0.069619, omega1: -1.175823
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.538460
+
+theta1: -0.071145, omega1: -1.175823
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.362637
+
+theta1: -0.072671, omega1: -1.197804
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 2.230770
+
+theta1: -0.073815, omega1: -1.043957
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.989010
+
+theta1: -0.075341, omega1: -1.065933
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.813187
+
+theta1: -0.076867, omega1: -1.065933
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.681320
+
+theta1: -0.078012, omega1: -1.087914
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.483517
+
+theta1: -0.079537, omega1: -1.021976
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.351650
+
+theta1: -0.080682, omega1: -1.043957
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.153847
+
+theta1: -0.082208, omega1: -0.978024
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 1.021976
+
+theta1: -0.083352, omega1: -0.868134
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.846153
+
+theta1: -0.084496, omega1: -0.846153
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.670330
+
+theta1: -0.085259, omega1: -0.780220
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.560440
+
+theta1: -0.086404, omega1: -0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.428570
+
+theta1: -0.087167, omega1: -0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.274727
+
+theta1: -0.087930, omega1: -0.582417
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.186813
+
+theta1: -0.088693, omega1: -0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.142857
+
+theta1: -0.089456, omega1: -0.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.032967
+
+theta1: -0.089837, omega1: -0.406593
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.090600, omega1: -0.472527
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.090981, omega1: -0.384617
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.091363, omega1: -0.340660
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.091744, omega1: -0.362637
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.092126, omega1: -0.362637
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.092507, omega1: -0.252747
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.092889, omega1: -0.186813
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.120880
+
+theta1: -0.093270, omega1: -0.142857
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.076923
+
+theta1: -0.093270, omega1: -0.164837
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.093652, omega1: -0.186813
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.093652, omega1: -0.186813
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.120880
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.054947
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.120880
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.120880
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.208790
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.318680
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.428570
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.538460
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.538460
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.604397
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.582417
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.670330
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.670330
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.736263
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.736263
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.758244
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.802196
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.824177
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.824177
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.824177
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.846153
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.824177
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.780220
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.758244
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.736263
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.758244
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.736263
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.714287
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.692307
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.648350
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.604397
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.582417
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.582417
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.560440
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.516483
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.538460
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.494507
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.494507
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.406593
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.428570
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.362637
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.450550
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.340660
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.362637
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.274727
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.406593
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.296703
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.230770
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.296703
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.362637
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.318680
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.208790
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.186813
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.208790
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.296703
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.296703
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.208790
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.164837
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.120880
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.120880
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.142857
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.208790
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.164837
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.054947
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.032967
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.032967
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.076923
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.054947
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.094034, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.094034, omega1: 0.120880
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.032967
+
+theta1: -0.093652, omega1: 0.230770
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.076923
+
+theta1: -0.093270, omega1: 0.274727
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.076923
+
+theta1: -0.092889, omega1: 0.318680
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.054947
+
+theta1: -0.092126, omega1: 0.450550
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.098900
+
+theta1: -0.091744, omega1: 0.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.098900
+
+theta1: -0.090981, omega1: 0.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.164837
+
+theta1: -0.090219, omega1: 0.582417
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.164837
+
+theta1: -0.089456, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.318680
+
+theta1: -0.088693, omega1: 0.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.340660
+
+theta1: -0.087930, omega1: 0.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.296703
+
+theta1: -0.087167, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.252747
+
+theta1: -0.086404, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.296703
+
+theta1: -0.086022, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.340660
+
+theta1: -0.085259, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.274727
+
+theta1: -0.084496, omega1: 0.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.208790
+
+theta1: -0.083734, omega1: 0.582417
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.252747
+
+theta1: -0.082971, omega1: 0.494507
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.362637
+
+theta1: -0.082208, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.230770
+
+theta1: -0.081445, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.274727
+
+theta1: -0.081063, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.098900
+
+theta1: -0.080300, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.208790
+
+theta1: -0.079537, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.186813
+
+theta1: -0.078774, omega1: 0.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.208790
+
+theta1: -0.078012, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.208790
+
+theta1: -0.077249, omega1: 0.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.120880
+
+theta1: -0.076486, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.032967
+
+theta1: -0.075723, omega1: 0.582417
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.074960, omega1: 0.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.074197, omega1: 0.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.073434, omega1: 0.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.072671, omega1: 0.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071908, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.071527, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.070764, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.070001, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.069238, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.068475, omega1: 0.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.067712, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.066567, omega1: 0.714287
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.065804, omega1: 0.802196
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.064660, omega1: 0.802196
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.063516, omega1: 0.824177
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.062371, omega1: 0.846153
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.061227, omega1: 0.802196
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.060464, omega1: 0.780220
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.059319, omega1: 0.758244
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.058175, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.057412, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.056649, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.055886, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.054742, omega1: 0.670330
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.053979, omega1: 0.626373
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.032967
+
+theta1: -0.053216, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.120880
+
+theta1: -0.052453, omega1: 0.626373
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.164837
+
+theta1: -0.051690, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.296703
+
+theta1: -0.050546, omega1: 0.604397
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.340660
+
+theta1: -0.049783, omega1: 0.560440
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.318680
+
+theta1: -0.049020, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.340660
+
+theta1: -0.048638, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.428570
+
+theta1: -0.047875, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.406593
+
+theta1: -0.047112, omega1: 0.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.406593
+
+theta1: -0.046350, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.494507
+
+theta1: -0.045587, omega1: 0.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.494507
+
+theta1: -0.044824, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.582417
+
+theta1: -0.044061, omega1: 0.494507
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.538460
+
+theta1: -0.043298, omega1: 0.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.560440
+
+theta1: -0.042916, omega1: 0.494507
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.560440
+
+theta1: -0.042153, omega1: 0.450550
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.560440
+
+theta1: -0.041390, omega1: 0.516483
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.538460
+
+theta1: -0.040627, omega1: 0.450550
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.516483
+
+theta1: -0.040246, omega1: 0.472527
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.560440
+
+theta1: -0.039483, omega1: 0.450550
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.450550
+
+theta1: -0.039102, omega1: 0.428570
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.494507
+
+theta1: -0.038339, omega1: 0.450550
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.406593
+
+theta1: -0.037957, omega1: 0.450550
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.406593
+
+theta1: -0.037194, omega1: 0.450550
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.428570
+
+theta1: -0.036813, omega1: 0.428570
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.340660
+
+theta1: -0.036050, omega1: 0.384617
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.274727
+
+theta1: -0.035668, omega1: 0.230770
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.296703
+
+theta1: -0.035287, omega1: 0.252747
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.296703
+
+theta1: -0.035287, omega1: 0.164837
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.208790
+
+theta1: -0.034905, omega1: 0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.098900
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.032967
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.054947
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.034905, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.035287, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.035287, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.035287, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.035287, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.142857
+
+theta1: -0.035287, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.230770
+
+theta1: -0.035287, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.362637
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.318680
+
+theta1: -0.034905, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.340660
+
+theta1: -0.034905, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.384617
+
+theta1: -0.034905, omega1: 0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.034905, omega1: 0.186813
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.428570
+
+theta1: -0.034524, omega1: 0.340660
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.362637
+
+theta1: -0.034142, omega1: 0.340660
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.406593
+
+theta1: -0.033761, omega1: 0.428570
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.384617
+
+theta1: -0.032998, omega1: 0.494507
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.384617
+
+theta1: -0.032235, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.428570
+
+theta1: -0.031472, omega1: 0.604397
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.428570
+
+theta1: -0.030708, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.450550
+
+theta1: -0.029945, omega1: 0.736263
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.028801, omega1: 0.780220
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.450550
+
+theta1: -0.027657, omega1: 0.758244
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.428570
+
+theta1: -0.026894, omega1: 0.758244
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.025749, omega1: 0.714287
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.428570
+
+theta1: -0.024986, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.406593
+
+theta1: -0.023842, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.023079, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.450550
+
+theta1: -0.021935, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.428570
+
+theta1: -0.021172, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.020409, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.019646, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.450550
+
+theta1: -0.018883, omega1: 0.670330
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.017738, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.494507
+
+theta1: -0.016975, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.450550
+
+theta1: -0.016212, omega1: 0.648350
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.450550
+
+theta1: -0.015068, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.384617
+
+theta1: -0.014305, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.013542, omega1: 0.714287
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.012398, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.450550
+
+theta1: -0.011635, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.010490, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.406593
+
+theta1: -0.009727, omega1: 0.714287
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.406593
+
+theta1: -0.008965, omega1: 0.714287
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.472527
+
+theta1: -0.007820, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.428570
+
+theta1: -0.007057, omega1: 0.692307
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.362637
+
+theta1: -0.006294, omega1: 0.604397
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.340660
+
+theta1: -0.005531, omega1: 0.538460
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.318680
+
+theta1: -0.004768, omega1: 0.472527
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.208790
+
+theta1: -0.004005, omega1: 0.384617
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.098900
+
+theta1: -0.003624, omega1: 0.252747
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.003242, omega1: 0.142857
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.003242, omega1: 0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.003242, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.003242, omega1: -0.098900
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.076923
+
+theta1: -0.003624, omega1: -0.208790
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.120880
+
+theta1: -0.004005, omega1: -0.296703
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.186813
+
+theta1: -0.004387, omega1: -0.252747
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.230770
+
+theta1: -0.004387, omega1: -0.142857
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.164837
+
+theta1: -0.004768, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004387, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.054947
+
+theta1: -0.004387, omega1: 0.076923
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.098900
+
+theta1: -0.004387, omega1: 0.098900
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.120880
+
+theta1: -0.004387, omega1: 0.142857
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.054947
+
+theta1: -0.004005, omega1: 0.142857
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.076923
+
+theta1: -0.004005, omega1: 0.076923
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.076923
+
+theta1: -0.003624, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.054947
+
+theta1: -0.004005, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.076923
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.054947
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.054947
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: 0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.032967
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.032967
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: 0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
+theta1: -0.004005, omega1: -0.010990
+theta2: 0.000000, omega2: 0.000000
+theta3: 0.000000, omega3: -0.010990
+
