@@ -4,8 +4,7 @@ Serial      pc(PA_2, PA_3);
 CAN         can(PB_8, PB_9);
 Timer       timer;
 Ticker      sendCAN;
-int         turn_cnt = 0;
-bool        live = true;
+int         turn_cnt = 0
 
 CANMessage  rxMsg;
 CANMessage  txMsg1;
@@ -15,7 +14,6 @@ CANMessage  txMsg3;
 int main(void)
 {
     timer.start();
-    live = true;
     turn_cnt = 0;
 
     sendCAN.attach(&serial_isr, dt);

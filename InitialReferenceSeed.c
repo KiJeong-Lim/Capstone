@@ -11,11 +11,11 @@ void loop(int cnt);
 
 FILE *file = NULL;
 
-txMsg_t txMsg[3] = {
-    { .txMsg = 1, .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
-    { .txMsg = 2, .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
-    { .txMsg = 3, .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
-};
+txMsg_t txMsg[3] =
+    { { .txMsg = 1, }
+    , { .txMsg = 2, }
+    , { .txMsg = 3, }
+    };
 
 void pack_cmd(txMsg_t *msg, double p, double v, double kp, double kd, double t_ff)
 {
@@ -28,7 +28,6 @@ void pack_cmd(txMsg_t *msg, double p, double v, double kp, double kd, double t_f
 
 void loop(int x)
 {
-#if 0
     if (0<x && x<99) {
         pack_cmd(&txMsg1, 0, 0, 0, 0, 0);
         pack_cmd(&txMsg2, 0, 0, 0, 0, 0);
@@ -76,9 +75,6 @@ void loop(int x)
         pack_cmd(&txMsg2, 0, 0, 0, 0.1, 0);
         pack_cmd(&txMsg3, 0, 0, 0, 0.1, 0);
     }
-#elif 1
-    pack_cmd(&txMsg1, -0.5236, 0.0, 10.0, 0.9, -0.01);
-#endif
 }
 
 void serial_isr()

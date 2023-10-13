@@ -42,7 +42,6 @@ extern Timer        timer;
 extern Ticker       sendCAN;
 extern int          turn_cnt;
 extern struct refs  refs_tbl[1000][3];
-extern bool         live;
 
 extern CANMessage   rxMsg;
 extern CANMessage   txMsg1;
@@ -54,12 +53,11 @@ void command(void);
 void onMsgReceived(void);
 void unpack_reply(CANMessage msg);
 void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, float t_ff);
-void halt(void);
 
 inline
 void limit_norm(float &x, float &y, float limit)
-{   /// Scales the lenght of vector (x, y) to be <= limit ///
-    const float norm = sqrt(x * x + y * y);
+{   // Scales the lenght of vector (x, y) to be <= limit ///
+    float const norm = sqrt(x * x + y * y);
     if(norm > limit) {
         x = x * (limit / norm);
         y = y * (limit / norm);
@@ -68,17 +66,17 @@ void limit_norm(float &x, float &y, float limit)
 
 inline
 int float_to_uint(float x, float x_min, float x_max, int bits)
-{   /// Converts a float to an unsigned int, given range and number of bits ///
-    const float span = x_max - x_min;
-    const float offset = x_min;
+{   // Converts a float to an unsigned int, given range and number of bits ///
+    float const span = x_max - x_min;
+    float const offset = x_min;
     return (int) ((x-offset)*((float)((1<<bits)-1))/span);
 }
     
 inline
 float uint_to_float(int x_int, float x_min, float x_max, int bits)
-{   /// converts unsigned int to float, given range and number of bits ///
-    const float span = x_max - x_min;
-    const float offset = x_min;
+{   // converts unsigned int to float, given range and number of bits ///
+    float const span = x_max - x_min;
+    float const offset = x_min;
     return ((float)x_int)*span/((float)((1<<bits)-1)) + offset;
 }
 

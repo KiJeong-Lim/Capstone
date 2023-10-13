@@ -5,12 +5,6 @@ static float p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref;
 static float p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref;
 static float p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref;
 
-void halt(void)
-{
-    live = false;
-    printf("\n\r killing... \n\r");
-}
-
 void serial_isr(void)
 {
     p1_ref = refs_tbl[turn_cnt][0].p_ref; v1_ref = refs_tbl[turn_cnt][0].v_ref; kp1_ref = refs_tbl[turn_cnt][0].kp_ref; kd1_ref = refs_tbl[turn_cnt][0].kd_ref; t1_ref = refs_tbl[turn_cnt][0].t_ref;
@@ -22,7 +16,7 @@ void serial_isr(void)
         pack_cmd(txMsg2, 0.0, 0.0, 0.0, 0.0, 0.0);
         pack_cmd(txMsg3, 0.0, 0.0, 0.0, 0.0, 0.0);
     }
-    else if (live) {
+    else {
         pack_cmd(txMsg1, p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref);
         pack_cmd(txMsg2, p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref);
         pack_cmd(txMsg3, p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref);
@@ -32,11 +26,6 @@ void serial_isr(void)
         printf("\n");
         turn_cnt++;
     }
-    else {
-        txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFE;
-        txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFE;
-        txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFE;
-    }
 
     can.write(txMsg1); can.write(txMsg2); can.write(txMsg3);
 }
@@ -44,7 +33,7 @@ void serial_isr(void)
 void command(void)
 {
     while(pc.readable()) {
-        const char c = pc.getc();
+        char const c = pc.getc();
         switch(c) {
             case(27):
                 printf("\n\r Exiting motor mode \n\r");
@@ -154,9 +143,8 @@ void command(void)
                 break;
         }
     }
-    can.write(txMsg1);
-    can.write(txMsg2);
-    can.write(txMsg3);
+
+    can.write(txMsg1); can.write(txMsg2); can.write(txMsg3);
 }
 
 void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, float t_ff)
@@ -168,11 +156,11 @@ void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, flo
     kd = min(max(KD_MIN, kd), KD_MAX);
     t_ff = min(max(T_MIN, t_ff), T_MAX);
     /// convert floats to unsigned ints ///
-    int p_int  = float_to_uint(p_des, P_MIN, P_MAX, 16);            
-    int v_int  = float_to_uint(v_des, V_MIN, V_MAX, 12);
-    int kp_int = float_to_uint(kp, KP_MIN, KP_MAX, 12);
-    int kd_int = float_to_uint(kd, KD_MIN, KD_MAX, 12);
-    int t_int  = float_to_uint(t_ff, T_MIN, T_MAX, 12);
+    int const p_int  = float_to_uint(p_des, P_MIN, P_MAX, 16);            
+    int const v_int  = float_to_uint(v_des, V_MIN, V_MAX, 12);
+    int const kp_int = float_to_uint(kp, KP_MIN, KP_MAX, 12);
+    int const kd_int = float_to_uint(kd, KD_MIN, KD_MAX, 12);
+    int const t_int  = float_to_uint(t_ff, T_MIN, T_MAX, 12);
     /// pack ints into the can buffer ///
     msg.data[0] = p_int>>8;                                       
     msg.data[1] = p_int&0xFF;
@@ -185,15 +173,15 @@ void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, flo
 }
 
 void unpack_reply(CANMessage msg) {
-    /// unpack ints from can buffer ///
-    int id = msg.data[0];
-    int p_int = (msg.data[1]<<8)|msg.data[2];
-    int v_int = (msg.data[3]<<4)|(msg.data[4]>>4);
-    int i_int = ((msg.data[4]&0xF)<<8)|msg.data[5];
-    /// convert ints to floats ///
-    float p = uint_to_float(p_int, P_MIN, P_MAX, 16);
-    float v = uint_to_float(v_int, V_MIN, V_MAX, 12);
-    float i = uint_to_float(i_int, -I_MAX, I_MAX, 12);
+    // unpack ints from can buffer //
+    int const id = msg.data[0];
+    int const p_int = (msg.data[1]<<8)|msg.data[2];
+    int const v_int = (msg.data[3]<<4)|(msg.data[4]>>4);
+    int const i_int = ((msg.data[4]&0xF)<<8)|msg.data[5];
+    // convert ints to floats //
+    float const p = uint_to_float(p_int, P_MIN, P_MAX, 16);
+    float const v = uint_to_float(v_int, V_MIN, V_MAX, 12);
+    float const i = uint_to_float(i_int, -I_MAX, I_MAX, 12);
 
     if(id == 1) {
         theta1 = p;
