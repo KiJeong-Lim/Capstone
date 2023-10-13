@@ -35,12 +35,16 @@ void serial_isr(void)
             mode = setzero_mode;
         }
         else if (turn_cnt >= 0) {
+#if 0
             p1_ref = refs_tbl[turn_cnt][0].p_ref; v1_ref = refs_tbl[turn_cnt][0].v_ref; kp1_ref = refs_tbl[turn_cnt][0].kp_ref; kd1_ref = refs_tbl[turn_cnt][0].kd_ref; t1_ref = refs_tbl[turn_cnt][0].t_ref;
             p2_ref = refs_tbl[turn_cnt][1].p_ref; v2_ref = refs_tbl[turn_cnt][1].v_ref; kp2_ref = refs_tbl[turn_cnt][1].kp_ref; kd2_ref = refs_tbl[turn_cnt][1].kd_ref; t2_ref = refs_tbl[turn_cnt][1].t_ref;
             p3_ref = refs_tbl[turn_cnt][2].p_ref; v3_ref = refs_tbl[turn_cnt][2].v_ref; kp3_ref = refs_tbl[turn_cnt][2].kp_ref; kd3_ref = refs_tbl[turn_cnt][2].kd_ref; t3_ref = refs_tbl[turn_cnt][2].t_ref;
             pack_cmd(txMsg1, p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref);
             pack_cmd(txMsg2, p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref);
             pack_cmd(txMsg3, p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref);
+#elif 1
+            pack_cmd(txMsg1, -0.349, 0.0, 2.0, 0.0, 0.02);
+#endif
             observe();
             turn_cnt++;
         }
