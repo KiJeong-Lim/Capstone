@@ -7,15 +7,35 @@ static float p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref;
 
 static enum Mode mode = setzero_mode;
 static char ch = '\0';
+static int gear_obs = 0;
+
+void observe(void)
+{
+    if (gear_obs % 10 == 0 && gear_obs >= 0)
+    {
+        printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
+        printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2);
+        printf("theta3: %lf, omega3: %lf\n", theta3, dtheta3);
+        printf("\n");
+        gear_obs = 0;
+    }
+    else if (gear_obs >= 0)
+    {
+        gear_obs++;
+    }
+    else
+    {
+        gear_obs = 0;
+    }
+}
 
 void serial_isr(void)
 {
     switch (mode) {
     case runtime_mode:
         if (turn_cnt > 1000) {
-            pack_cmd(txMsg1, 0.0, 0.0, 0.0, 0.0, 0.0);
-            pack_cmd(txMsg2, 0.0, 0.0, 0.0, 0.0, 0.0);
-            pack_cmd(txMsg3, 0.0, 0.0, 0.0, 0.0, 0.0);
+            turn_cnt = -1;
+            mode = setzero_mode;
         }
         else if (turn_cnt >= 0) {
             p1_ref = refs_tbl[turn_cnt][0].p_ref; v1_ref = refs_tbl[turn_cnt][0].v_ref; kp1_ref = refs_tbl[turn_cnt][0].kp_ref; kd1_ref = refs_tbl[turn_cnt][0].kd_ref; t1_ref = refs_tbl[turn_cnt][0].t_ref;
@@ -24,18 +44,12 @@ void serial_isr(void)
             pack_cmd(txMsg1, p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref);
             pack_cmd(txMsg2, p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref);
             pack_cmd(txMsg3, p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref);
-            printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
-            printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2);
-            printf("theta3: %lf, omega3: %lf\n", theta3, dtheta3);
-            printf("\n");
+            observe();
             turn_cnt++;
         }
         break;
     case observe_mode:
-        printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
-        printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2);
-        printf("theta3: %lf, omega3: %lf\n", theta3, dtheta3);
-        printf("\n");
+        observe();
         turn_cnt = -1;
         break;
     case setzero_mode:
