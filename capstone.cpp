@@ -29,6 +29,7 @@ void serial_isr(void)
             printf("\n");
             turn_cnt++;
         }
+        break;
     case observe_mode:
         printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
         printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2);
