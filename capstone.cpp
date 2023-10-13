@@ -86,9 +86,6 @@ void command(void)
             printf("\n\r 3rd motor rest position \n\r");
             txMsg3.data[0] = 0x7F; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0x7F; txMsg3.data[3] = 0xF0; txMsg3.data[4] = 0x00; txMsg3.data[5] = 0x00; txMsg3.data[6] = 0x07; txMsg3.data[7] = 0xFF;
             break;
-        case 'g':
-            mode = runtime_mode;
-            turn_cnt = 0;
 #if 0
         case 'a':
             printf("\n\r sit down \n\r");
@@ -109,6 +106,10 @@ void command(void)
             pack_cmd(txMsg3, 0, 0, 15, 3, 0);
             break;
 #endif
+        case 'r':
+            mode = runtime_mode;
+            turn_cnt = 0;
+            break;
         case 'o':
             printf("\n\r Observe \n\r");
             mode = observe_mode;
