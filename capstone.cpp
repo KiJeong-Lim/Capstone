@@ -72,18 +72,21 @@ void command(void)
             txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFD;
             txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFD;
             txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFD;
+            turn_cnt = -1;
             break;
         case 'm':
             printf("\n\r Entering motor mode \n\r");
             txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFC;
             txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFC;
             txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFC;
+            turn_cnt = -1;
             break;
         case 'z':
             printf("\n\r Set zero \n\r");
             txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFE;
             txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFE;
             txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFE;
+            turn_cnt = -1;
             break;
         case '1':
             printf("\n\r 1st motor rest position \n\r");
