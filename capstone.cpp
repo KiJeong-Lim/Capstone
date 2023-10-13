@@ -9,7 +9,7 @@ static enum Mode mode = setzero_mode;
 static char ch = '\0';
 static int gear_obs = 0;
 
-void observe(void)
+static void observe(void)
 {
     if (gear_obs % 10 == 0 && gear_obs >= 0) {
         printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
@@ -100,26 +100,6 @@ void command(void)
             printf("\n\r 3rd motor rest position \n\r");
             txMsg3.data[0] = 0x7F; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0x7F; txMsg3.data[3] = 0xF0; txMsg3.data[4] = 0x00; txMsg3.data[5] = 0x00; txMsg3.data[6] = 0x07; txMsg3.data[7] = 0xFF;
             break;
-#if 0
-        case 'a':
-            printf("\n\r sit down \n\r");
-            txMsg1.data[0] = 0x7F; txMsg1.data[1] = 0xA9; txMsg1.data[2] = 0x7F; txMsg1.data[3] = 0xF0; txMsg1.data[4] = 0x2A; txMsg1.data[5] = 0x66; txMsg1.data[6] = 0x67; txMsg1.data[7] = 0x82;
-            txMsg2.data[0] = 0x7F; txMsg2.data[1] = 0x65; txMsg2.data[2] = 0x7F; txMsg2.data[3] = 0xF0; txMsg2.data[4] = 0x28; txMsg2.data[5] = 0x66; txMsg2.data[6] = 0x66; txMsg2.data[7] = 0x38;
-            txMsg3.data[0] = 0x7F; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0x7F; txMsg3.data[3] = 0xF0; txMsg3.data[4] = 0x51; txMsg3.data[5] = 0x4C; txMsg3.data[6] = 0xC7; txMsg3.data[7] = 0xFF;
-            break;
-        case 'q':
-            printf("\n\r Test \n\r");
-            pack_cmd(txMsg1, 0, 0, 0, 0, 0);
-            pack_cmd(txMsg2, 0, 0, 0, 0, 0);
-            pack_cmd(txMsg3, -0.20, 0, 4, 3, 0);
-            break;
-        case 'w':
-            printf("\n\r Test \n\r");
-            pack_cmd(txMsg1, -0.1, 0, 18, 3.5, 0);
-            pack_cmd(txMsg2, -0.115, 0, 18, 3.5, 0);
-            pack_cmd(txMsg3, 0, 0, 15, 3, 0);
-            break;
-#endif
         case 'r':
             mode = runtime_mode;
             turn_cnt = 0;
