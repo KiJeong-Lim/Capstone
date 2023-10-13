@@ -40,9 +40,12 @@ void serial_isr(void)
         break;
     case setzero_mode:
     default:
-        pack_cmd(txMsg1, 0.0, 0.0, 0.0, 0.0, 0.0);
-        pack_cmd(txMsg2, 0.0, 0.0, 0.0, 0.0, 0.0);
-        pack_cmd(txMsg3, 0.0, 0.0, 0.0, 0.0, 0.0);
+        p1_ref = 0.0; v1_ref = 0.0; kp1_ref = 0.0; kd1_ref = 0.0; t1_ref = 0.0;
+        p2_ref = 0.0; v2_ref = 0.0; kp2_ref = 0.0; kd2_ref = 0.0; t2_ref = 0.0;
+        p3_ref = 0.0; v3_ref = 0.0; kp3_ref = 0.0; kd3_ref = 0.0; t3_ref = 0.0;
+        pack_cmd(txMsg1, p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref);
+        pack_cmd(txMsg2, p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref);
+        pack_cmd(txMsg3, p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref);
         turn_cnt = -1;
     }
     can.write(txMsg1); can.write(txMsg2); can.write(txMsg3);
