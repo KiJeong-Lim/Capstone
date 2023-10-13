@@ -122,27 +122,20 @@ void command(void)
 
 void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, float t_ff)
 {
-    /// limit data to be within bounds ///
+    // limit data to be within bounds //
     p_des = min(max(P_MIN, p_des), P_MAX);                    
     v_des = min(max(V_MIN, v_des), V_MAX);
     kp = min(max(KP_MIN, kp), KP_MAX);
     kd = min(max(KD_MIN, kd), KD_MAX);
     t_ff = min(max(T_MIN, t_ff), T_MAX);
-    /// convert floats to unsigned ints ///
-    int const p_int  = float_to_uint(p_des, P_MIN, P_MAX, 16);            
+    // convert floats to unsigned ints //
+    int const p_int  = float_to_uint(p_des, P_MIN, P_MAX, 16);
     int const v_int  = float_to_uint(v_des, V_MIN, V_MAX, 12);
     int const kp_int = float_to_uint(kp, KP_MIN, KP_MAX, 12);
     int const kd_int = float_to_uint(kd, KD_MIN, KD_MAX, 12);
-    int const t_int  = float_to_uint(t_ff, T_MIN, T_MAX, 12);
-    /// pack ints into the can buffer ///
-    msg.data[0] = p_int>>8;                                       
-    msg.data[1] = p_int&0xFF;
-    msg.data[2] = v_int>>4;
-    msg.data[3] = ((v_int&0xF)<<4)|(kp_int>>8);
-    msg.data[4] = kp_int&0xFF;
-    msg.data[5] = kd_int>>4;
-    msg.data[6] = ((kd_int&0xF)<<4)|(t_int>>8);
-    msg.data[7] = t_int&0xff;
+     int const t_int  = float_to_uint(t_ff, T_MIN, T_MAX, 12);
+    // pack ints into the can buffer //
+    msg.data[0] = p_int>>8; msg.data[1] = p_int&0xFF; msg.data[2] = v_int>>4; msg.data[3] = ((v_int&0xF)<<4)|(kp_int>>8); msg.data[4] = kp_int&0xFF; msg.data[5] = kd_int>>4; msg.data[6] = ((kd_int&0xF)<<4)|(t_int>>8); msg.data[7] = t_int&0xff;
 }
 
 void unpack_reply(CANMessage msg)
@@ -156,15 +149,15 @@ void unpack_reply(CANMessage msg)
     float const p = uint_to_float(p_int, P_MIN, P_MAX, 16);
     float const v = uint_to_float(v_int, V_MIN, V_MAX, 12);
     float const i = uint_to_float(i_int, -I_MAX, I_MAX, 12);
-    if(id == 1) {
+    if (id == 1) {
         theta1 = p;
         dtheta1 = v;
     }
-    else if(id == 2) {
+    else if (id == 2) {
         theta2 = p;
         dtheta2 = v;
     }
-    else if(id == 3) {
+    else if (id == 3) {
         theta3 = p;
         dtheta3 = v;
     }
