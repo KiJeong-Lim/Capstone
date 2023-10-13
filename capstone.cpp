@@ -135,12 +135,6 @@ void command(void)
                 pack_cmd(txMsg2, -0.115, 0, 18, 3.5, 0);
                 pack_cmd(txMsg3, 0, 0, 15, 3, 0);
                 break;
-            case 'h': // halt
-                halt();
-                break;
-            case 'r': // revive
-                live = true;
-                break;
         }
     }
 
