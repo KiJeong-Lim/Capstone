@@ -11,20 +11,17 @@ static int gear_obs = 0;
 
 void observe(void)
 {
-    if (gear_obs % 10 == 0 && gear_obs >= 0)
-    {
+    if (gear_obs % 10 == 0 && gear_obs >= 0) {
         printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
         printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2);
         printf("theta3: %lf, omega3: %lf\n", theta3, dtheta3);
         printf("\n");
         gear_obs = 0;
     }
-    else if (gear_obs >= 0)
-    {
+    else if (gear_obs >= 0) {
         gear_obs++;
     }
-    else
-    {
+    else {
         gear_obs = 0;
     }
 }
