@@ -105,6 +105,8 @@ void command(void)
         case 'o':
             printf("\n\r Observe \n\r");
             mode = observe_mode;
+            turn_cnt = -1;
+            break;
         case 'b':
             mode = setzero_mode;
             turn_cnt = -1;
