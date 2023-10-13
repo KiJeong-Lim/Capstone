@@ -6,6 +6,7 @@ static float p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref;
 static float p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref;
 
 static enum Mode mode = setzero_mode;
+static char ch = '\0';
 
 void serial_isr(void)
 {
@@ -49,7 +50,6 @@ void serial_isr(void)
 
 void command(void)
 {
-    char ch = '\0';
     while (pc.readable()) {
         ch = pc.getc();
         switch (ch) {
@@ -116,6 +116,7 @@ void command(void)
             turn_cnt = -1;
             break;
         }
+        ch = '\0';
     }
     can.write(txMsg1); can.write(txMsg2); can.write(txMsg3);
 }
@@ -133,7 +134,7 @@ void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, flo
     int const v_int  = float_to_uint(v_des, V_MIN, V_MAX, 12);
     int const kp_int = float_to_uint(kp, KP_MIN, KP_MAX, 12);
     int const kd_int = float_to_uint(kd, KD_MIN, KD_MAX, 12);
-     int const t_int  = float_to_uint(t_ff, T_MIN, T_MAX, 12);
+    int const t_int  = float_to_uint(t_ff, T_MIN, T_MAX, 12);
     // pack ints into the can buffer //
     msg.data[0] = p_int>>8; msg.data[1] = p_int&0xFF; msg.data[2] = v_int>>4; msg.data[3] = ((v_int&0xF)<<4)|(kp_int>>8); msg.data[4] = kp_int&0xFF; msg.data[5] = kd_int>>4; msg.data[6] = ((kd_int&0xF)<<4)|(t_int>>8); msg.data[7] = t_int&0xff;
 }
