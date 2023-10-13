@@ -6,11 +6,11 @@ static float p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref;
 static float p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref;
 
 static enum Mode mode = setzero_mode;
-static char ch = '\0';
-static int gear_obs = 0;
 
-static void observe(void)
+static
+void observe(void)
 {
+    static int gear_obs = 0;
     if (gear_obs % 10 == 0 && gear_obs >= 0) {
         printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
         printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2);
@@ -68,6 +68,7 @@ void serial_isr(void)
 
 void command(void)
 {
+    static char ch = '\0';
     while (pc.readable()) {
         ch = pc.getc();
         switch (ch) {
