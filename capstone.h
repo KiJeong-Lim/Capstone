@@ -38,7 +38,8 @@ struct refs {
 
 enum Mode : int {
     default_mode = 0,
-    observe_mode = 1,
+    setzero_mode = 1,
+    observe_mode = 2,
 };
 
 extern Serial       pc;
