@@ -14,7 +14,6 @@ void serial_isr(void)
     p3_ref = refs_tbl[turn_cnt][2].p_ref; v3_ref = refs_tbl[turn_cnt][2].v_ref; kp3_ref = refs_tbl[turn_cnt][2].kp_ref; kd3_ref = refs_tbl[turn_cnt][2].kd_ref; t3_ref = refs_tbl[turn_cnt][2].t_ref;
     switch (mode) {
     case runtime_mode:
-    default:
         if (turn_cnt > 1000) {
             pack_cmd(txMsg1, 0.0, 0.0, 0.0, 0.0, 0.0);
             pack_cmd(txMsg2, 0.0, 0.0, 0.0, 0.0, 0.0);
