@@ -36,6 +36,11 @@ struct refs {
     float t_ref;
 };
 
+enum Mode : int {
+    default_mode = 0,
+    observe_mode = 1,
+};
+
 extern Serial       pc;
 extern CAN          can;
 extern Timer        timer;
