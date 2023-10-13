@@ -5,7 +5,7 @@ static float p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref;
 static float p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref;
 static float p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref;
 
-static enum Mode mode = default_mode;
+static enum Mode mode = setzero_mode;
 
 void serial_isr(void)
 {
@@ -13,19 +13,7 @@ void serial_isr(void)
     p2_ref = refs_tbl[turn_cnt][1].p_ref; v2_ref = refs_tbl[turn_cnt][1].v_ref; kp2_ref = refs_tbl[turn_cnt][1].kp_ref; kd2_ref = refs_tbl[turn_cnt][1].kd_ref; t2_ref = refs_tbl[turn_cnt][1].t_ref;
     p3_ref = refs_tbl[turn_cnt][2].p_ref; v3_ref = refs_tbl[turn_cnt][2].v_ref; kp3_ref = refs_tbl[turn_cnt][2].kp_ref; kd3_ref = refs_tbl[turn_cnt][2].kd_ref; t3_ref = refs_tbl[turn_cnt][2].t_ref;
     switch (mode) {
-    case setzero_mode:
-        pack_cmd(txMsg1, 0.0, 0.0, 0.0, 0.0, 0.0);
-        pack_cmd(txMsg2, 0.0, 0.0, 0.0, 0.0, 0.0);
-        pack_cmd(txMsg3, 0.0, 0.0, 0.0, 0.0, 0.0);
-        turn_cnt = -1;
-        break;
-    case observe_mode:
-        printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
-        printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2);
-        printf("theta3: %lf, omega3: %lf\n", theta3, dtheta3);
-        printf("\n");
-        break;
-    case default_mode:
+    case runtime_mode:
     default:
         if (turn_cnt > 1000) {
             pack_cmd(txMsg1, 0.0, 0.0, 0.0, 0.0, 0.0);
@@ -42,6 +30,19 @@ void serial_isr(void)
             printf("\n");
             turn_cnt++;
         }
+    case observe_mode:
+        printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
+        printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2);
+        printf("theta3: %lf, omega3: %lf\n", theta3, dtheta3);
+        printf("\n");
+        turn_cnt = -1;
+        break;
+    case setzero_mode:
+    default:
+        pack_cmd(txMsg1, 0.0, 0.0, 0.0, 0.0, 0.0);
+        pack_cmd(txMsg2, 0.0, 0.0, 0.0, 0.0, 0.0);
+        pack_cmd(txMsg3, 0.0, 0.0, 0.0, 0.0, 0.0);
+        turn_cnt = -1;
     }
     can.write(txMsg1); can.write(txMsg2); can.write(txMsg3);
 }
@@ -82,6 +83,9 @@ void command(void)
             printf("\n\r 3rd motor rest position \n\r");
             txMsg3.data[0] = 0x7F; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0x7F; txMsg3.data[3] = 0xF0; txMsg3.data[4] = 0x00; txMsg3.data[5] = 0x00; txMsg3.data[6] = 0x07; txMsg3.data[7] = 0xFF;
             break;
+        case 'g':
+            mode = runtime_mode;
+            turn_cnt = 0;
 #if 0
         case 'a':
             printf("\n\r sit down \n\r");

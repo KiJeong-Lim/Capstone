@@ -14,7 +14,7 @@ CANMessage  txMsg3;
 int main(void)
 {
     timer.start();
-    turn_cnt = 0;
+    turn_cnt = -1;
     sendCAN.attach(&serial_isr, dt);
     pc.baud(921600); pc.attach(&command);
     can.frequency(1000000); can.attach(&onMsgReceived); can.filter(CAN_ID<<21, 0xFFE00004, CANStandard, 0);
