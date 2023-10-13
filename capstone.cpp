@@ -103,13 +103,8 @@ void command(void)
             break;
 #endif
         case 'o':
-            if (mode == observe_mode) {
-                mode = default_mode;
-            }
-            else {
-                printf("\n\r Observe \n\r");
-                mode = observe_mode;
-            }
+            printf("\n\r Observe \n\r");
+            mode = observe_mode;
         case 'b':
             mode = setzero_mode;
             turn_cnt = -1;
