@@ -6,12 +6,23 @@ static float p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref;
 static float p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref;
 
 static enum Mode mode = setzero_mode;
+static int gear_obs = 0;
+static char ch = '\0';
+
+static
+void halt(void)
+{
+    pack_cmd(txMsg1, 0.0, 0.0, 0.0, 0.0, 0.0);
+    pack_cmd(txMsg2, 0.0, 0.0, 0.0, 0.0, 0.0);
+    pack_cmd(txMsg3, 0.0, 0.0, 0.0, 0.0, 0.0);
+    mode = setzero_mode;
+    turn_cnt = -2;
+}
 
 static
 void observe(void)
 {
-    static int gear_obs = 0;
-    if (gear_obs % 10 == 0 && gear_obs >= 0) {
+    if (gear_obs % 10 == 0 && gear_obs > 0) {
         printf("theta1: %lf, omega1: %lf\n", theta1, dtheta1);
         printf("theta2: %lf, omega2: %lf\n", theta2, dtheta2);
         printf("theta3: %lf, omega3: %lf\n", theta3, dtheta3);
@@ -30,9 +41,9 @@ void serial_isr(void)
 {
     switch (mode) {
     case runtime_mode:
-        if (turn_cnt > 1000) {
-            turn_cnt = -1;
-            mode = setzero_mode;
+        if (turn_cnt > 500) {
+            turn_cnt = -2;
+            halt();
         }
         else if (turn_cnt >= 0) {
 #if 0
@@ -43,7 +54,7 @@ void serial_isr(void)
             pack_cmd(txMsg2, p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref);
             pack_cmd(txMsg3, p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref);
 #elif 1
-            pack_cmd(txMsg1, -0.349, 0.0, 2.0, 0.0, 0.02);
+            pack_cmd(txMsg1, -0.349, 0.0, 2.0, 0.0, 0.005);
 #endif
             observe();
             turn_cnt++;
@@ -51,24 +62,17 @@ void serial_isr(void)
         break;
     case observe_mode:
         observe();
-        turn_cnt = -1;
+        turn_cnt = -2;
         break;
     case setzero_mode:
     default:
-        p1_ref = 0.0; v1_ref = 0.0; kp1_ref = 0.0; kd1_ref = 0.0; t1_ref = 0.0;
-        p2_ref = 0.0; v2_ref = 0.0; kp2_ref = 0.0; kd2_ref = 0.0; t2_ref = 0.0;
-        p3_ref = 0.0; v3_ref = 0.0; kp3_ref = 0.0; kd3_ref = 0.0; t3_ref = 0.0;
-        pack_cmd(txMsg1, p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref);
-        pack_cmd(txMsg2, p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref);
-        pack_cmd(txMsg3, p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref);
-        turn_cnt = -1;
+        halt();
     }
     can.write(txMsg1); can.write(txMsg2); can.write(txMsg3);
 }
 
 void command(void)
 {
-    static char ch = '\0';
     while (pc.readable()) {
         ch = pc.getc();
         switch (ch) {
@@ -91,7 +95,6 @@ void command(void)
             txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFE;
             txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFE;
             txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFE;
-            turn_cnt = -1;
             break;
         case '1':
             printf("\n\r 1st motor rest position \n\r");
@@ -106,17 +109,18 @@ void command(void)
             txMsg3.data[0] = 0x7F; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0x7F; txMsg3.data[3] = 0xF0; txMsg3.data[4] = 0x00; txMsg3.data[5] = 0x00; txMsg3.data[6] = 0x07; txMsg3.data[7] = 0xFF;
             break;
         case 'r':
+            printf("\n\r Run \n\r");
             mode = runtime_mode;
             turn_cnt = 0;
             break;
         case 'o':
             printf("\n\r Observe \n\r");
             mode = observe_mode;
-            turn_cnt = -1;
+            turn_cnt = -2;
             break;
         case 'b':
+            printf("\n\r Break \n\r");
             mode = setzero_mode;
-            turn_cnt = -1;
             break;
         }
         ch = '\0';

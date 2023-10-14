@@ -28,6 +28,7 @@ void pack_cmd(txMsg_t *msg, double p, double v, double kp, double kd, double t_f
 
 void loop(int x)
 {
+#if 1
     if (0<x && x<99) {
         pack_cmd(&txMsg1, 0, 0, 0, 0, 0);
         pack_cmd(&txMsg2, 0, 0, 0, 0, 0);
@@ -75,6 +76,11 @@ void loop(int x)
         pack_cmd(&txMsg2, 0, 0, 0, 0.1, 0);
         pack_cmd(&txMsg3, 0, 0, 0, 0.1, 0);
     }
+#elif 0
+    float const omega = 0.1;
+    float const dt = 0.01;
+    pack_cmd(&txMsg1, sin(omega * x * dt), 0, 0, 0.1, 0);
+#endif
 }
 
 void serial_isr()
