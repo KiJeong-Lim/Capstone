@@ -42,7 +42,6 @@ void serial_isr(void)
     switch (mode) {
     case runtime_mode:
         if (turn_cnt > 500) {
-            turn_cnt = -2;
             halt();
         }
         else if (turn_cnt >= 0) {
@@ -54,15 +53,15 @@ void serial_isr(void)
             pack_cmd(txMsg2, p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref);
             pack_cmd(txMsg3, p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref);
 #elif 1
-            pack_cmd(txMsg1, -0.349, 0.0, 2.0, 0.0, 0.005);
+            pack_cmd(txMsg1, -0.1396, 0.0, 2, 0.0, -3.0);
 #endif
             observe();
             turn_cnt++;
         }
         break;
     case observe_mode:
-        observe();
         turn_cnt = -2;
+        observe();
         break;
     case setzero_mode:
     default:
