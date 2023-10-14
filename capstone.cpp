@@ -9,6 +9,9 @@ static enum Mode mode = setzero_mode;
 static int gear_obs = 0;
 static char ch = '\0';
 
+static char my_buffer[32];
+static int my_cursor = 0;
+
 static
 void halt(void)
 {
@@ -53,7 +56,7 @@ void serial_isr(void)
             pack_cmd(txMsg2, p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref);
             pack_cmd(txMsg3, p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref);
 #elif 1
-            pack_cmd(txMsg1, -0.1396, 0.0, 2, 0.0, -2.6);
+            pack_cmd(txMsg1, -0.1396, 0.0, 2, 0.0, -2.0);
 #endif
             observe();
             turn_cnt++;
@@ -75,53 +78,72 @@ void command(void)
 {
     while (pc.readable()) {
         ch = pc.getc();
-        switch (ch) {
-        case 27:
-            printf("\n\r Exiting motor mode \n\r");
-            txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFD;
-            txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFD;
-            txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFD;
-            turn_cnt = -1;
-            break;
-        case 'm':
-            printf("\n\r Entering motor mode \n\r");
-            txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFC;
-            txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFC;
-            txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFC;
-            turn_cnt = -1;
-            break;
-        case 'z':
-            printf("\n\r Set zero \n\r");
-            txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFE;
-            txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFE;
-            txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFE;
-            break;
-        case '1':
-            printf("\n\r 1st motor rest position \n\r");
-            txMsg1.data[0] = 0x7F; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0x7F; txMsg1.data[3] = 0xf0; txMsg1.data[4] = 0x00; txMsg1.data[5] = 0x00; txMsg1.data[6] = 0x07; txMsg1.data[7] = 0xFF;
-            break;
-        case '2':
-            printf("\n\r 2nd motor rest position \n\r");
-            txMsg2.data[0] = 0x7F; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0x7F; txMsg2.data[3] = 0xF0; txMsg2.data[4] = 0x00; txMsg2.data[5] = 0x00; txMsg2.data[6] = 0x07; txMsg2.data[7] = 0xFF;               
-            break;
-        case '3':
-            printf("\n\r 3rd motor rest position \n\r");
-            txMsg3.data[0] = 0x7F; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0x7F; txMsg3.data[3] = 0xF0; txMsg3.data[4] = 0x00; txMsg3.data[5] = 0x00; txMsg3.data[6] = 0x07; txMsg3.data[7] = 0xFF;
-            break;
-        case 'r':
-            printf("\n\r Run \n\r");
-            mode = runtime_mode;
-            turn_cnt = 0;
-            break;
-        case 'o':
-            printf("\n\r Observe \n\r");
-            mode = observe_mode;
-            turn_cnt = -2;
-            break;
-        case 'b':
-            printf("\n\r Break \n\r");
-            mode = setzero_mode;
-            break;
+        if (mode == listen_mode) {
+            if (ch == '\n' || ch == '\r') {
+                my_buffer[my_cursor] = '\0';
+                printf("%s\n", my_buffer);
+                mode = setzero_mode;
+                my_cursor = 0;
+            }
+            else {
+                my_buffer[my_cursor++] = ch;
+            }
+        }
+        else {
+            switch (ch) {
+            case 27:
+                printf("\n\r Exiting motor mode \n\r");
+                txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFD;
+                txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFD;
+                txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFD;
+                turn_cnt = -1;
+                break;
+            case 'm':
+                printf("\n\r Entering motor mode \n\r");
+                txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFC;
+                txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFC;
+                txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFC;
+                turn_cnt = -1;
+                break;
+            case 'z':
+                printf("\n\r Set zero \n\r");
+                txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFE;
+                txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFE;
+                txMsg3.data[0] = 0xFF; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0xFF; txMsg3.data[3] = 0xFF; txMsg3.data[4] = 0xFF; txMsg3.data[5] = 0xFF; txMsg3.data[6] = 0xFF; txMsg3.data[7] = 0xFE;
+                break;
+            case '1':
+                printf("\n\r 1st motor rest position \n\r");
+                txMsg1.data[0] = 0x7F; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0x7F; txMsg1.data[3] = 0xf0; txMsg1.data[4] = 0x00; txMsg1.data[5] = 0x00; txMsg1.data[6] = 0x07; txMsg1.data[7] = 0xFF;
+                break;
+            case '2':
+                printf("\n\r 2nd motor rest position \n\r");
+                txMsg2.data[0] = 0x7F; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0x7F; txMsg2.data[3] = 0xF0; txMsg2.data[4] = 0x00; txMsg2.data[5] = 0x00; txMsg2.data[6] = 0x07; txMsg2.data[7] = 0xFF;               
+                break;
+            case '3':
+                printf("\n\r 3rd motor rest position \n\r");
+                txMsg3.data[0] = 0x7F; txMsg3.data[1] = 0xFF; txMsg3.data[2] = 0x7F; txMsg3.data[3] = 0xF0; txMsg3.data[4] = 0x00; txMsg3.data[5] = 0x00; txMsg3.data[6] = 0x07; txMsg3.data[7] = 0xFF;
+                break;
+            case 'r':
+                printf("\n\r Run \n\r");
+                mode = runtime_mode;
+                turn_cnt = 0;
+                break;
+            case 'o':
+                printf("\n\r Observe \n\r");
+                mode = observe_mode;
+                turn_cnt = -2;
+                break;
+            case 'b':
+                printf("\n\r Break \n\r");
+                mode = setzero_mode;
+                break;
+            case 'l':
+                if (mode == setzero_mode && turn_cnt < 0) {
+                    printf("\n\r Listen \n\r");
+                    mode = listen_mode;
+                }
+                break;
+            }
         }
         ch = '\0';
     }

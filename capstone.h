@@ -30,7 +30,7 @@ template <typename A> A min(A x, A y) { return x < y ? x : y; }
 
 struct refs { float p_ref; float v_ref; float kp_ref; float kd_ref; float t_ref; };
 
-enum Mode : int { setzero_mode = 0, runtime_mode = 1, observe_mode = 2, };
+enum Mode : int { setzero_mode = 0, runtime_mode = 1, observe_mode = 2, listen_mode = 3, };
 
 extern Serial       pc;
 extern CAN          can;
