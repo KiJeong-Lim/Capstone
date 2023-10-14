@@ -141,6 +141,7 @@ void command(void)
                 if (mode == setzero_mode && turn_cnt < 0) {
                     printf("\n\r Listen \n\r");
                     mode = listen_mode;
+                    turn_cnt = -2;
                 }
                 break;
             }
