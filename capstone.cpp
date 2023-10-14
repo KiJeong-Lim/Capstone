@@ -53,7 +53,7 @@ void serial_isr(void)
             pack_cmd(txMsg2, p2_ref, v2_ref, kp2_ref, kd2_ref, t2_ref);
             pack_cmd(txMsg3, p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref);
 #elif 1
-            pack_cmd(txMsg1, -0.1396, 0.0, 2, 0.0, -3.0);
+            pack_cmd(txMsg1, -0.1396, 0.0, 2, 0.0, -2.6);
 #endif
             observe();
             turn_cnt++;
@@ -65,6 +65,7 @@ void serial_isr(void)
         break;
     case setzero_mode:
     default:
+        turn_cnt = -2;
         halt();
     }
     can.write(txMsg1); can.write(txMsg2); can.write(txMsg3);
