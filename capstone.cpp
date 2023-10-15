@@ -65,6 +65,7 @@ void serial_isr(void)
         break;
     default:
         printf("undefined mode\n");
+        mode = setzero_mode;
     case setzero_mode:
         turn_cnt = -2;
         halt();
