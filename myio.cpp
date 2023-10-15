@@ -13,7 +13,7 @@ char *callIO(char ch)
     case '\n':
         my_buffer[my_cursor] = '\0';
         my_cursor = 0;
-        printf("%s\n", my_buffer);
+        printf("\r[echo] %s\n", my_buffer);
         io_input = my_buffer;
         return my_buffer;
     case '\r':
