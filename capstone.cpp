@@ -63,8 +63,9 @@ void serial_isr(void)
         turn_cnt = -2;
         observe();
         break;
-    case setzero_mode:
     default:
+        printf("undefined mode\n");
+    case setzero_mode:
         turn_cnt = -2;
         halt();
     }
@@ -76,8 +77,7 @@ void command(void)
     while (pc.readable()) {
         ch = pc.getc();
         if (mode == listen_mode) {
-            io_input = callIO(ch);
-            if (io_input != NULL) {
+            if (callIO(ch)) {
                 turn_cnt = -2;
                 mode = setzero_mode;
                 delta();
@@ -201,5 +201,5 @@ void onMsgReceived(void)
 
 void delta(void)
 {
-
+    int i = 0;
 }

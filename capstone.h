@@ -50,7 +50,7 @@ void command(void);
 void onMsgReceived(void);
 void unpack_reply(CANMessage msg);
 void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, float t_ff);
-char *callIO(char ch);
+bool callIO(char ch);
 void delta(void);
 
 inline
