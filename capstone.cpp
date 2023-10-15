@@ -81,11 +81,12 @@ void command(void)
         if (mode == listen_mode) {
             if (ch == '\n' || ch == '\r') {
                 my_buffer[my_cursor] = '\0';
-                printf("%s\n", my_buffer);
+                printf("\n%s\n", my_buffer);
                 mode = setzero_mode;
                 my_cursor = 0;
             }
             else {
+                printf("%c", ch);
                 my_buffer[my_cursor++] = ch;
             }
         }
