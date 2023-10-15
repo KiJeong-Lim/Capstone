@@ -1,4 +1,5 @@
 #include "capstone.h"
+#include <cstdio>
 
 static float theta1, theta2, theta3, dtheta1, dtheta2, dtheta3;
 static float p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref;
@@ -8,9 +9,6 @@ static float p3_ref, v3_ref, kp3_ref, kd3_ref, t3_ref;
 static enum Mode mode = setzero_mode;
 static int gear_obs = 0;
 static char ch = '\0';
-
-static char my_buffer[32];
-static int my_cursor = 0;
 
 static
 void halt(void)
@@ -79,15 +77,16 @@ void command(void)
     while (pc.readable()) {
         ch = pc.getc();
         if (mode == listen_mode) {
-            if (ch == '\n' || ch == '\r') {
-                my_buffer[my_cursor] = '\0';
-                printf("\n%s\n", my_buffer);
+            bool const done = callIO(ch);
+            if (done) {
+                turn_cnt = -2;
                 mode = setzero_mode;
-                my_cursor = 0;
+                delta();
+                io_input = NULL;
             }
             else {
-                printf("%c", ch);
-                my_buffer[my_cursor++] = ch;
+                turn_cnt = -2;
+                mode = listen_mode;
             }
         }
         else {
@@ -199,4 +198,9 @@ void onMsgReceived(void)
 {
     can.read(rxMsg);
     unpack_reply(rxMsg);
+}
+
+void delta(void)
+{
+
 }

@@ -38,6 +38,7 @@ extern Timer        timer;
 extern Ticker       sendCAN;
 extern int          turn_cnt;
 extern struct refs  refs_tbl[1000][3];
+extern char         *io_input;
 
 extern CANMessage   rxMsg;
 extern CANMessage   txMsg1;
@@ -49,6 +50,8 @@ void command(void);
 void onMsgReceived(void);
 void unpack_reply(CANMessage msg);
 void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, float t_ff);
+bool callIO(char ch);
+void delta(void);
 
 inline
 void limit_norm(float &x, float &y, float limit)

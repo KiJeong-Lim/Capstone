@@ -1,10 +1,12 @@
 #include "capstone.h"
+#include <cstdio>
 
 Serial      pc(PA_2, PA_3);
 CAN         can(PB_8, PB_9);
 Timer       timer;
 Ticker      sendCAN;
 int         turn_cnt = 0;
+char        *io_input = NULL;
 
 CANMessage  rxMsg;
 CANMessage  txMsg1;
