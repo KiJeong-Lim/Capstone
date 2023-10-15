@@ -1,34 +1,33 @@
 #include "capstone.h"
-#include <cstdio>
 
 static char my_buffer[64];
 static int my_cursor = 0;
 
-bool callIO(char ch)
+char *callIO(char ch)
 {
     switch (ch) {
     default:
         my_buffer[my_cursor++] = ch;
         pc.putc(ch);
-        return false;
+        return NULL;
     case '\n':
         my_buffer[my_cursor] = '\0';
         my_cursor = 0;
         printf("%s\n", my_buffer);
         io_input = my_buffer;
-        return true;
+        return my_buffer;
     case '\r':
         my_cursor = 0;
         my_buffer[0] = '\0';
         printf("\r");
-        return false;
+        return NULL;
     case 8:
         my_buffer[my_cursor--] = '\0';
         printf("\r%s", my_buffer);
-        return false;
+        return NULL;
     case 27:
         my_buffer[my_cursor] = '\0';
         my_cursor = 0;
-        return true;
+        return NULL;
     }
 }

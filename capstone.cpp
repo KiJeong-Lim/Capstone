@@ -1,5 +1,4 @@
 #include "capstone.h"
-#include <cstdio>
 
 static float theta1, theta2, theta3, dtheta1, dtheta2, dtheta3;
 static float p1_ref, v1_ref, kp1_ref, kd1_ref, t1_ref;
@@ -77,8 +76,8 @@ void command(void)
     while (pc.readable()) {
         ch = pc.getc();
         if (mode == listen_mode) {
-            bool const done = callIO(ch);
-            if (done) {
+            io_input = callIO(ch);
+            if (io_input != NULL) {
                 turn_cnt = -2;
                 mode = setzero_mode;
                 delta();

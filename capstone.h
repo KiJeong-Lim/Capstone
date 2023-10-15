@@ -1,9 +1,9 @@
 #ifndef CAPSTONE
 #define CAPSTONE
 
-#include "mbed.h"
 #include <cmath>
 #include <cstdio>
+#include "mbed.h"
 
 #define CAN_ID 0x01
 
@@ -38,7 +38,7 @@ extern Timer        timer;
 extern Ticker       sendCAN;
 extern int          turn_cnt;
 extern struct refs  refs_tbl[1000][3];
-extern char         *io_input;
+extern char const   *io_input;
 
 extern CANMessage   rxMsg;
 extern CANMessage   txMsg1;
@@ -50,7 +50,7 @@ void command(void);
 void onMsgReceived(void);
 void unpack_reply(CANMessage msg);
 void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, float t_ff);
-bool callIO(char ch);
+char *callIO(char ch);
 void delta(void);
 
 inline
