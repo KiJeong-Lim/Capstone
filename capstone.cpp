@@ -78,8 +78,8 @@ void command(void)
     while (pc.readable()) {
         ch = pc.getc();
         if (mode == listen_mode) {
-            bool const sended = receivech(ch);
-            if (sended) {
+            bool const entered = receivech(ch);
+            if (entered) {
                 turn_cnt = -2;
                 mode = setzero_mode;
                 delta();
