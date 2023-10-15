@@ -77,7 +77,8 @@ void command(void)
     while (pc.readable()) {
         ch = pc.getc();
         if (mode == listen_mode) {
-            if (callIO(ch)) {
+            bool const sended = receivech(ch);
+            if (sended) {
                 turn_cnt = -2;
                 mode = setzero_mode;
                 delta();
@@ -201,5 +202,9 @@ void onMsgReceived(void)
 
 void delta(void)
 {
-    int i = 0;
+    if (io_input == NULL) {
+        printf("\nLeaving listening mode...\n");
+        mode = setzero_mode;
+    }
+    turn_cnt = -2;
 }
