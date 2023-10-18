@@ -40,7 +40,6 @@ void observe(void)
 static
 void standup(void)
 {
-    printf("\n\r Sit up \n\r");
     txMsg1.data[0] = 0x7C;
     txMsg1.data[1] = 0xA5;
     txMsg1.data[2] = 0x96;
@@ -95,6 +94,9 @@ void serial_isr(void)
         turn_cnt = -2;
         observe();
         break;
+    case listen_mode:
+        turn_cnt = -2;
+        break;
     default:
         printf("undefined mode\n");
         mode = setzero_mode;
@@ -113,9 +115,9 @@ void command(void)
             bool const entered = receivech(ch);
             if (entered) {
                 turn_cnt = -2;
-                mode = setzero_mode;
                 delta();
                 io_input = NULL;
+                clear_my_buffer();
             }
             else {
                 turn_cnt = -2;
@@ -238,6 +240,9 @@ void delta(void)
     if (io_input == NULL) {
         printf("\nLeaving listening mode...\n");
         mode = setzero_mode;
+    }
+    else {
+
     }
     turn_cnt = -2;
 }
