@@ -235,14 +235,17 @@ void onMsgReceived(void)
     unpack_reply(rxMsg);
 }
 
-void delta(void)
+int delta(void)
 {
+    int result = 0;
     if (io_input == NULL) {
         printf("\nLeaving listening mode...\n");
         mode = setzero_mode;
+        result = 0;
     }
     else {
-
+        printf("\n[ECHO] %s\n\r", io_input);
+        result = 1;
     }
-    turn_cnt = -2;
+    return result;
 }

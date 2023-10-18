@@ -51,7 +51,7 @@ void onMsgReceived(void);
 void unpack_reply(CANMessage msg);
 void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, float t_ff);
 bool receivech(char ch);
-void delta(void);
+int  delta(void);
 void clear_my_buffer(void);
 
 inline
