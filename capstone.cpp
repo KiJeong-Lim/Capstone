@@ -66,6 +66,21 @@ void standup(void)
     txMsg3.data[7] = 0x8D;
 }
 
+int delta(void)
+{
+    int result = 0;
+    if (io_input == NULL) {
+        printf("\nLeaving listening mode...\n");
+        mode = setzero_mode;
+        result = 0;
+    }
+    else {
+        printf("\n[ECHO] %s\n\r", io_input);
+        result = 1;
+    }
+    return result;
+}
+
 void serial_isr(void)
 {
     switch (mode) {
@@ -215,17 +230,19 @@ void unpack_reply(CANMessage msg)
     float const p = uint_to_float(p_int, P_MIN, P_MAX, 16);
     float const v = uint_to_float(v_int, V_MIN, V_MAX, 12);
     float const i = uint_to_float(i_int, -I_MAX, I_MAX, 12);
-    if (id == 1) {
+    switch (id) {
+    case 1:
         theta1 = p;
         dtheta1 = v;
-    }
-    else if (id == 2) {
+        break;
+    case 2:
         theta2 = p;
         dtheta2 = v;
-    }
-    else if (id == 3) {
+        break;
+    case 3:    
         theta3 = p;
         dtheta3 = v;
+        break;
     }
 }
 
@@ -233,19 +250,4 @@ void onMsgReceived(void)
 {
     can.read(rxMsg);
     unpack_reply(rxMsg);
-}
-
-int delta(void)
-{
-    int result = 0;
-    if (io_input == NULL) {
-        printf("\nLeaving listening mode...\n");
-        mode = setzero_mode;
-        result = 0;
-    }
-    else {
-        printf("\n[ECHO] %s\n\r", io_input);
-        result = 1;
-    }
-    return result;
 }
