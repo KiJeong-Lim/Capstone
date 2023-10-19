@@ -141,7 +141,7 @@ void command(void)
         }
         else {
             switch (ch) {
-            case 27:
+            case ESC:
                 printf("\n\r Exiting motor mode \n\r");
                 txMsg1.data[0] = 0xFF; txMsg1.data[1] = 0xFF; txMsg1.data[2] = 0xFF; txMsg1.data[3] = 0xFF; txMsg1.data[4] = 0xFF; txMsg1.data[5] = 0xFF; txMsg1.data[6] = 0xFF; txMsg1.data[7] = 0xFD;
                 txMsg2.data[0] = 0xFF; txMsg2.data[1] = 0xFF; txMsg2.data[2] = 0xFF; txMsg2.data[3] = 0xFF; txMsg2.data[4] = 0xFF; txMsg2.data[5] = 0xFF; txMsg2.data[6] = 0xFF; txMsg2.data[7] = 0xFD;

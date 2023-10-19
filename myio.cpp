@@ -1,5 +1,4 @@
 #include "capstone.h"
-#include <cstdio>
 
 static char my_buffer[64];
 static int my_cursor = 0;
@@ -24,7 +23,6 @@ bool receivech(char ch)
         else if (my_cursor < sizeof(my_buffer) / sizeof(my_buffer[0])) {
             my_buffer[my_cursor++] = ch;
             printf("\r%s", my_buffer);
-            fflush(stdout);
             io_input = NULL;
             return false;
         }
@@ -40,7 +38,7 @@ bool receivech(char ch)
         return true;
     case '\0':
         return false;
-    case 8:
+    case '\b':
         if (my_cursor > 0) {
             my_buffer[--my_cursor] = '\0';
             printf("\r%s", my_buffer);
@@ -51,9 +49,8 @@ bool receivech(char ch)
         }
         io_input = NULL;
         return false;
-    case 27:
-        my_buffer[0] = '\0';
-        my_cursor = 0;
+    case ESC:
+        clear_my_buffer();
         printf("\n");
         io_input = NULL;
         return true;

@@ -7,6 +7,8 @@
 
 #define CAN_ID 0x01
 
+#define ESC 033
+
 #define usingRef 0
 
 #define pi      (3.14159265359f)
@@ -38,21 +40,21 @@ extern Timer        timer;
 extern Ticker       sendCAN;
 extern int          turn_cnt;
 extern struct refs  refs_tbl[1000][3];
-extern char const   *io_input;
+extern char const  *io_input;
 
 extern CANMessage   rxMsg;
 extern CANMessage   txMsg1;
 extern CANMessage   txMsg2;
 extern CANMessage   txMsg3;
 
-void serial_isr(void);
-void command(void);
-void onMsgReceived(void);
-void unpack_reply(CANMessage msg);
-void pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, float t_ff);
-bool receivech(char ch);
-int  delta(void);
-void clear_my_buffer(void);
+void    serial_isr(void);
+void    command(void);
+void    onMsgReceived(void);
+void    unpack_reply(CANMessage msg);
+void    pack_cmd(CANMessage &msg, float p_des, float v_des, float kp, float kd, float t_ff);
+bool    receivech(char ch);
+int     delta(void);
+void    clear_my_buffer(void);
 
 inline
 void limit_norm(float &x, float &y, float limit)
