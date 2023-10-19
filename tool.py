@@ -42,6 +42,7 @@ def load_cur(cur_file):
     global omega1
     global omega2
     global omega3
+
     with open(cur_file, 'r') as data1_txt:
         lns = data1_txt.readlines()
         for i in range(len(lns)):
@@ -84,6 +85,7 @@ def load_ref(ref_file):
                 global kp3
                 global kd3
                 global t3
+
                 p1 = p1 + [float(tmp[0])]
                 v1 = v1 + [float(tmp[1])]
                 kp1 = kp1 + [float(tmp[2])]
@@ -212,6 +214,7 @@ def calc_next_ref():
 
     def upd(ref, cur):
         return ref - alpha * (ref - cur)
+
     p1[i] = upd(p1[i], theta1[i])
     v1[i] = upd(v1[i], omega1[i])
     kd1[i] = kp1[i]
@@ -313,8 +316,9 @@ def plot_ref(val_name):
     plt.legend()
     plt.show()
 
+b = True
+
 if __name__ == '__main__':
-    b = True
     for i in range(100):
         if b:
             cmd = input('cmd: ')
