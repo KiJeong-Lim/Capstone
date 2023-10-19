@@ -279,6 +279,40 @@ def plot_err(val_name):
     plt.legend()
     plt.show()
 
+def plot_ref(val_name):
+    global p1
+    global p2
+    global p3
+    global v1
+    global v2
+    global v3
+    global theta1
+    global theta2
+    global theta3
+    global omega1
+    global omega2
+    global omega3
+    global m
+
+    t = np.linspace(0, dt * m, m, endpoint=True)
+
+    if val_name == 'theta1':
+        val = theta1
+    if val_name == 'theta2':
+        val = theta2
+    if val_name == 'theta3':
+        val = theta3
+    if val_name == 'omega1':
+        val = omega1
+    if val_name == 'omega2':
+        val = omega2
+    if val_name == 'omega3':
+        val = omega3
+
+    plt.plot(t,val,label=val_name)
+    plt.legend()
+    plt.show()
+
 if __name__ == '__main__':
     b = True
     for i in range(100):
@@ -302,6 +336,9 @@ if __name__ == '__main__':
             if cmd == "plot error":
                 val_name = input('value: ')
                 plot_err(val_name)
+            if cmd == "plot ref":
+                val_name = input('value: ')
+                plot_ref(val_name)
             if cmd == "print ref":
                 print("motor1:")
                 print("  motor1.p:")
