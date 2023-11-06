@@ -211,27 +211,29 @@ def calc_next_ref():
     global t1
     global t2
     global t3
+    global m
 
     def upd(ref, cur):
         return ref - alpha * (ref - cur)
 
-    p1[i] = upd(p1[i], theta1[i])
-    v1[i] = upd(v1[i], omega1[i])
-    kd1[i] = kp1[i]
-    kd1[i] = kd1[i]
-    t1[i] = t1[i]
-    
-    p2[i] = upd(p2[i], theta2[i])
-    v2[i] = upd(v2[i], omega2[i])
-    kd2[i] = kp2[i]
-    kp2[i] = kd2[i]
-    t2[i] = t2[i]
-    
-    p3[i] = upd(p3[i], theta3[i])
-    v3[i] = upd(v3[i], omega3[i])
-    kd3[i] = kp3[i]
-    kd3[i] = kd3[i]
-    t3[i] = t3[i]
+    for i in range(m):
+        p1[i] = upd(p1[i], theta1[i])
+        v1[i] = upd(v1[i], omega1[i])
+        kd1[i] = kp1[i]
+        kd1[i] = kd1[i]
+        t1[i] = t1[i]
+        
+        p2[i] = upd(p2[i], theta2[i])
+        v2[i] = upd(v2[i], omega2[i])
+        kd2[i] = kp2[i]
+        kp2[i] = kd2[i]
+        t2[i] = t2[i]
+        
+        p3[i] = upd(p3[i], theta3[i])
+        v3[i] = upd(v3[i], omega3[i])
+        kd3[i] = kp3[i]
+        kd3[i] = kd3[i]
+        t3[i] = t3[i]
 
 def plot_err(val_name):
     global p1
@@ -316,6 +318,39 @@ def plot_ref(val_name):
     plt.legend()
     plt.show()
 
+def plot_cur(val_name):
+    global p1
+    global p2
+    global p3
+    global v1
+    global v2
+    global v3
+    global theta1
+    global theta2
+    global theta3
+    global omega1
+    global omega2
+    global omega3
+    global m
+
+    
+    if val_name == 'theta1':
+        val = theta1
+    if val_name == 'theta2':
+        val = theta2
+    if val_name == 'theta3':
+        val = theta3
+    if val_name == 'omega1':
+        val = omega1
+    if val_name == 'omega2':
+        val = omega2
+    if val_name == 'omega3':
+        val = omega3
+    t = np.linspace(0, dt * len(val), len(val), endpoint=True)
+    plt.plot(t,val,label=val_name)
+    plt.legend()
+    plt.show()
+
 b = True
 
 if __name__ == '__main__':
@@ -343,6 +378,9 @@ if __name__ == '__main__':
             if cmd == "plot ref":
                 val_name = input('value: ')
                 plot_ref(val_name)
+            if cmd == "plot cur":
+                val_name = input('value: ')
+                plot_cur(val_name)
             if cmd == "print ref":
                 print("motor1:")
                 print("  motor1.p:")
