@@ -122,7 +122,7 @@ def write_ref_cpp(tbl_file, no):
 
     with open(tbl_file, 'w+') as tbl_txt:
         tbl_txt.write("#include \"capstone.h\"\n")
-        tbl_txt.write("#if usingRef == %s\n" % no)
+        tbl_txt.write("#if REF_TBL_ID == %s\n" % no)
         tbl_txt.write("struct refs refs_tbl[1000][3] = {\n")
         for i in range(m):
             tbl_txt.write("{ ")
@@ -351,9 +351,21 @@ def plot_cur(val_name):
     plt.legend()
     plt.show()
 
-b = True
-
-if __name__ == '__main__':
+def main():
+    global p1
+    global p2
+    global p3
+    global v1
+    global v2
+    global v3
+    global theta1
+    global theta2
+    global theta3
+    global omega1
+    global omega2
+    global omega3
+    global m
+    b = True
     for i in range(100):
         if b:
             cmd = input('cmd: ')
@@ -443,3 +455,6 @@ if __name__ == '__main__':
                 t3 = []
             if cmd == "quit":
                 b = False
+
+if __name__ == '__main__':
+    main()

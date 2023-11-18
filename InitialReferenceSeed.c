@@ -29,6 +29,21 @@ void pack_cmd(txMsg_t *msg, double p, double v, double kp, double kd, double t_f
 void loop(int x)
 {
 #if 1
+
+    if (0<x && x<99) {
+        pack_cmd(&txMsg1, 0, 0, 0, 0, 0);
+        pack_cmd(&txMsg2, 0, 0, 0, 0, 0);
+        pack_cmd(&txMsg3, -0.20, 0, 4, 3, 0);
+    } else if(99<x && x<199) {
+        pack_cmd(&txMsg1, -0.85, 0, 18, 3.5, 0);
+        pack_cmd(&txMsg2, -0.05, 0, 18, 3.5, 0);
+        pack_cmd(&txMsg3, 0, 0, 15, 3, 0);
+    } else if(199<x && x<390) {
+        pack_cmd(&txMsg1, -0.1, 0, 10, 0.9, 0);
+        pack_cmd(&txMsg2, -0.05, 0, 10, 1.5, -2);
+        pack_cmd(&txMsg3, 0, 0, 10, 1, 0);
+    }
+#elif 0
     if (0<x && x<99) {
         pack_cmd(&txMsg1, 0, 0, 0, 0, 0);
         pack_cmd(&txMsg2, 0, 0, 0, 0, 0);
@@ -87,7 +102,7 @@ void serial_isr()
 {
     int x = 0, i = 0;
 
-    for (x = 0; x < 1000; x++) {
+    for (x = 0; x < 400; x++) {
         loop(x);
         for (i = 0; i < sizeof(txMsg) / sizeof(txMsg[0]); i++) {
             fprintf(file, "%lf\t", txMsg[i].p);
@@ -112,8 +127,7 @@ int main(void)
 
     file = fopen(file_name, "w+");
 
-    if(file != NULL)
-    {
+    if(file != NULL) {
         serial_isr();
         fclose(file);
         printf("Generated.\n");
