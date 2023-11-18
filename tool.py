@@ -393,7 +393,6 @@ def main():
             if cmd == "plot cur":
                 val_name = input('value: ')
                 plot_cur(val_name)
-                print("mean =", sum(theta3)/len(theta3))
             if cmd == "print ref":
                 print("motor1:")
                 print("  motor1.p:")
