@@ -74,7 +74,7 @@ public:
     void unpack(const CANMessage *can_msg);
 };
 
-// pid.cpp
+/* pid.cpp */
 class PIDController {
 public:
     typedef float Real_t;
@@ -100,8 +100,7 @@ public:
     Real_t get_error_sum(void) const;
 };
 
-
-// utilities.cpp
+/* utilities.cpp */
 class Gear {
 public:
     int gear;
