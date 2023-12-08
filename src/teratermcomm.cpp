@@ -3,16 +3,7 @@
 static char my_buffer[64];
 static int my_cursor = 0;
 
-void clear_my_buffer(void)
-{
-    int i = 0;
-    for (i = 0; i < sizeof(my_buffer)/sizeof(my_buffer[0]); i++) {
-        my_buffer[i] = '\0';
-    }
-    my_cursor = 0;
-}
-
-bool receivech(char ch)
+bool putChar(const char ch)
 {
     switch (ch) {
     default:
@@ -20,9 +11,10 @@ bool receivech(char ch)
             io_input = NULL;
             return true;
         }
-        else if (my_cursor < sizeof(my_buffer) / sizeof(my_buffer[0])) {
+        else if (my_cursor < len(my_buffer)) {
             my_buffer[my_cursor++] = ch;
             printf("\r%s", my_buffer);
+            fflush(stdout);
             io_input = NULL;
             return false;
         }
@@ -30,7 +22,7 @@ bool receivech(char ch)
             io_input = my_buffer;
             my_cursor = 0;
             return true;
-        }       
+        }
     case '\n':
     case '\r':
         printf("\n[ECHO] %s\n\r", my_buffer);
@@ -50,9 +42,17 @@ bool receivech(char ch)
         io_input = NULL;
         return false;
     case ESC:
-        clear_my_buffer();
+        clearBuffer();
         printf("\n");
         io_input = NULL;
         return true;
     }
+}
+
+void clearBuffer()
+{
+    for (int i = 0; i < len(my_buffer); i++) {
+        my_buffer[i] = '\0';
+    }
+    my_cursor = 0;
 }
