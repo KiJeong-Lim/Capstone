@@ -15,11 +15,12 @@ static void             jump(void);
 static void             jump1(void);
 static void             standUp(void);
 static MotorInputData   sitDown(int count_down, const MotorInputData &datum);
-static int              delta(void);
+
+static int              console(void);
 
 static Mode_t       mode               = SetzeroMode;
 static const int    count_down_CNT     = -100;
-static void         (*operation)(void) = jump1;
+static void         (*operation)(void) = &jump1;
 
 static float        p_ctrls[NumberOfMotors];
 
@@ -247,7 +248,7 @@ void interact(void)
             const bool entered = putChar(ch);
             if (entered) {
                 turn_cnt = -2;
-                delta();
+                console();
                 io_input = NULL;
                 clearBuffer();
             }
@@ -371,7 +372,7 @@ void interact(void)
     }
 }
 
-int delta()
+int console()
 {
     int result   = 0;
     char lhs[16] = {};
