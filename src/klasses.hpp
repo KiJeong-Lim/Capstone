@@ -79,13 +79,13 @@ class PIDController {
 public:
     typedef float Real_t;
 private:
-    volatile Real_t last_time;
-    volatile Real_t last_error;
-    volatile Real_t error_sum;
+    Real_t last_time;
+    Real_t last_error;
+    Real_t error_sum;
 public:
-    volatile Real_t Kp;
-    volatile Real_t Ki;
-    volatile Real_t Kd;
+    Real_t Kp;
+    Real_t Ki;
+    Real_t Kd;
     volatile Real_t *PV;
     volatile Real_t *MV;
     volatile Real_t *SP;
