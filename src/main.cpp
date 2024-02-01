@@ -377,12 +377,10 @@ void interact()
         case '5':
         case '6':
             for (int j = 0; j < 6; j++) {
-                if (j < len(motor_handlers)) {
-                    if (ch == "123456"[j]) {
-                        printf("\n\r%% Motor%c rest position %%\n", ch);
-                        const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
-                        motor_handlers[j].put_txmsg(msg);
-                    }
+                if (ch == "123456"[j]) {
+                    printf("\n\r%% Motor #%c rest position %%\n", ch);
+                    const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
+                    motor_handlers[j].put_txmsg(msg);
                 }
             }
             break;
