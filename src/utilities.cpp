@@ -253,3 +253,8 @@ void Gear::reset()
 {
     gear_cnt = 0;
 }
+
+int readDigit(const char ch)
+{
+    return ch - '0';
+}

@@ -140,5 +140,6 @@ float           middle(float x, float y, float z);
 float           getTime(void);
 bool            areSameStr(const char *lhs, const char *rhs);
 bool            inRange(float left, float x, float rhs);
+int             readDigit(char ch);
 
 #endif

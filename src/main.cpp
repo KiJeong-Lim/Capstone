@@ -26,7 +26,6 @@ public:
     void set_Ki(float Ki);
     void set_Kd(float Kd);
 #endif
-    int idx(void) const;
 };
 
 class CANManager {
@@ -91,30 +90,10 @@ MotorHandler motor_handlers[] = {
 #endif
 };
 
-MotorHandler motor_handlers[] = {
-#if USE_PID
-    //           #  Kp    Ki    Kd
-    MotorHandler(1, 1.30, 0.10, 0.00), // SET ME !!!
-    MotorHandler(2, 1.25, 0.30, 0.00), // SET ME !!!
-    MotorHandler(3, 2.00, 1.00, 0.00), // SET ME !!!
-    MotorHandler(4, 1.30, 0.10, 0.00), // SET ME !!!
-    MotorHandler(5, 1.25, 0.30, 0.00), // SET ME !!!
-    MotorHandler(6, 2.00, 1.00, 0.00), // SET ME !!!
-#else
-    //           #
-    MotorHandler(1), // SET ME !!!
-    MotorHandler(2), // SET ME !!!
-    MotorHandler(3), // SET ME !!!
-    MotorHandler(4), // SET ME !!!
-    MotorHandler(5), // SET ME !!!
-    MotorHandler(6), // SET ME !!!
-#endif
-};
-
 MotorHandler *trans1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], }; // SET ME !!!
 MotorHandler *trans2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], }; // SET ME !!!
 
-CANManager  cans[] = { CANManager(PB_8, PB_9, trans1, 3), CANManager(PB_5, PB_6, trans2, 3) }; // SET ME !!!
+CANManager  cans[] = { CANManager(PB_8, PB_9, trans1, 2), CANManager(PB_5, PB_6, trans2, 2) }; // SET ME !!!
 void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 }; // SET ME !!!
 
 inline
@@ -393,7 +372,7 @@ void interact()
         case '5':
         case '6':
             for (int i = 0; i < len(motor_handlers); i++) {
-                if (ch == "123456"[motor_handlers[i].idx()]) {
+                if (motor_handlers[i].id() == readDigit(ch)) {
                     const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
                     printf("\n\r%% Motor #%c rest position %%\n", ch);
                     motor_handlers[i].put_txmsg(msg);
@@ -586,16 +565,6 @@ void MotorHandler::set_Kd(const float Kd)
     pid.Kd = Kd;
 }
 #endif
-
-int MotorHandler::idx() const
-{
-    for (int i = 0; i < len(motor_handlers); i++) {
-        if (motor_handlers[i].id() == this->id()) {
-            return i;
-        }
-    }
-    return -1;
-}
 
 CANManager::CANManager(const PinName rd, const PinName td, MotorHandler **const motor_handlers_vec_ptr, const int motor_handlers_vec_size)
     : helper(rd, td), motor_handlers_vec_ptr(motor_handlers_vec_ptr), motor_handlers_vec_size(motor_handlers_vec_size)
