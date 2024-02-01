@@ -1,22 +1,84 @@
 #include "capstone.h"
 
 class MotorHandler : public Motor {
-public:
+private:
+#if USE_PID
+    float p_ctrl;
+    PIDController pid;
+#endif
     CANMessage tx_msg;
 public:
+#if USE_PID
+    MotorHandler(const int id, const float Kp, const float Ki, const float Kd)
+        : p_ctrl(0.0), pid(Kp, Ki, Kd, &data_from_motor.p, &p_ctrl, &data_to_motor.p, P_MIN, P_MAX)
+    {
+        tx_msg.len = 8;
+        tx_msg.id = id;
+        this->motor_id = id;
+    }
+#else
     MotorHandler(const int id)
     {
         tx_msg.len = 8;
         tx_msg.id = id;
         this->motor_id = id;
     }
-    void put_txmsg(UCh8 rhs)
+#endif
+    bool isWellFormed(void) const
+    {
+        return tx_msg.len == 8 && tx_msg.id == this->motor_id;
+    }
+    void put_txmsg(const UCh8 rhs)
     {
         for (int i = 0; i < 8; i++) {
             tx_msg.data[i] = rhs.data[i];
         }
     }
+    void send_msg(void)
+    {
+        this->pack(&tx_msg);
+    }
+    CANMessage &tx_msg_ref(void)
+    {
+        return tx_msg;
+    }
+    int id(void) const
+    {
+        return tx_msg.id;
+    }
+#if USE_PID
+    bool pidInit(void)
+    {
+        return pid.init();
+    }
+    bool pidCompute(void)
+    {
+        return pid.compute();
+    }
+    bool pidControl_p(void)
+    {
+        bool res = true;
+        res = pidCompute();
+        data_to_motor.p = p_ctrl;
+        return res;
+    }
+    void set_Kp(const float Kp)
+    {
+        pid.Kp = Kp;
+    }
+    void set_Ki(const float Ki)
+    {
+        pid.Ki = Ki;
+    }
+    void set_Kd(const float Kd)
+    {
+        pid.Kd = Kd;
+    }
+#endif
 };
+
+static void             onMsgReceived1(void);
+static void             onMsgReceived2(void);
 
 #if USE_PID
 static bool             pidInit(void);
@@ -24,14 +86,11 @@ static bool             pidCompute(void);
 static bool             pidControl_p(void);
 #endif
 
-static void             onMsgReceived1(void);
-static void             onMsgReceived2(void);
-
 static void             write_txmsg(void);
 static void             halt(void);
-static bool             loadRefTbl(bool until);
 static void             observe(void);
 static void             debug_txmsg(void);
+static bool             loadRefTbl(bool until);
 
 static void             jump(void);
 static void             jump1(void);
@@ -43,30 +102,49 @@ static void             serial_isr(void);
 static void             interact(void);
 static void             prompt(const char *msg);
 
-CANManager      cans[] = { CANManager(PB_8, PB_9), CANManager(PB_5, PB_6) };
-void            (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 };
-MotorHandler    motor_handlers[] = { MotorHandler(1), MotorHandler(2), MotorHandler(3), MotorHandler(4), MotorHandler(5), MotorHandler(6), }; // SET ME !!!
-IO              terminal;
-Timer           timer;
-Ticker          send_can;
-CANMessage      rx_msg;
-float           p_ctrls[len(motor_handlers)];
-Serial          pc(PA_2, PA_3);
+// SET ME !!!
+MotorHandler motor_handlers[] = {
+#if USE_PID
+    MotorHandler(1, 1.30, 0.10, 0.00),
+    MotorHandler(2, 1.25, 0.30, 0.00),
+    MotorHandler(3, 2.00, 1.00, 0.00),
+    MotorHandler(4, 1.30, 0.10, 0.00),
+    MotorHandler(5, 1.25, 0.30, 0.00),
+    MotorHandler(6, 2.00, 1.00, 0.00),
+#else
+    MotorHandler(1),
+    MotorHandler(2),
+    MotorHandler(3),
+    MotorHandler(4),
+    MotorHandler(5),
+    MotorHandler(6),
+#endif
+};
+
+IO          terminal;
+Timer       timer;
+Ticker      send_can;
+CANMessage  rx_msg;
+Serial      pc(PA_2, PA_3);
 
 Mode        mode                = SetzeroMode;
 long int    turn_cnt            = -2;
 void        (*operation)(void)  = standUp;
 const int   count_down_MAX_CNT  = -100;
 
-static PIDController pids[] = {
-    //            Kp    Ki    Kd     y(t)                                  u(t)         r(t)
-    PIDController(1.30, 0.10, 0.00, &motor_handlers[0].data_from_motor.p, &p_ctrls[0], &motor_handlers[0].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
-    PIDController(1.25, 0.30, 0.00, &motor_handlers[1].data_from_motor.p, &p_ctrls[1], &motor_handlers[1].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
-    PIDController(2.00, 1.00, 0.00, &motor_handlers[2].data_from_motor.p, &p_ctrls[2], &motor_handlers[2].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
-    PIDController(1.30, 0.10, 0.00, &motor_handlers[3].data_from_motor.p, &p_ctrls[3], &motor_handlers[3].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
-    PIDController(1.25, 0.30, 0.00, &motor_handlers[4].data_from_motor.p, &p_ctrls[4], &motor_handlers[4].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
-    PIDController(2.00, 1.00, 0.00, &motor_handlers[5].data_from_motor.p, &p_ctrls[5], &motor_handlers[5].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
-};
+CANManager  cans[] = { CANManager(PB_8, PB_9), CANManager(PB_5, PB_6) };
+void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 };
+
+inline
+int idx(const MotorHandler &handler)
+{
+    for (int i = 0; i < len(motor_handlers); i++) {
+        if (motor_handlers[i].id() == handler.id()) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 int main()
 {
@@ -120,69 +198,14 @@ void onMsgReceived2()
     motor_handlers[5].unpack(&rx_msg); // SET ME !!!
 }
 
-#if USE_PID
-bool pidInit()
-{
-    bool res = true;
-    for (int i = 0; i < len(pids); i++) {
-        res &= pids[i].init();
-    }
-    return res;
-}
-
-bool pidCompute()
-{
-    bool res = true;
-    for (int i = 0; i < len(pids); i++) {
-        res &= pids[i].compute();
-    }
-    return res;
-}
-
-bool pidControl_p()
-{
-    bool res = true;
-    res = pidCompute();
-    for (int i = 0; i < len(motors); i++) {
-        motors[i].data_to_motor.p = p_ctrls[i];
-    }
-    return res;
-}
-#endif
-
-bool loadRefTbl(bool until)
-{
-    static Motor::SetData last_data[len(motor_handlers)] = {
-        { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
-        { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
-        { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
-        { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
-        { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
-        { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
-    };
-
-    until &= turn_cnt < len(ref_tbl);
-
-    if (until) {
-        for (int i = 0; i < len(ref_tbl[turn_cnt]); i++) {
-            motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][i % 3];
-            last_data[i] = ref_tbl[turn_cnt][i % 3];
-        }
-        return true;
-    }
-    else {
-        for (int i = 0; i < len(ref_tbl[turn_cnt]); i++) {
-            motor_handlers[i].data_to_motor = last_data[i];
-        }
-        return false;
-    }
-}
-
 void write_txmsg()
 {
-    for (int i = 0; i < len(motor_handlers); i++) {
-        cans[i / 3].get().write(motor_handlers[i].tx_msg);
-    }
+    cans[0].get().write(motor_handlers[0].tx_msg_ref()); // SET ME !!!
+    cans[0].get().write(motor_handlers[1].tx_msg_ref()); // SET ME !!!
+    cans[0].get().write(motor_handlers[2].tx_msg_ref()); // SET ME !!!
+    cans[1].get().write(motor_handlers[3].tx_msg_ref()); // SET ME !!!
+    cans[1].get().write(motor_handlers[4].tx_msg_ref()); // SET ME !!!
+    cans[1].get().write(motor_handlers[5].tx_msg_ref()); // SET ME !!!
 }
 
 void halt()
@@ -210,7 +233,8 @@ void observe()
         }
         for (int i = 0; i < len(motor_handlers); i++) {
             const Motor::SetData data = motor_handlers[i].data_to_motor;
-            printf("\rtheta(%ld, %d) = %f; omega(%ld, %d) = %f;\n", row, motor_handlers[i].motor_id, data.p, row, motor_handlers[i].motor_id, data.v);
+            const int id = motor_handlers[i].motor_id;
+            printf("\rtheta%d(%ld) = %f; omega%d(%ld) = %f;\n", id, row, data.p, id, row, data.v);
         }
         printf("\n");
     }
@@ -218,14 +242,35 @@ void observe()
 
 void debug_txmsg()
 {
-    static Gear gear_ovw = Gear(20);
+    static Gear gear_dbg = Gear(20);
 
-    if (gear_ovw.go()) {
+    if (gear_dbg.go()) {
         for (int i = 0; i < len(motor_handlers); i++) {
-            const Motor::SetData ovw = decode16(&motor_handlers[i].tx_msg.data);
-            printf("\n\r%% tx_msg[%d] = { .p = %.4lf, .v = %.4lf, .kp = %.4lf, .kd = %.4lf, .t_ff = %.4lf, }\n", i, ovw.p, ovw.v, ovw.kp, ovw.kd, ovw.t_ff);
+            const Motor::SetData dbg = decode16(&motor_handlers[i].tx_msg_ref().data);
+            printf("\n\r%% tx_msg of #%d = { .p = %.4lf, .v = %.4lf, .kp = %.4lf, .kd = %.4lf, .t_ff = %.4lf, }\n", motor_handlers[i].motor_id, dbg.p, dbg.v, dbg.kp, dbg.kd, dbg.t_ff);
         }
         printf("\n");
+    }
+}
+
+bool loadRefTbl(bool until)
+{
+    static Motor::SetData last_data[len(motor_handlers)] = { };
+
+    until &= turn_cnt < len(ref_tbl);
+
+    if (until) {
+        for (int i = 0; i < len(motor_handlers); i++) {
+            motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][(motor_handlers[i].id() - 1) % 3];
+            last_data[i] = ref_tbl[turn_cnt][(motor_handlers[i].id() - 1) % 3];
+        }
+        return true;
+    }
+    else {
+        for (int i = 0; i < len(motor_handlers); i++) {
+            motor_handlers[i].data_to_motor = last_data[i];
+        }
+        return false;
     }
 }
 
@@ -239,10 +284,14 @@ void jump1()
     loadRefTbl(turn_cnt <= PID_START_TICK);
 #if USE_PID
     if (turn_cnt == PID_START_TICK) {
-        pidInit();
+        for (int i = 0; i < len(motor_handlers); i++) {
+            motor_handlers[i].pidInit();
+        }
     }
     else if (turn_cnt > PID_START_TICK) {
-        pidControl_p();
+        for (int i = 0; i < len(motor_handlers); i++) {
+            motor_handlers[i].pidControl_p();
+        }
     }
 #endif
 }
@@ -256,7 +305,7 @@ void standUp()
     };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_to_motor = decode16(&lines[i % 3]);
+        motor_handlers[i].data_to_motor = decode16(&lines[(motor_handlers[i].motor_id - 1) % 3]);
     }
 }
 
@@ -286,7 +335,7 @@ void serial_isr()
             turn_cnt++;
         }
         for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].pack(&motor_handlers[i].tx_msg);
+            motor_handlers[i].send_msg();
         }
         break;
     case ObserveMode:
@@ -309,7 +358,7 @@ void serial_isr()
             observe();
             for (int i = 0; i < len(motor_handlers); i++) {
                 const Motor::SetData datum = sitDown_calc(-turn_cnt, motor_handlers[i].data_to_motor);
-                motor_handlers[i].pack(&motor_handlers[i].tx_msg);
+                motor_handlers[i].send_msg();
             }
             turn_cnt++;
         }
@@ -440,17 +489,17 @@ void prompt (const char *const msg)
     sscanf_res = sscanf(msg, "%s %d = %lf", var_name, &motor_id, &value);
     if (sscanf_res == 3) {
         if (areSameStr("Kp", var_name)) {
-            pids[motor_id - 1].Kp = value;
+            motor_handlers[motor_id - 1].set_Kp(value);
             res = true;
             return;
         }
         else if (areSameStr("Ki", var_name)) {
-            pids[motor_id - 1].Ki = value;
+            motor_handlers[motor_id - 1].set_Ki(value);
             res = true;
             return;
         }
         else if (areSameStr("Kd", var_name)) {
-            pids[motor_id - 1].Kd = value;
+            motor_handlers[motor_id - 1].set_Kd(value);
             res = true;
             return;
         }
