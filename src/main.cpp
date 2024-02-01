@@ -336,7 +336,7 @@ void interact()
 #endif
 
     if (mode == ReadcmdMode) {
-        bool prompt_routine_breaked = terminal.run_prompt();
+        const bool prompt_routine_breaked = terminal.run_prompt();
         if (prompt_routine_breaked) {
             mode = SetzeroMode;
         }
@@ -376,11 +376,12 @@ void interact()
         case '4':
         case '5':
         case '6':
-            for (int j = 0; j < 6; j++) {
-                if (ch == "123456"[j]) {
-                    printf("\n\r%% Motor #%c rest position %%\n", ch);
+            for (int i = 0; i < len(motor_handlers); i++) {
+                if (ch == "0123456789"[motor_handlers[i].motor_id]) {
                     const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
-                    motor_handlers[j].put_txmsg(msg);
+                    printf("\n\r%% Motor #%c rest position %%\n", ch);
+                    motor_handlers[i].put_txmsg(msg);
+                    break;
                 }
             }
             break;
