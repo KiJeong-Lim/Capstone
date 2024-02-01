@@ -80,12 +80,6 @@ public:
 static void             onMsgReceived1(void);
 static void             onMsgReceived2(void);
 
-#if USE_PID
-static bool             pidInit(void);
-static bool             pidCompute(void);
-static bool             pidControl_p(void);
-#endif
-
 static void             write_txmsg(void);
 static void             halt(void);
 static void             observe(void);
@@ -439,7 +433,9 @@ void interact()
             mode = RuntimeMode;
             turn_cnt = 0;
 #if USE_PID
-            pid_okay &= pidInit();
+            for (int i = 0; i < len(motor_handlers); i++) {
+                pid_okay &= motor_handlers[i].pidInit();
+            }
             if (!pid_okay) {
                 printf("\n\r%% Initializing PID failed %%\n");
                 mode = SetzeroMode;
