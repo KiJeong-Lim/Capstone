@@ -9,7 +9,7 @@ void IO::set_prompt(void (*const prompt)(const char *msg))
 bool IO::run_prompt()
 {
     char *msg    = NULL;
-    int  ch      = '\0';
+    int ch       = '\0';
     bool entered = false;
 
     while (1) {

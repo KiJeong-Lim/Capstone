@@ -1,12 +1,12 @@
 #ifndef CAPSTONE
-#define CAPSTONE "V8-double-can-ver2"
+#define CAPSTONE "V8-double-can-ver2-for-field-use"
 
 #include <cstdio>
 #include <cstring>
 
 #include "mbed.h"
 
-#define VERSION             "0.1.1 (2024-02-02 04:39)"
+#define VERSION             "0.1.2 (2024-02-01 05:30)"
 
 #define USE_PID             0
 #define REF_TBL_ID          0
@@ -33,7 +33,7 @@
 #define T_MAX       (18.0f)
 #define I_MAX       (40.0f)
 
-#define len(xs)     (sizeof(xs)/sizeof*(xs))
+#define len(arr)    (sizeof(arr)/sizeof*(arr))
 #define max(x,y)    ((x) >= (y) ? (x) : (y))
 #define min(x,y)    ((y) >= (x) ? (x) : (y))
 

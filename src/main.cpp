@@ -9,73 +9,24 @@ private:
     CANMessage tx_msg;
 public:
 #if USE_PID
-    MotorHandler(const int id, const float Kp, const float Ki, const float Kd)
-        : p_ctrl(0.0), pid(Kp, Ki, Kd, &data_from_motor.p, &p_ctrl, &data_to_motor.p, P_MIN, P_MAX)
-    {
-        tx_msg.len = 8;
-        tx_msg.id = id;
-        this->motor_id = id;
-    }
+    MotorHandler(int id, float Kp, float Ki, float Kd);
 #else
-    MotorHandler(const int id)
-    {
-        tx_msg.len = 8;
-        tx_msg.id = id;
-        this->motor_id = id;
-    }
+    MotorHandler(int id);
 #endif
-    bool isWellFormed(void) const
-    {
-        return tx_msg.len == 8 && tx_msg.id == this->motor_id;
-    }
-    void put_txmsg(const UCh8 rhs)
-    {
-        for (int i = 0; i < 8; i++) {
-            tx_msg.data[i] = rhs.data[i];
-        }
-    }
-    CANMessage &tx_msg_ref(void)
-    {
-        return tx_msg;
-    }
-    void send_msg(void)
-    {
-        this->pack(&tx_msg);
-    }
-    int id(void) const
-    {
-        return tx_msg.id;
-    }
+    bool isWellFormed(void) const;
+    void put_txmsg(const UCh8 rhs);
+    CANMessage &tx_msg_ref(void);
+    void send_msg(void);
+    int id(void) const;
 #if USE_PID
-    bool pidInit(void)
-    {
-        return pid.init();
-    }
-    bool pidCompute(void)
-    {
-        return pid.compute();
-    }
-    bool pidControl_p(void)
-    {
-        bool res = true;
-        res = pidCompute();
-        data_to_motor.p = p_ctrl;
-        return res;
-    }
-    void set_Kp(const float Kp)
-    {
-        pid.Kp = Kp;
-    }
-    void set_Ki(const float Ki)
-    {
-        pid.Ki = Ki;
-    }
-    void set_Kd(const float Kd)
-    {
-        pid.Kd = Kd;
-    }
+    bool pidInit(void);
+    bool pidCompute(void);
+    bool pidControl_p(void);
+    void set_Kp(const float Kp);
+    void set_Ki(const float Ki);
+    void set_Kd(const float Kd);
 #endif
-    static int idx(int i);
+    int idx(void) const;
 };
 
 class CANManager {
@@ -85,30 +36,10 @@ private:
     int motor_handlers_vec_size;
     CANMessage rx_msg;
 public:
-    CANManager(const PinName rd, const PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size)
-        : helper(rd, td), motor_handlers_vec_ptr(NULL), motor_handlers_vec_size(0)
-    {
-        this->motor_handlers_vec_ptr = motor_handlers_vec_ptr;
-        this->motor_handlers_vec_size = motor_handlers_vec_size;
-        rx_msg.len = 6;
-    }
-    void init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
-    {
-        helper.init(id, mask, to_be_attached);
-    }
-    void onMsgReceived(void)
-    {
-        helper.read(rx_msg);
-        for (int i = 0; i < motor_handlers_vec_size; i++) {
-            motor_handlers_vec_ptr[i]->unpack(&rx_msg);
-        }
-    }
-    void write(void)
-    {
-        for (int i = 0; i < motor_handlers_vec_size; i++) {
-            helper.my_can.write(motor_handlers_vec_ptr[i]->tx_msg_ref());
-        }
-    }
+    CANManager(const PinName rd, const PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size);
+    void init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void));
+    void onMsgReceived(void);
+    void write(void);
 };
 
 static void             onMsgReceived1(void);
@@ -167,7 +98,7 @@ CANManager  cans[] = { CANManager(PB_8, PB_9, trans1, 3), CANManager(PB_5, PB_6,
 void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 }; // SET ME !!!
 
 inline
-int MotorHandler::idx(const int i)
+int index(const int i)
 {
     return motor_handlers[i].id() - 1;
 }
@@ -277,8 +208,8 @@ bool loadRefTbl(bool until)
 
     if (until) {
         for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][MotorHandler::idx(i) % 3];
-            last_data[i] = ref_tbl[turn_cnt][MotorHandler::idx(i) % 3];
+            motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][index(i) % 3];
+            last_data[i] = ref_tbl[turn_cnt][index(i) % 3];
         }
         return true;
     }
@@ -321,7 +252,7 @@ void standUp()
     };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_to_motor = decode16(&lines[MotorHandler::idx(i) % 3]);
+        motor_handlers[i].data_to_motor = decode16(&lines[handlers(i) % 3]);
     }
 }
 
@@ -442,7 +373,7 @@ void interact()
         case '5':
         case '6':
             for (int i = 0; i < len(motor_handlers); i++) {
-                if (ch == "123456"[MotorHandler::idx(i)]) {
+                if (ch == "123456"[motor_handlers[i].idx()]) {
                     const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
                     printf("\n\r%% Motor #%c rest position %%\n", ch);
                     motor_handlers[i].put_txmsg(msg);
@@ -554,5 +485,122 @@ RET:
     }
     else {
         printf("\n\rUnknown command or wrong command\n");
+    }
+}
+
+#if USE_PID
+MotorHandler::MotorHandler(const int id, const float Kp, const float Ki, const float Kd)
+    : p_ctrl(0.0), pid(Kp, Ki, Kd, &data_from_motor.p, &p_ctrl, &data_to_motor.p, P_MIN, P_MAX)
+{
+    tx_msg.len = 8;
+    tx_msg.id = id;
+    this->motor_id = id;
+}
+#else
+MotorHandler::MotorHandler(const int id)
+{
+    tx_msg.len = 8;
+    tx_msg.id = id;
+    this->motor_id = id;
+}
+#endif
+
+bool MotorHandler::isWellFormed(void) const
+{
+    return tx_msg.len == 8 && tx_msg.id == this->motor_id;
+}
+
+void MotorHandler::put_txmsg(const UCh8 rhs)
+{
+    for (int i = 0; i < 8; i++) {
+        tx_msg.data[i] = rhs.data[i];
+    }
+}
+
+CANMessage &MotorHandler::tx_msg_ref(void)
+{
+    return tx_msg;
+}
+
+void MotorHandler::send_msg(void)
+{
+    this->pack(&tx_msg);
+}
+
+int MotorHandler::id(void) const
+{
+    return tx_msg.id;
+}
+
+#if USE_PID
+bool MotorHandler::pidInit(void)
+{
+    return pid.init();
+}
+
+bool MotorHandler::pidCompute(void)
+{
+    return pid.compute();
+}
+
+bool MotorHandler::pidControl_p(void)
+{
+    bool res = true;
+    res = pidCompute();
+    data_to_motor.p = p_ctrl;
+    return res;
+}
+
+void MotorHandler::set_Kp(const float Kp)
+{
+    pid.Kp = Kp;
+}
+
+void MotorHandler::set_Ki(const float Ki)
+{
+    pid.Ki = Ki;
+}
+
+void MotorHandler::set_Kd(const float Kd)
+{
+    pid.Kd = Kd;
+}
+#endif
+
+int MotorHandler::idx(void) const
+{
+    for (int i = 0; i < len(motor_handlers); i++) {
+        if (motor_handlers[i].id() == this->id()) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+CANManager::CANManager(const PinName rd, const PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size)
+    : helper(rd, td), motor_handlers_vec_ptr(NULL), motor_handlers_vec_size(0)
+{
+    this->motor_handlers_vec_ptr = motor_handlers_vec_ptr;
+    this->motor_handlers_vec_size = motor_handlers_vec_size;
+    rx_msg.len = 6;
+}
+
+void CANManager::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
+{
+    helper.init(id, mask, to_be_attached);
+}
+
+void CANManager::onMsgReceived(void)
+{
+    helper.read(rx_msg);
+    for (int i = 0; i < motor_handlers_vec_size; i++) {
+        motor_handlers_vec_ptr[i]->unpack(&rx_msg);
+    }
+}
+
+void CANManager::write(void)
+{
+    for (int i = 0; i < motor_handlers_vec_size; i++) {
+        helper.my_can.write(motor_handlers_vec_ptr[i]->tx_msg_ref());
     }
 }
