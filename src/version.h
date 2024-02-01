@@ -1,5 +1,5 @@
 #ifndef VERSION_H
-#define VERSION_H               "8.1.3 (2023-12-16 00:40)"
+#define VERSION_H               "8.2.0 (2043-01-24 15:00)"
 
 #define USE_PID                 1
 #define PID_START_TICK          390

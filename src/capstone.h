@@ -14,7 +14,7 @@
 #include "klasses.hpp"
 
 /***** MACROS *****/
-#define NumberOfMotors  3
+#define NumberOfMotors  6
 #define len(xs)         (sizeof(xs) / sizeof(*(xs)))
 #define max(x, y)       ((x) >= (y)? (x): (y))
 #define min(x, y)       ((y) >= (x)? (x): (y))
@@ -28,7 +28,7 @@ extern char const       *io_input;
 extern Timer            timer;
 extern CANMessage       rx_msg, tx_msg[NumberOfMotors];
 extern Serial           pc;
-extern CAN              can;
+extern CAN              can1, can2;
 extern Ticker           send_can;
 extern MotorInput       mtr_input[NumberOfMotors];
 extern MotorOutput      mtr_output[NumberOfMotors];
@@ -36,7 +36,8 @@ extern MotorOutput      mtr_output[NumberOfMotors];
 /***** FUNCTION PROTOTYPES *****/
 /* cancomm.cpp */
 MotorInputData  decode16(const unsigned char (*input_data)[8]);
-void            onMsgReceived(void);
+void            onMsgReceived1(void);
+void            onMsgReceived2(void);
 /* loop.cpp */
 void            serialIsr(void);
 void            interact(void);

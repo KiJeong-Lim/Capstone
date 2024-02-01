@@ -77,14 +77,14 @@ Gear::~Gear()
 bool Gear::go()
 {
     if ((gear_cnt + 1) % gear == 0) {
-        gear = 0;
+        gear_cnt = 0;
         return true;
     }
-    if (gear >= 0) {
-        gear ++;
+    if (gear_cnt >= 0) {
+        gear_cnt++;
     }
     else {
-        gear = 0;
+        gear_cnt = 0;
     }
     return false;
 }

@@ -277,10 +277,18 @@ void MotorOutput::unpack(const CANMessage *const can_msg)
     }
 }
 
-void onMsgReceived()
+void onMsgReceived1()
 {
-    can.read(rx_msg);
-    for (int i = 0; i < len(mtr_output); i++) {
+    can1.read(rx_msg);
+    for (int i = 0; i < 3; i++) {
+        mtr_output[i].unpack(&rx_msg);
+    }
+}
+
+void onMsgReceived2()
+{
+    can2.read(rx_msg);
+    for (int i = 3; i < 6; i++) {
         mtr_output[i].unpack(&rx_msg);
     }
 }

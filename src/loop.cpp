@@ -1,9 +1,9 @@
 #include "capstone.h"
 
 #if USE_PID
-static bool pidInit(void);
-static bool pidCompute(void);
-static bool pidControl_p(void);
+static bool             pidInit(void);
+static bool             pidCompute(void);
+static bool             pidControl_p(void);
 #endif
 
 static bool             loadRefTbl(bool until);
@@ -30,6 +30,9 @@ static PIDController pids[] = {
     PIDController(1.30, 0.10, 0.00, &mtr_output[0].p, &p_ctrls[0], &mtr_input[0].p, P_MIN, P_MAX),
     PIDController(1.25, 0.30, 0.00, &mtr_output[1].p, &p_ctrls[1], &mtr_input[1].p, P_MIN, P_MAX),
     PIDController(2.00, 1.00, 0.00, &mtr_output[2].p, &p_ctrls[2], &mtr_input[2].p, P_MIN, P_MAX),
+    PIDController(1.30, 0.10, 0.00, &mtr_output[3].p, &p_ctrls[3], &mtr_input[3].p, P_MIN, P_MAX),
+    PIDController(1.25, 0.30, 0.00, &mtr_output[4].p, &p_ctrls[4], &mtr_input[4].p, P_MIN, P_MAX),
+    PIDController(2.00, 1.00, 0.00, &mtr_output[5].p, &p_ctrls[5], &mtr_input[5].p, P_MIN, P_MAX),
 };
 
 #if USE_PID
@@ -65,6 +68,9 @@ bool pidControl_p()
 bool loadRefTbl(bool until)
 {
     static MotorInputData last_data[len(mtr_input)] = {
+        { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
+        { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
+        { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
         { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
         { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
         { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
@@ -231,12 +237,15 @@ void serialIsr()
 #if 0
     overwatch();
 #endif
-    for (int i = 0; i < len(tx_msg); i++) {
-        can.write(tx_msg[i]);
+    for (int i = 0; i < 3; i++) {
+        can1.write(tx_msg[i]);
+    }
+    for (int i = 3; i < 6; i++) {
+        can2.write(tx_msg[i]);
     }
 }
 
-void interact(void)
+void interact()
 {
     int ch = '\0';
 #if USE_PID
@@ -365,8 +374,11 @@ void interact(void)
                 }
                 return;
             }
-            for (int i = 0; i < len(tx_msg); i++) {
-                can.write(tx_msg[i]);
+            for (int i = 0; i < 3; i++) {
+                can1.write(tx_msg[i]);
+            }
+            for (int i = 3; i < 6; i++) {
+                can2.write(tx_msg[i]);
             }
         }
     }

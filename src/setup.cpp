@@ -6,7 +6,7 @@ const char          *io_input = NULL;
 Timer               timer;
 CANMessage          rx_msg, tx_msg[NumberOfMotors];
 Serial              pc(PA_2, PA_3);
-CAN                 can(PB_8, PB_9);
+CAN                 can1(PB_8, PB_9), can2(PB_5, PB_6);
 Ticker              send_can;
 
 MotorInput          mtr_input[NumberOfMotors];
@@ -24,9 +24,12 @@ int main()
     send_can.attach(serialIsr, tick_dt);
     pc.baud(SERIAL_HZ);
     pc.attach(interact);
-    can.frequency(CAN_FREQUENCY);
-    can.attach(onMsgReceived);
-    can.filter(ID, MASK, CANStandard, 0);
+    can1.frequency(CAN_FREQUENCY);
+    can1.attach(onMsgReceived1);
+    can1.filter(ID, MASK, CANStandard, 0);
+    can2.frequency(CAN_FREQUENCY);
+    can2.attach(onMsgReceived2);
+    can2.filter(ID, MASK, CANStandard, 0);
 
     turn_cnt = -2;
     io_input = NULL;
@@ -56,8 +59,11 @@ int main()
     printf("tick_dt = %lf\n", tick_dt);
     printf("\n");
 
-    for (int i = 0; i < len(tx_msg); i++) {
-        can.write(tx_msg[i]);
+    for (int i = 0; i < 3; i++) {
+        can1.write(tx_msg[i]);
+    }
+    for (int i = 3; i < 6; i++) {
+        can2.write(tx_msg[i]);
     }
     timer.start();
 }
