@@ -1,12 +1,12 @@
 #include "capstone.h"
 
-void IO::set_delta(void (*const delta)(const char *msg))
+void IO::set_prompt(void (*const prompt)(const char *msg))
 {
-    this->delta = delta;
+    this->prompt = prompt;
     this->clear();
 }
 
-bool IO::run_delta()
+bool IO::run_prompt()
 {
     char *msg    = NULL;
     int  ch      = '\0';
@@ -23,7 +23,7 @@ bool IO::run_delta()
         entered = takech(ch);
         if (entered) {
             sync(msg);
-            delta(msg);
+            prompt(msg);
             clear();
             return true;
         }
@@ -215,7 +215,7 @@ bool areSameStr(const char *const lhs, const char *const rhs)
 bool inRange(const float left, const float x, const float right)
     // returns wheter x is in the interval [left, right]
 {
-    return left <= x && x <= right;
+    return (left <= x) && (x <= right);
 }
 
 Gear::Gear(const int gear)

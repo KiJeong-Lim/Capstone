@@ -1,5 +1,23 @@
 #include "capstone.h"
 
+class MotorHandler : public Motor {
+public:
+    CANMessage tx_msg;
+public:
+    MotorHandler(const int id)
+    {
+        tx_msg.len = 8;
+        tx_msg.id = id;
+        this->motor_id = id;
+    }
+    void put_txmsg(UCh8 rhs)
+    {
+        for (int i = 0; i < 8; i++) {
+            tx_msg.data[i] = rhs.data[i];
+        }
+    }
+};
+
 #if USE_PID
 static bool             pidInit(void);
 static bool             pidCompute(void);
@@ -23,67 +41,48 @@ static Motor::SetData   sitDown_calc(int count_down, const Motor::SetData &datum
 static void             serial_isr(void);
 
 static void             interact(void);
-static void             delta(const char *msg);
+static void             prompt(const char *msg);
 
-IO          io;
-Timer       timer;
-Ticker      send_can;
-CANMessage  tx_msg[NumberOfMotors];
-CANMessage  rx_msg;
-Motor       motors[NumberOfMotors];
-float       p_ctrls[NumberOfMotors];
-Serial      pc(PA_2, PA_3);
-CAN         can1(PB_8, PB_9);
-CAN         can2(PB_5, PB_6);
+CANManager      cans[] = { CANManager(PB_8, PB_9), CANManager(PB_5, PB_6) };
+void            (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 };
+MotorHandler    motor_handlers[] = { MotorHandler(1), MotorHandler(2), MotorHandler(3), MotorHandler(4), MotorHandler(5), MotorHandler(6), }; // SET ME !!!
+IO              terminal;
+Timer           timer;
+Ticker          send_can;
+CANMessage      rx_msg;
+float           p_ctrls[len(motor_handlers)];
+Serial          pc(PA_2, PA_3);
 
 Mode        mode                = SetzeroMode;
 long int    turn_cnt            = -2;
 void        (*operation)(void)  = standUp;
 const int   count_down_MAX_CNT  = -100;
 
-/// SET ME!!!
 static PIDController pids[] = {
-    //            Kp    Ki    Kd     y(t)                          u(t)         r(t)
-    PIDController(1.30, 0.10, 0.00, &motors[0].data_from_motor.p, &p_ctrls[0], &motors[0].data_to_motor.p, P_MIN, P_MAX),
-    PIDController(1.25, 0.30, 0.00, &motors[1].data_from_motor.p, &p_ctrls[1], &motors[1].data_to_motor.p, P_MIN, P_MAX),
-    PIDController(2.00, 1.00, 0.00, &motors[2].data_from_motor.p, &p_ctrls[2], &motors[2].data_to_motor.p, P_MIN, P_MAX),
-    PIDController(1.30, 0.10, 0.00, &motors[3].data_from_motor.p, &p_ctrls[3], &motors[3].data_to_motor.p, P_MIN, P_MAX),
-    PIDController(1.25, 0.30, 0.00, &motors[4].data_from_motor.p, &p_ctrls[4], &motors[4].data_to_motor.p, P_MIN, P_MAX),
-    PIDController(2.00, 1.00, 0.00, &motors[5].data_from_motor.p, &p_ctrls[5], &motors[5].data_to_motor.p, P_MIN, P_MAX),
+    //            Kp    Ki    Kd     y(t)                                  u(t)         r(t)
+    PIDController(1.30, 0.10, 0.00, &motor_handlers[0].data_from_motor.p, &p_ctrls[0], &motor_handlers[0].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
+    PIDController(1.25, 0.30, 0.00, &motor_handlers[1].data_from_motor.p, &p_ctrls[1], &motor_handlers[1].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
+    PIDController(2.00, 1.00, 0.00, &motor_handlers[2].data_from_motor.p, &p_ctrls[2], &motor_handlers[2].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
+    PIDController(1.30, 0.10, 0.00, &motor_handlers[3].data_from_motor.p, &p_ctrls[3], &motor_handlers[3].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
+    PIDController(1.25, 0.30, 0.00, &motor_handlers[4].data_from_motor.p, &p_ctrls[4], &motor_handlers[4].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
+    PIDController(2.00, 1.00, 0.00, &motor_handlers[5].data_from_motor.p, &p_ctrls[5], &motor_handlers[5].data_to_motor.p, P_MIN, P_MAX), // SET ME !!!
 };
-
-static const int CAN_FREQUENCY = 1000000;
-static const int SERIAL_HZ     = 921600;
-
-static const unsigned int CAN_ID = 0x01;
-static const unsigned int ID     = CAN_ID << 21;
-static const unsigned int MASK   = 0xFFE00004;
 
 int main()
 {
     send_can.attach(serial_isr, Tick_dt);
 
-    pc.baud(SERIAL_HZ);
+    pc.baud(921600);
     pc.attach(interact);
 
-    can1.frequency(CAN_FREQUENCY);
-    can1.attach(onMsgReceived1);
-    can1.filter(ID, MASK, CANStandard, 0);
-    can2.frequency(CAN_FREQUENCY);
-    can2.attach(onMsgReceived2);
-    can2.filter(ID, MASK, CANStandard, 0);
-
     rx_msg.len = 6;
-    for (int i = 0; i < len(tx_msg); i++) {
-        tx_msg[i].len = 8;
-        tx_msg[i].id  = i + 1;
+    for (int i = 0; i < len(cans); i++) {
+        cans[i].init(0x01 << 21, 0xFFE00004, onMsgReceived[i]);
     }
-    for (int i = 0; i < len(motors); i++) {
-        motors[i].motor_id = i + 1;
-    }
-    for (int i = 0; i < len(motors); i++) {
+
+    for (int i = 0; i < len(motor_handlers); i++) {
         const Motor::SetData init_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 };
-        motors[i].data_to_motor = init_data;
+        motor_handlers[i].data_to_motor = init_data;
     }
     write_txmsg();
 
@@ -101,8 +100,24 @@ int main()
     printf("\n");
 
     turn_cnt = -2;
-    io.set_delta(delta);
+    terminal.set_prompt(prompt);
     timer.start();
+}
+
+void onMsgReceived1()
+{
+    cans[0].get().read(rx_msg);
+    motor_handlers[0].unpack(&rx_msg); // SET ME !!!
+    motor_handlers[1].unpack(&rx_msg); // SET ME !!!
+    motor_handlers[2].unpack(&rx_msg); // SET ME !!!
+}
+
+void onMsgReceived2()
+{
+    cans[1].get().read(rx_msg);
+    motor_handlers[3].unpack(&rx_msg); // SET ME !!!
+    motor_handlers[4].unpack(&rx_msg); // SET ME !!!
+    motor_handlers[5].unpack(&rx_msg); // SET ME !!!
 }
 
 #if USE_PID
@@ -135,25 +150,9 @@ bool pidControl_p()
 }
 #endif
 
-void onMsgReceived1()
-{
-    can1.read(rx_msg);
-    for (int i = 0; i < 3; i++) {
-        motors[i].unpack(&rx_msg);
-    }
-}
-
-void onMsgReceived2()
-{
-    can2.read(rx_msg);
-    for (int i = 3; i < 6; i++) {
-        motors[i].unpack(&rx_msg);
-    }
-}
-
 bool loadRefTbl(bool until)
 {
-    static Motor::SetData last_data[len(motors)] = {
+    static Motor::SetData last_data[len(motor_handlers)] = {
         { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
         { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
         { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 },
@@ -166,14 +165,14 @@ bool loadRefTbl(bool until)
 
     if (until) {
         for (int i = 0; i < len(ref_tbl[turn_cnt]); i++) {
-            motors[i].data_to_motor = ref_tbl[turn_cnt][i % 3];
+            motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][i % 3];
             last_data[i] = ref_tbl[turn_cnt][i % 3];
         }
         return true;
     }
     else {
         for (int i = 0; i < len(ref_tbl[turn_cnt]); i++) {
-            motors[i].data_to_motor = last_data[i];
+            motor_handlers[i].data_to_motor = last_data[i];
         }
         return false;
     }
@@ -181,11 +180,8 @@ bool loadRefTbl(bool until)
 
 void write_txmsg()
 {
-    for (int i = 0; i < 3; i++) {
-        can1.write(tx_msg[i]);
-    }
-    for (int i = 3; i < 6; i++) {
-        can2.write(tx_msg[i]);
+    for (int i = 0; i < 6; i++) {
+        cans[i / 3].get().write(motor_handlers[i].tx_msg);
     }
 }
 
@@ -193,8 +189,8 @@ void halt()
 {
     const Motor::SetData zero_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 };
 
-    for (int i = 0; i < len(motors); i++) {
-        motors[i].data_to_motor = zero_data;
+    for (int i = 0; i < len(motor_handlers); i++) {
+        motor_handlers[i].data_to_motor = zero_data;
     }
     mode = SetzeroMode;
     turn_cnt = -2;
@@ -212,12 +208,9 @@ void observe()
         else {
             row = 0;
         }
-#if 0
-        printf("\r%% turn_cnt = %d\n", turn_cnt);
-#endif
-        for (int i = 0; i < len(motors); i++) {
-            const Motor::SetData data = motors[i].data_to_motor;
-            printf("\rtheta(%ld, %d) = %f; omega(%ld, %d) = %f;\n", row, motors[i].motor_id, data.p, row, motors[i].motor_id, data.v);
+        for (int i = 0; i < len(motor_handlers); i++) {
+            const Motor::SetData data = motor_handlers[i].data_to_motor;
+            printf("\rtheta(%ld, %d) = %f; omega(%ld, %d) = %f;\n", row, motor_handlers[i].motor_id, data.p, row, motor_handlers[i].motor_id, data.v);
         }
         printf("\n");
     }
@@ -228,9 +221,9 @@ void debug_txmsg()
     static Gear gear_ovw = Gear(20);
 
     if (gear_ovw.go()) {
-        for (int i = 0; i < len(tx_msg); i++) {
-            const Motor::SetData ovw = decode16(&tx_msg[i].data);
-            printf("\n\r%% tx_msg[%d] = { .p = %.4lf, .v = %.4lf, .kp = %.4lf, .kd = %.4lf, .t_ff = %.4lf }\n", i, ovw.p, ovw.v, ovw.kp, ovw.kd, ovw.t_ff);
+        for (int i = 0; i < len(motor_handlers); i++) {
+            const Motor::SetData ovw = decode16(&motor_handlers[i].tx_msg.data);
+            printf("\n\r%% tx_msg[%d] = { .p = %.4lf, .v = %.4lf, .kp = %.4lf, .kd = %.4lf, .t_ff = %.4lf, }\n", i, ovw.p, ovw.v, ovw.kp, ovw.kd, ovw.t_ff);
         }
         printf("\n");
     }
@@ -244,13 +237,14 @@ void jump()
 void jump1()
 {
     loadRefTbl(turn_cnt <= PID_START_TICK);
-
+#if USE_PID
     if (turn_cnt == PID_START_TICK) {
         pidInit();
     }
     else if (turn_cnt > PID_START_TICK) {
         pidControl_p();
     }
+#endif
 }
 
 void standUp()
@@ -261,8 +255,8 @@ void standUp()
         { 0x7F, 0xBA, 0x7F, 0xF0, 0x39, 0x00, 0x07, 0x8D, },
     };
 
-    for (int i = 0; i < len(motors); i++) {
-        motors[i].data_to_motor = decode16(&lines[i % 3]);
+    for (int i = 0; i < len(motor_handlers); i++) {
+        motor_handlers[i].data_to_motor = decode16(&lines[i % 3]);
     }
 }
 
@@ -291,8 +285,8 @@ void serial_isr()
             observe();
             turn_cnt++;
         }
-        for (int i = 0; i < len(motors); i++) {
-            motors[i].pack(&tx_msg[i]);
+        for (int i = 0; i < len(motor_handlers); i++) {
+            motor_handlers[i].pack(&motor_handlers[i].tx_msg);
         }
         break;
     case ObserveMode:
@@ -313,9 +307,9 @@ void serial_isr()
         }
         else if (turn_cnt >= count_down_MAX_CNT) {
             observe();
-            for (int i = 0; i < len(motors); i++) {
-                const Motor::SetData datum = sitDown_calc(-turn_cnt, motors[i].data_to_motor);
-                motors[i].pack(&tx_msg[i]);
+            for (int i = 0; i < len(motor_handlers); i++) {
+                const Motor::SetData datum = sitDown_calc(-turn_cnt, motor_handlers[i].data_to_motor);
+                motor_handlers[i].pack(&motor_handlers[i].tx_msg);
             }
             turn_cnt++;
         }
@@ -342,8 +336,8 @@ void interact()
 #endif
 
     if (mode == ReadcmdMode) {
-        bool delta_routine_breaked = io.run_delta();
-        if (delta_routine_breaked) {
+        bool prompt_routine_breaked = terminal.run_prompt();
+        if (prompt_routine_breaked) {
             mode = SetzeroMode;
         }
         return;
@@ -355,43 +349,25 @@ void interact()
         switch (ch) {
         case ESC:
             printf("\n\r%% Exiting motor mode %%\n");
-            for (int i = 0; i < len(tx_msg); i++) {
-                tx_msg[i].data[0] = 0xFF;
-                tx_msg[i].data[1] = 0xFF;
-                tx_msg[i].data[2] = 0xFF;
-                tx_msg[i].data[3] = 0xFF;
-                tx_msg[i].data[4] = 0xFF;
-                tx_msg[i].data[5] = 0xFF;
-                tx_msg[i].data[6] = 0xFF;
-                tx_msg[i].data[7] = 0xFD;
+            for (int i = 0; i < len(motor_handlers); i++) {
+                const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, } };
+                motor_handlers[i].put_txmsg(msg);
             }
             turn_cnt = -1;
             break;
         case 'm':
             printf("\n\r%% Entering motor mode %%\n");
-            for (int i = 0; i < len(tx_msg); i++) {
-                tx_msg[i].data[0] = 0xFF;
-                tx_msg[i].data[1] = 0xFF;
-                tx_msg[i].data[2] = 0xFF;
-                tx_msg[i].data[3] = 0xFF;
-                tx_msg[i].data[4] = 0xFF;
-                tx_msg[i].data[5] = 0xFF;
-                tx_msg[i].data[6] = 0xFF;
-                tx_msg[i].data[7] = 0xFC;
+            for (int i = 0; i < len(motor_handlers); i++) {
+                const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC, } };
+                motor_handlers[i].put_txmsg(msg);
             }
             turn_cnt = -1;
             break;
         case 'z':
             printf("\n\r%% Set zero %%\n");
-            for (int i = 0; i < len(tx_msg); i++) {
-                tx_msg[i].data[0] = 0xFF;
-                tx_msg[i].data[1] = 0xFF;
-                tx_msg[i].data[2] = 0xFF;
-                tx_msg[i].data[3] = 0xFF;
-                tx_msg[i].data[4] = 0xFF;
-                tx_msg[i].data[5] = 0xFF;
-                tx_msg[i].data[6] = 0xFF;
-                tx_msg[i].data[7] = 0xFE;
+            for (int i = 0; i < len(motor_handlers); i++) {
+                const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE, } };
+                motor_handlers[i].put_txmsg(msg);
             }
             break;
         case '1':
@@ -401,17 +377,11 @@ void interact()
         case '5':
         case '6':
             for (int j = 0; j < 6; j++) {
-                if (j < len(tx_msg)) {
+                if (j < len(motor_handlers)) {
                     if (ch == "123456"[j]) {
                         printf("\n\r%% Motor%c rest position %%\n", ch);
-                        tx_msg[j].data[0] = 0x7F;
-                        tx_msg[j].data[1] = 0xFF;
-                        tx_msg[j].data[2] = 0x7F;
-                        tx_msg[j].data[3] = 0xF0;
-                        tx_msg[j].data[4] = 0x00;
-                        tx_msg[j].data[5] = 0x00;
-                        tx_msg[j].data[6] = 0x07;
-                        tx_msg[j].data[7] = 0xFF;
+                        const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
+                        motor_handlers[j].put_txmsg(msg);
                     }
                 }
             }
@@ -452,7 +422,7 @@ void interact()
     write_txmsg();
 }
 
-void delta (const char *const msg)
+void prompt (const char *const msg)
 {   
     int sscanf_res = 0;
     char var_name[16];

@@ -8,8 +8,7 @@
 
 #define VERSION             "0.1.0 (2024-02-01)"
 
-#define NumberOfMotors      6
-#define USE_PID             1
+#define USE_PID             0
 #define REF_TBL_ID          0
 #define RUNTIME_TICK_MAX    1000000
 #define PID_START_TICK      390
@@ -106,10 +105,10 @@ class IO {
     int cursor;
     int theend;
     char *result;
-    void (*delta)(const char *msg);
+    void (*prompt)(const char *msg);
 public:
-    void set_delta(void (*delta)(const char *msg));
-    bool run_delta(void);
+    void set_prompt(void (*prompt)(const char *msg));
+    bool run_prompt(void);
     static int getc(void);
 private:
     bool takech(int ch);
@@ -118,13 +117,19 @@ private:
     void sync(char *&msg);
 };
 
-extern const Motor::SetData ref_tbl[1000][3];
+class CANManager {
+private:
+    CAN my_can;
+public:
+    CANManager(PinName rd, PinName td);
+    void init(unsigned int id, unsigned int mask, void (*to_be_attached)(void));
+    CAN &get(void);
+};
 
 extern Serial   pc;
-extern Mode     mode;
 extern Timer    timer;
-extern CAN      can1, can2;
-extern Motor    motors[NumberOfMotors];
+
+extern const Motor::SetData ref_tbl[1000][3];
 
 Motor::SetData  decode16(const unsigned char (*input_data)[8]);
 int             main(void);
