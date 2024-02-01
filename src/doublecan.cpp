@@ -26,9 +26,9 @@ void Motor::setInputWithHexademical(const UCh8 &encoded_input)
     this->data_to_motor = decode16(&encoded_input.data);
 }
 
-UCh8_t Motor::encode16() const
+UCh8 Motor::encode16() const
 {
-    UCh8_t res = { .data = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, } };
+    UCh8 res = { .data = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, } };
     
     const float p_des    = middle(P_MIN, data_to_motor.p, P_MAX);                  
     const float v_des    = middle(V_MIN, data_to_motor.v, V_MAX);
