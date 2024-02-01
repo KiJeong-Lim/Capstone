@@ -1,5 +1,164 @@
 #include "capstone.h"
 
+void IO::set_delta(void (*const delta)(const char *msg))
+{
+    this->delta = delta;
+    this->clear();
+}
+
+bool IO::run_delta()
+{
+    char *msg    = NULL;
+    int  ch      = '\0';
+    bool entered = false;
+
+    while (1) {
+        ch = getc();
+        if (ch == 0) {
+            return false;
+        }
+        if (ch == ESC) {
+            return true;
+        }
+        entered = takech(ch);
+        if (entered) {
+            sync(msg);
+            delta(msg);
+            clear();
+            return true;
+        }
+    }
+}
+
+int IO::getc()
+{
+    if (pc.readable()) {
+        return pc.getc();
+    }
+    else {
+        return 0;
+    }
+}
+
+void IO::clear()
+{
+    for (int i = 0; i < len(buffer); i++) {
+        buffer[i] = '\0';
+    }
+    cursor = 0;
+    theend = 0;
+}
+
+bool IO::takech(const int ch)
+{
+    switch (ch) {
+    default:
+        if (cursor < 0) {
+            result = NULL;
+            return false;
+        }
+        if (cursor > theend) {
+            result = NULL;
+            return false;
+        }
+        if (theend + 1 >= len(buffer)) {
+            result = NULL;
+            return false;
+        }
+        for (int i = theend; i >= cursor; i--) {
+            buffer[i + 1] = buffer[i];
+        }
+        buffer[cursor++] = ch;
+        buffer[++theend] = '\0';
+        print();
+        result = NULL;
+        return false;
+    case '\b':
+        if (cursor > theend) {
+            result = NULL;
+            return false;
+        }
+        if (theend + 1 >= len(buffer)) {
+            result = NULL;
+            return false;
+        }
+        if (cursor <= 0) {
+            result = NULL;
+            return false;
+        }
+        for (int i = --cursor; i < theend; i++) {
+            buffer[i] = buffer[i + 1];
+        }
+        if (theend > 0) {
+            buffer[theend--] = '\0';
+        }
+        print();
+        result = NULL;
+        return false;
+    case '\n':
+    case '\r':
+        result = buffer;
+        return true;
+    case '\0':
+        return false;
+    case ESC:
+        clear();
+        printf("\n");
+        result = NULL;
+        return true;
+    case 224:
+        if (theend + 1 >= len(buffer)) {
+            result = NULL;
+            return false;
+        }
+        switch (getc()) {
+        case LEFT_DIRECTION:
+            if (cursor > 0) {
+                cursor--;
+            }
+            print();
+            result = NULL;
+            return false;
+        case RIGHT_DIRECTION:
+            if (cursor < theend) {
+                cursor++;
+            }
+            print();
+            result = NULL;
+            return false;
+        }
+    }
+    return false;
+}
+
+void IO::sync(char *&msg)
+{
+    msg = result;
+}
+
+void IO::print()
+{
+    int i = 0;
+
+    printf("\r");
+    for (i = 0; i < len(buffer); i++) {
+        printf(" ");    
+    }
+    printf("\r");
+    for (i = 0; i < cursor; i++) {
+        printf(" ");
+    }
+    for (i = cursor; i < theend; i++) {
+        printf("%c", buffer[i]);
+    }
+    buffer[i] = '\0';
+    printf("\r");
+    for (int i = 0; i < cursor; i++) {
+        printf("%c", buffer[i]);
+    }
+    std::cout.flush();
+}
+
 void limitNorm(float &x, float &y, const float limit)
     // scales the lenght of vector (x, y) to be <= limit
 {
@@ -44,7 +203,7 @@ float getTime()
     return (float)(timer.read());
 }
 
-bool areSameStr(const char (*const lhs), const char (*const rhs))
+bool areSameStr(const char *const lhs, const char *const rhs)
     // returns whether the two astrings are the same
 {
     if (lhs == NULL || rhs == NULL) {
@@ -54,6 +213,7 @@ bool areSameStr(const char (*const lhs), const char (*const rhs))
 }
 
 bool inRange(const float left, const float x, const float right)
+    // returns wheter x is in the interval [left, right]
 {
     return left <= x && x <= right;
 }
