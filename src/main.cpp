@@ -51,11 +51,11 @@ MotorHandler motor_handlers[] = {
 #endif
 };
 
-MotorHandler *transceiver1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], }; // SET ME !!!
-MotorHandler *transceiver2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], }; // SET ME !!!
+MotorHandler    *transceiver1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], }; // SET ME !!!
+MotorHandler    *transceiver2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], }; // SET ME !!!
 
-CANManager  cans[] = { mkCANManager(PB_8, PB_9, transceiver1), mkCANManager(PB_5, PB_6, transceiver2) }; // SET ME !!!
-void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 }; // SET ME !!!
+CANManager      cans[] = { mkCANManager(PB_8, PB_9, transceiver1), mkCANManager(PB_5, PB_6, transceiver2) }; // SET ME !!!
+void            (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 }; // SET ME !!!
 
 inline
 int index(const int i)
@@ -65,8 +65,6 @@ int index(const int i)
 
 int main()
 {
-    send_can.attach(serial_isr, Tick_dt);
-
     pc.baud(921600);
     pc.attach(interact);
 
@@ -95,6 +93,7 @@ int main()
 
     turn_cnt = -2;
     terminal.set_prompt(prompt);
+    send_can.attach(serial_isr, Tick_dt);
     timer.start();
 }
 
@@ -300,8 +299,6 @@ void interact()
     }
     ch = IO::getc();
     switch (ch) {
-    case 0:
-        return;
     case ESC:
         printf("\n\r%% Exiting motor mode %%\n");
         for (int i = 0; i < len(motor_handlers); i++) {
@@ -309,7 +306,7 @@ void interact()
             motor_handlers[i].put_txmsg(msg);
         }
         turn_cnt = -1;
-        break;
+        return;
     case 'm':
         printf("\n\r%% Entering motor mode %%\n");
         for (int i = 0; i < len(motor_handlers); i++) {
@@ -317,14 +314,14 @@ void interact()
             motor_handlers[i].put_txmsg(msg);
         }
         turn_cnt = -1;
-        break;
+        return;
     case 'z':
         printf("\n\r%% Set zero %%\n");
         for (int i = 0; i < len(motor_handlers); i++) {
             const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE, } };
             motor_handlers[i].put_txmsg(msg);
         }
-        break;
+        return;
     case '1':
     case '2':
     case '3':
@@ -339,7 +336,7 @@ void interact()
                 break;
             }
         }
-        break;
+        return;
     case 'r':
         printf("\n\r%% Run %%\n");
         mode = RuntimeMode;
@@ -374,7 +371,6 @@ void interact()
         }
         return;
     }
-    write_txmsg();
 }
 
 void prompt (const char *const msg)
