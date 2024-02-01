@@ -20,7 +20,7 @@ static void             jump1(void);
 static void             standUp(void);
 static Motor::SetData   sitDown_calc(int count_down, const Motor::SetData &datum);
 
-static void             serialISR(void);
+static void             serial_isr(void);
 
 static void             interact(void);
 static void             delta(const char *msg);
@@ -58,7 +58,7 @@ static const unsigned int MASK   = 0xFFE00004;
 
 int main()
 {
-    send_can.attach(serialISR, Tick_dt);
+    send_can.attach(serial_isr, Tick_dt);
 
     pc.baud(SERIAL_HZ);
     pc.attach(interact);
@@ -276,7 +276,7 @@ Motor::SetData sitDown_calc(const int count_down, const Motor::SetData &datum)
     return res;
 }
 
-void serialISR()
+void serial_isr()
 {
     switch (mode) {
     case RuntimeMode:
