@@ -33,7 +33,7 @@
 #define T_MAX       (18.0f)
 #define I_MAX       (40.0f)
 
-#define len(arr)    (sizeof(arr)/sizeof*(arr))
+#define len(arr)    (sizeof(arr)/sizeof((arr)[0]))
 #define max(x,y)    ((x) >= (y) ? (x) : (y))
 #define min(x,y)    ((y) >= (x) ? (x) : (y))
 

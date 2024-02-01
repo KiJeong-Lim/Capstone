@@ -1,5 +1,7 @@
 #include "capstone.h"
 
+#define mkCANManager(rd,td,transceiver) (CANManager(rd, td, transceiver, len(transceiver)))
+
 static void             onMsgReceived1(void);
 static void             onMsgReceived2(void);
 
@@ -49,10 +51,10 @@ MotorHandler motor_handlers[] = {
 #endif
 };
 
-MotorHandler *trans1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], }; // SET ME !!!
-MotorHandler *trans2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], }; // SET ME !!!
+MotorHandler *transceiver1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], }; // SET ME !!!
+MotorHandler *transceiver2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], }; // SET ME !!!
 
-CANManager  cans[] = { CANManager(PB_8, PB_9, trans1, 2), CANManager(PB_5, PB_6, trans2, 2) }; // SET ME !!!
+CANManager  cans[] = { mkCANManager(PB_8, PB_9, transceiver1), mkCANManager(PB_5, PB_6, transceiver2) }; // SET ME !!!
 void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 }; // SET ME !!!
 
 inline
