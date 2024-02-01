@@ -252,7 +252,7 @@ void standUp()
     };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_to_motor = decode16(&lines[handlers(i) % 3]);
+        motor_handlers[i].data_to_motor = decode16(&lines[index(i) % 3]);
     }
 }
 
