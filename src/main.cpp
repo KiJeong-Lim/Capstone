@@ -143,6 +143,7 @@ const int   count_down_MAX_CNT  = -100;
 
 MotorHandler motor_handlers[] = {
 #if USE_PID
+    //           #  Kp    Ki    Kd
     MotorHandler(1, 1.30, 0.10, 0.00), // SET ME !!!
     MotorHandler(2, 1.25, 0.30, 0.00), // SET ME !!!
     MotorHandler(3, 2.00, 1.00, 0.00), // SET ME !!!
@@ -150,6 +151,7 @@ MotorHandler motor_handlers[] = {
     MotorHandler(5, 1.25, 0.30, 0.00), // SET ME !!!
     MotorHandler(6, 2.00, 1.00, 0.00), // SET ME !!!
 #else
+    //           #
     MotorHandler(1), // SET ME !!!
     MotorHandler(2), // SET ME !!!
     MotorHandler(3), // SET ME !!!

@@ -6,7 +6,7 @@
 
 #include "mbed.h"
 
-#define VERSION             "0.1.0 (2024-02-01)"
+#define VERSION             "0.1.1 (2024-02-02 04:39)"
 
 #define USE_PID             0
 #define REF_TBL_ID          0
