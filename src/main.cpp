@@ -114,6 +114,9 @@ MotorHandler motor_handlers[] = {
 MotorHandler *trans1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], }; // SET ME !!!
 MotorHandler *trans2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], }; // SET ME !!!
 
+CANManager  cans[] = { CANManager(PB_8, PB_9, trans1, 3), CANManager(PB_5, PB_6, trans2, 3) }; // SET ME !!!
+void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 }; // SET ME !!!
+
 inline
 int index(const int i)
 {
