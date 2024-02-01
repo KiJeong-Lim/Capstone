@@ -1,7 +1,7 @@
 #ifndef CAPSTONE
 #define CAPSTONE "V8-double-can-ver2"
 
-#include <iostream>
+#include <cstdio>
 #include <cstring>
 
 #include "mbed.h"
@@ -117,13 +117,13 @@ private:
     void sync(char *&msg);
 };
 
-class CANManager {
-private:
+class CANHelper {
+public:
     CAN my_can;
 public:
-    CANManager(PinName rd, PinName td);
+    CANHelper(PinName rd, PinName td);
     void init(unsigned int id, unsigned int mask, void (*to_be_attached)(void));
-    CAN &get(void);
+    void read(CANMessage &msg);
 };
 
 extern Serial   pc;

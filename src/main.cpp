@@ -78,6 +78,39 @@ public:
     static int idx(int i);
 };
 
+class CANManager {
+private:
+    CANHelper helper;
+    MotorHandler **motor_handlers_vec_ptr;
+    int motor_handlers_vec_size;
+    CANMessage rx_msg;
+public:
+    CANManager(const PinName rd, const PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size)
+        : helper(rd, td), motor_handlers_vec_ptr(NULL), motor_handlers_vec_size(0)
+    {
+        this->motor_handlers_vec_ptr = motor_handlers_vec_ptr;
+        this->motor_handlers_vec_size = motor_handlers_vec_size;
+        rx_msg.len = 6;
+    }
+    void init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
+    {
+        helper.init(id, mask, to_be_attached);
+    }
+    void onMsgReceived(void)
+    {
+        helper.read(rx_msg);
+        for (int i = 0; i < motor_handlers_vec_size; i++) {
+            motor_handlers_vec_ptr[i]->unpack(&rx_msg);
+        }
+    }
+    void write(void)
+    {
+        for (int i = 0; i < motor_handlers_vec_size; i++) {
+            helper.my_can.write(motor_handlers_vec_ptr[i]->tx_msg_ref());
+        }
+    }
+};
+
 static void             onMsgReceived1(void);
 static void             onMsgReceived2(void);
 
@@ -97,22 +130,21 @@ static void             serial_isr(void);
 static void             interact(void);
 static void             prompt(const char *msg);
 
-// SET ME !!!
 MotorHandler motor_handlers[] = {
 #if USE_PID
-    MotorHandler(1, 1.30, 0.10, 0.00),
-    MotorHandler(2, 1.25, 0.30, 0.00),
-    MotorHandler(3, 2.00, 1.00, 0.00),
-    MotorHandler(4, 1.30, 0.10, 0.00),
-    MotorHandler(5, 1.25, 0.30, 0.00),
-    MotorHandler(6, 2.00, 1.00, 0.00),
+    MotorHandler(1, 1.30, 0.10, 0.00), // SET ME !!!
+    MotorHandler(2, 1.25, 0.30, 0.00), // SET ME !!!
+    MotorHandler(3, 2.00, 1.00, 0.00), // SET ME !!!
+    MotorHandler(4, 1.30, 0.10, 0.00), // SET ME !!!
+    MotorHandler(5, 1.25, 0.30, 0.00), // SET ME !!!
+    MotorHandler(6, 2.00, 1.00, 0.00), // SET ME !!!
 #else
-    MotorHandler(1),
-    MotorHandler(2),
-    MotorHandler(3),
-    MotorHandler(4),
-    MotorHandler(5),
-    MotorHandler(6),
+    MotorHandler(1), // SET ME !!!
+    MotorHandler(2), // SET ME !!!
+    MotorHandler(3), // SET ME !!!
+    MotorHandler(4), // SET ME !!!
+    MotorHandler(5), // SET ME !!!
+    MotorHandler(6), // SET ME !!!
 #endif
 };
 
@@ -127,7 +159,10 @@ long int    turn_cnt            = -2;
 void        (*operation)(void)  = standUp;
 const int   count_down_MAX_CNT  = -100;
 
-CANManager  cans[] = { CANManager(PB_8, PB_9), CANManager(PB_5, PB_6) };
+MotorHandler *trans1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], };
+MotorHandler *trans2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], };
+
+CANManager  cans[] = { CANManager(PB_8, PB_9, trans1, 3), CANManager(PB_5, PB_6, trans2, 3) };
 void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 };
 
 int MotorHandler::idx(const int i)
@@ -173,28 +208,19 @@ int main()
 
 void onMsgReceived1()
 {
-    cans[0].get().read(rx_msg);
-    motor_handlers[0].unpack(&rx_msg); // SET ME !!!
-    motor_handlers[1].unpack(&rx_msg); // SET ME !!!
-    motor_handlers[2].unpack(&rx_msg); // SET ME !!!
+    cans[0].onMsgReceived();
 }
 
 void onMsgReceived2()
 {
-    cans[1].get().read(rx_msg);
-    motor_handlers[3].unpack(&rx_msg); // SET ME !!!
-    motor_handlers[4].unpack(&rx_msg); // SET ME !!!
-    motor_handlers[5].unpack(&rx_msg); // SET ME !!!
+    cans[1].onMsgReceived();
 }
 
 void write_txmsg()
 {
-    cans[0].get().write(motor_handlers[0].tx_msg_ref()); // SET ME !!!
-    cans[0].get().write(motor_handlers[1].tx_msg_ref()); // SET ME !!!
-    cans[0].get().write(motor_handlers[2].tx_msg_ref()); // SET ME !!!
-    cans[1].get().write(motor_handlers[3].tx_msg_ref()); // SET ME !!!
-    cans[1].get().write(motor_handlers[4].tx_msg_ref()); // SET ME !!!
-    cans[1].get().write(motor_handlers[5].tx_msg_ref()); // SET ME !!!
+    for (int i = 0; i < len(cans); i++) {
+        cans[i].write();
+    }
 }
 
 void halt()

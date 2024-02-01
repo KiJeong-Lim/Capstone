@@ -156,7 +156,7 @@ void IO::print()
     for (int i = 0; i < cursor; i++) {
         printf("%c", buffer[i]);
     }
-    std::cout.flush();
+    fflush(stdout);
 }
 
 void limitNorm(float &x, float &y, const float limit)

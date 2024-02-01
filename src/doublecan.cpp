@@ -82,12 +82,12 @@ void Motor::unpack(const CANMessage *const can_msg)
     }
 }
 
-CANManager::CANManager(const PinName rd, const PinName td)
+CANHelper::CANHelper(const PinName rd, const PinName td)
     : my_can(rd, td)
 {
 }
 
-void CANManager::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
+void CANHelper::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
 {
     const int CAN_FREQUENCY = 1000000;
 
@@ -96,7 +96,7 @@ void CANManager::init(const unsigned int id, const unsigned int mask, void (*con
     my_can.attach(to_be_attached);
 }
 
-CAN &CANManager::get()
+void CANHelper::read(CANMessage &rx_msg)
 {
-    return my_can;
+    my_can.read(rx_msg);
 }
