@@ -600,7 +600,6 @@ int MotorHandler::idx() const
 CANManager::CANManager(const PinName rd, const PinName td, MotorHandler **const motor_handlers_vec_ptr, const int motor_handlers_vec_size)
     : helper(rd, td), motor_handlers_vec_ptr(motor_handlers_vec_ptr), motor_handlers_vec_size(motor_handlers_vec_size)
 {
-    this->motor_handlers_vec_size = motor_handlers_vec_size;
     rx_msg.len = 6;
 }
 
