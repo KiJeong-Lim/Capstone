@@ -133,7 +133,6 @@ static void             prompt(const char *msg);
 IO          terminal;
 Timer       timer;
 Ticker      send_can;
-CANMessage  rx_msg;
 Serial      pc(PA_2, PA_3);
 
 Mode        mode                = SetzeroMode;
@@ -180,7 +179,6 @@ int main()
     pc.baud(921600);
     pc.attach(interact);
 
-    rx_msg.len = 6;
     for (int i = 0; i < len(cans); i++) {
         cans[i].init(0x01 << 21, 0xFFE00004, onMsgReceived[i]);
     }
