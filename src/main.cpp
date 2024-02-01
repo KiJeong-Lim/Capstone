@@ -34,13 +34,13 @@ public:
             tx_msg.data[i] = rhs.data[i];
         }
     }
-    void send_msg(void)
-    {
-        this->pack(&tx_msg);
-    }
     CANMessage &tx_msg_ref(void)
     {
         return tx_msg;
+    }
+    void send_msg(void)
+    {
+        this->pack(&tx_msg);
     }
     int id(void) const
     {
@@ -75,6 +75,7 @@ public:
         pid.Kd = Kd;
     }
 #endif
+    static int idx(int i);
 };
 
 static void             onMsgReceived1(void);
@@ -129,8 +130,7 @@ const int   count_down_MAX_CNT  = -100;
 CANManager  cans[] = { CANManager(PB_8, PB_9), CANManager(PB_5, PB_6) };
 void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 };
 
-inline
-int idx(const int i)
+int MotorHandler::idx(const int i)
 {
     return motor_handlers[i].id() - 1;
 }
@@ -250,8 +250,8 @@ bool loadRefTbl(bool until)
 
     if (until) {
         for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][idx(i) % 3];
-            last_data[i] = ref_tbl[turn_cnt][idx(i) % 3];
+            motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][MotorHandler::idx(i) % 3];
+            last_data[i] = ref_tbl[turn_cnt][MotorHandler::idx(i) % 3];
         }
         return true;
     }
@@ -294,7 +294,7 @@ void standUp()
     };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_to_motor = decode16(&lines[idx(i) % 3]);
+        motor_handlers[i].data_to_motor = decode16(&lines[MotorHandler::idx(i) % 3]);
     }
 }
 
@@ -415,7 +415,7 @@ void interact()
         case '5':
         case '6':
             for (int i = 0; i < len(motor_handlers); i++) {
-                if (ch == "0123456789"[motor_handlers[i].motor_id]) {
+                if (ch == "123456"[MotorHandler::idx(i)]) {
                     const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
                     printf("\n\r%% Motor #%c rest position %%\n", ch);
                     motor_handlers[i].put_txmsg(msg);
