@@ -129,7 +129,7 @@ int main()
 #endif
     printf("\rREF_TBL_ID = %d\n", REF_TBL_ID);
     printf("\rRUNTIME_TICK_MAX = %d\n", RUNTIME_TICK_MAX);
-    printf("\rTick_dt = %lf\n", Tick_dt);
+    printf("\rTick_dt = %lf[s]\n", Tick_dt);
     printf("\n");
 
     turn_cnt = -2;
@@ -511,7 +511,7 @@ bool MotorHandler::isWellFormed() const
 
 void MotorHandler::put_txmsg(const UCh8 rhs)
 {
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < len(tx_msg.data); i++) {
         tx_msg.data[i] = rhs.data[i];
     }
 }
