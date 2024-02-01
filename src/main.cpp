@@ -14,7 +14,7 @@ public:
     MotorHandler(int id);
 #endif
     bool isWellFormed(void) const;
-    void put_txmsg(const UCh8 rhs);
+    void put_txmsg(UCh8 rhs);
     CANMessage &tx_msg_ref(void);
     void send_msg(void);
     int id(void) const;
@@ -22,9 +22,9 @@ public:
     bool pidInit(void);
     bool pidCompute(void);
     bool pidControl_p(void);
-    void set_Kp(const float Kp);
-    void set_Ki(const float Ki);
-    void set_Kd(const float Kd);
+    void set_Kp(float Kp);
+    void set_Ki(float Ki);
+    void set_Kd(float Kd);
 #endif
     int idx(void) const;
 };
@@ -32,12 +32,12 @@ public:
 class CANManager {
 private:
     CANHelper helper;
-    MotorHandler **motor_handlers_vec_ptr;
+    MotorHandler *const *const motor_handlers_vec_ptr;
     int motor_handlers_vec_size;
     CANMessage rx_msg;
 public:
-    CANManager(const PinName rd, const PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size);
-    void init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void));
+    CANManager(PinName rd, PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size);
+    void init(unsigned int id, unsigned int mask, void (*to_be_attached)(void));
     void onMsgReceived(void);
     void write(void);
 };
@@ -91,11 +91,28 @@ MotorHandler motor_handlers[] = {
 #endif
 };
 
+MotorHandler motor_handlers[] = {
+#if USE_PID
+    //           #  Kp    Ki    Kd
+    MotorHandler(1, 1.30, 0.10, 0.00), // SET ME !!!
+    MotorHandler(2, 1.25, 0.30, 0.00), // SET ME !!!
+    MotorHandler(3, 2.00, 1.00, 0.00), // SET ME !!!
+    MotorHandler(4, 1.30, 0.10, 0.00), // SET ME !!!
+    MotorHandler(5, 1.25, 0.30, 0.00), // SET ME !!!
+    MotorHandler(6, 2.00, 1.00, 0.00), // SET ME !!!
+#else
+    //           #
+    MotorHandler(1), // SET ME !!!
+    MotorHandler(2), // SET ME !!!
+    MotorHandler(3), // SET ME !!!
+    MotorHandler(4), // SET ME !!!
+    MotorHandler(5), // SET ME !!!
+    MotorHandler(6), // SET ME !!!
+#endif
+};
+
 MotorHandler *trans1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], }; // SET ME !!!
 MotorHandler *trans2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], }; // SET ME !!!
-
-CANManager  cans[] = { CANManager(PB_8, PB_9, trans1, 3), CANManager(PB_5, PB_6, trans2, 3) }; // SET ME !!!
-void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 }; // SET ME !!!
 
 inline
 int index(const int i)
@@ -577,11 +594,10 @@ int MotorHandler::idx() const
     return -1;
 }
 
-CANManager::CANManager(const PinName rd, const PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size)
-    : helper(rd, td), motor_handlers_vec_ptr(NULL), motor_handlers_vec_size(0)
+CANManager::CANManager(const PinName rd, const PinName td, MotorHandler **const your_motor_handlers_vec_ptr, const int your_motor_handlers_vec_size)
+    : helper(rd, td), motor_handlers_vec_ptr(your_motor_handlers_vec_ptr), motor_handlers_vec_size(0)
 {
-    this->motor_handlers_vec_ptr = motor_handlers_vec_ptr;
-    this->motor_handlers_vec_size = motor_handlers_vec_size;
+    this->motor_handlers_vec_size = your_motor_handlers_vec_size;
     rx_msg.len = 6;
 }
 
