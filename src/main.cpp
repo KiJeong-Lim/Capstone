@@ -130,14 +130,9 @@ CANManager  cans[] = { CANManager(PB_8, PB_9), CANManager(PB_5, PB_6) };
 void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 };
 
 inline
-int idx(const MotorHandler &handler)
+int idx(const int i)
 {
-    for (int i = 0; i < len(motor_handlers); i++) {
-        if (motor_handlers[i].id() == handler.id()) {
-            return i;
-        }
-    }
-    return -1;
+    return motor_handlers[i].id() - 1;
 }
 
 int main()
@@ -255,8 +250,8 @@ bool loadRefTbl(bool until)
 
     if (until) {
         for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][(motor_handlers[i].id() - 1) % 3];
-            last_data[i] = ref_tbl[turn_cnt][(motor_handlers[i].id() - 1) % 3];
+            motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][idx(i) % 3];
+            last_data[i] = ref_tbl[turn_cnt][idx(i) % 3];
         }
         return true;
     }
@@ -299,7 +294,7 @@ void standUp()
     };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_to_motor = decode16(&lines[(motor_handlers[i].motor_id - 1) % 3]);
+        motor_handlers[i].data_to_motor = decode16(&lines[idx(i) % 3]);
     }
 }
 
