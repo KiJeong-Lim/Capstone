@@ -50,14 +50,12 @@ UCh8 Motor::encode16() const
     res.data[5] = kd_int >> 4;
     res.data[6] = ((kd_int & 0x0F) << 4) | (t_ff_int >> 8);
     res.data[7] = t_ff_int & 0xFF;
-
     return res;
 }
 
 void Motor::pack(CANMessage *const can_msg) const
 {
     const UCh8 msg = this->encode16();
-
     for (int i = 0; i < len(can_msg->data); i++) {
         can_msg->data[i] = msg.data[i];
     }
@@ -90,7 +88,6 @@ CANHelper::CANHelper(const PinName rd, const PinName td)
 void CANHelper::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
 {
     const int CAN_FREQUENCY = 1000000;
-
     my_can.filter(id, mask, CANStandard, 0);
     my_can.frequency(CAN_FREQUENCY);
     my_can.attach(to_be_attached);
