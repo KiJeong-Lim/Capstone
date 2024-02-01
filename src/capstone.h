@@ -6,7 +6,7 @@
 
 #include "mbed.h"
 
-#define VERSION             "0.1.2 (2024-02-01 05:30)"
+#define VERSION             "0.1.3 (2024-02-01 08:00)"
 
 #define USE_PID             0
 #define REF_TBL_ID          0
@@ -126,10 +126,51 @@ public:
     void read(CANMessage &msg);
 };
 
-extern Serial   pc;
-extern Timer    timer;
+class MotorHandler : public Motor {
+private:
+#if USE_PID
+    float p_ctrl;
+    PIDController pid;
+#endif
+    CANMessage tx_msg;
+public:
+#if USE_PID
+    MotorHandler(int id, float Kp, float Ki, float Kd);
+#else
+    MotorHandler(int id);
+#endif
+    bool isWellFormed(void) const;
+    void put_txmsg(UCh8 rhs);
+    CANMessage &tx_msg_ref(void);
+    void send_msg(void);
+    int id(void) const;
+#if USE_PID
+    bool pidInit(void);
+    bool pidCompute(void);
+    bool pidControl_p(void);
+    void set_Kp(float Kp);
+    void set_Ki(float Ki);
+    void set_Kd(float Kd);
+#endif
+};
+
+class CANManager {
+private:
+    CANHelper helper;
+    MotorHandler *const *const motor_handlers_vec_ptr;
+    const int motor_handlers_vec_size;
+    CANMessage rx_msg;
+public:
+    CANManager(PinName rd, PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size);
+    void init(unsigned int id, unsigned int mask, void (*to_be_attached)(void));
+    void onMsgReceived(void);
+    void write(void);
+};
 
 extern const Motor::SetData ref_tbl[1000][3];
+
+extern Serial   pc;
+extern Timer    timer;
 
 Motor::SetData  decode16(const unsigned char (*input_data)[8]);
 int             main(void);
