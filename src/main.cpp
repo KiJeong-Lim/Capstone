@@ -130,6 +130,17 @@ static void             serial_isr(void);
 static void             interact(void);
 static void             prompt(const char *msg);
 
+IO          terminal;
+Timer       timer;
+Ticker      send_can;
+CANMessage  rx_msg;
+Serial      pc(PA_2, PA_3);
+
+Mode        mode                = SetzeroMode;
+long int    turn_cnt            = -2;
+void        (*operation)(void)  = standUp;
+const int   count_down_MAX_CNT  = -100;
+
 MotorHandler motor_handlers[] = {
 #if USE_PID
     MotorHandler(1, 1.30, 0.10, 0.00), // SET ME !!!
@@ -148,23 +159,13 @@ MotorHandler motor_handlers[] = {
 #endif
 };
 
-IO          terminal;
-Timer       timer;
-Ticker      send_can;
-CANMessage  rx_msg;
-Serial      pc(PA_2, PA_3);
+MotorHandler *trans1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], }; // SET ME !!!
+MotorHandler *trans2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], }; // SET ME !!!
 
-Mode        mode                = SetzeroMode;
-long int    turn_cnt            = -2;
-void        (*operation)(void)  = standUp;
-const int   count_down_MAX_CNT  = -100;
+CANManager  cans[] = { CANManager(PB_8, PB_9, trans1, 3), CANManager(PB_5, PB_6, trans2, 3) }; // SET ME !!!
+void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 }; // SET ME !!!
 
-MotorHandler *trans1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], };
-MotorHandler *trans2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], };
-
-CANManager  cans[] = { CANManager(PB_8, PB_9, trans1, 3), CANManager(PB_5, PB_6, trans2, 3) };
-void        (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 };
-
+inline
 int MotorHandler::idx(const int i)
 {
     return motor_handlers[i].id() - 1;
