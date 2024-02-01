@@ -117,7 +117,6 @@ private:
 };
 
 extern const Motor::SetData ref_tbl[1000][3];
-extern CANMessage           tx_msg[NumberOfMotors], rx_msg;
 
 extern Serial   pc;
 extern Mode     mode;
@@ -126,11 +125,7 @@ extern CAN      can1, can2;
 extern Motor    motors[NumberOfMotors];
 
 Motor::SetData  decode16(const unsigned char (*input_data)[8]);
-void            onMsgReceived1(void);
-void            onMsgReceived2(void);
 int             main(void);
-bool            putChar(char ch);
-void            clearBuffer(void);
 void            limitNorm(float &x, float &y, float limit);
 unsigned int    floatToUint(float x, float x_min, float x_max, int bits);
 float           uintToFloat(int x_int, float x_min, float x_max, int bits);

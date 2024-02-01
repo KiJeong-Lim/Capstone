@@ -81,19 +81,3 @@ void Motor::unpack(const CANMessage *const can_msg)
         this->data_from_motor.i = i;
     }
 }
-
-void onMsgReceived1()
-{
-    can1.read(rx_msg);
-    for (int i = 0; i < 3; i++) {
-        motors[i].unpack(&rx_msg);
-    }
-}
-
-void onMsgReceived2()
-{
-    can2.read(rx_msg);
-    for (int i = 3; i < 6; i++) {
-        motors[i].unpack(&rx_msg);
-    }
-}
