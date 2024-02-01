@@ -33,7 +33,7 @@ class CANManager {
 private:
     CANHelper helper;
     MotorHandler *const *const motor_handlers_vec_ptr;
-    int motor_handlers_vec_size;
+    const int motor_handlers_vec_size;
     CANMessage rx_msg;
 public:
     CANManager(PinName rd, PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size);
@@ -597,10 +597,10 @@ int MotorHandler::idx() const
     return -1;
 }
 
-CANManager::CANManager(const PinName rd, const PinName td, MotorHandler **const your_motor_handlers_vec_ptr, const int your_motor_handlers_vec_size)
-    : helper(rd, td), motor_handlers_vec_ptr(your_motor_handlers_vec_ptr), motor_handlers_vec_size(0)
+CANManager::CANManager(const PinName rd, const PinName td, MotorHandler **const motor_handlers_vec_ptr, const int motor_handlers_vec_size)
+    : helper(rd, td), motor_handlers_vec_ptr(motor_handlers_vec_ptr), motor_handlers_vec_size(motor_handlers_vec_size)
 {
-    this->motor_handlers_vec_size = your_motor_handlers_vec_size;
+    this->motor_handlers_vec_size = motor_handlers_vec_size;
     rx_msg.len = 6;
 }
 
