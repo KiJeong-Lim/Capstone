@@ -38,7 +38,7 @@
 #define max(x,y)    ((x) >= (y) ? (x) : (y))
 #define min(x,y)    ((y) >= (x) ? (x) : (y))
 
-typedef struct UCh8 { unsigned char data[8]; } UCh8_t;
+struct UCh8 { unsigned char data[8]; };
 
 class Motor {
 public:
@@ -49,8 +49,8 @@ public:
     GetData data_from_motor;
     int motor_id;
 public:
-    void setInputWithHexademical(const UCh8_t &encoded_input);
-    UCh8_t encode16(void) const;
+    void setInputWithHexademical(const UCh8 &encoded_input);
+    UCh8 encode16(void) const;
     void pack(CANMessage *can_msg) const;
     void unpack(const CANMessage *can_msg);
 };

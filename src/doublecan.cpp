@@ -21,7 +21,7 @@ Motor::SetData decode16(const unsigned char (*const encoded_data)[8])
     return res;
 }
 
-void Motor::setInputWithHexademical(const UCh8_t &encoded_input)
+void Motor::setInputWithHexademical(const UCh8 &encoded_input)
 {
     this->data_to_motor = decode16(&encoded_input.data);
 }
