@@ -14,6 +14,7 @@
 #define RUNTIME_TICK_MAX    1000000
 #define PID_START_TICK      390
 #define Tick_dt             0.01
+#define DEBUG_TXMSG         false
 
 #define ESC 	            27
 #define LEFT_DIRECTION      75
@@ -47,6 +48,7 @@ public:
     SetData data_to_motor;
     GetData data_from_motor;
     int motor_id;
+public:
     void setInputWithHexademical(const UCh8_t &encoded_input);
     UCh8_t encode16(void) const;
     void pack(CANMessage *can_msg) const;
@@ -131,7 +133,6 @@ unsigned int    floatToUint(float x, float x_min, float x_max, int bits);
 float           uintToFloat(int x_int, float x_min, float x_max, int bits);
 float           middle(float x, float y, float z);
 float           getTime(void);
-int             getch(void);
 bool            areSameStr(const char *lhs, const char *rhs);
 bool            inRange(float left, float x, float rhs);
 

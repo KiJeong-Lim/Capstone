@@ -328,7 +328,7 @@ void serial_isr()
         break;
     }
 
-#if 0
+#if DEBUG_TXMSG
     debug_txmsg();
 #endif
     write_txmsg();
@@ -336,7 +336,7 @@ void serial_isr()
 
 void interact()
 {
-    char ch = '\0';
+    int ch = '\0';
 #if USE_PID
     bool pid_okay = true;
 #endif
