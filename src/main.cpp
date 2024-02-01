@@ -25,18 +25,21 @@ static void             serial_isr(void);
 static void             interact(void);
 static void             delta(const char *msg);
 
-Timer                   timer;
-CANMessage              tx_msg[NumberOfMotors], rx_msg;
-Serial                  pc(PA_2, PA_3);
-CAN                     can1(PB_8, PB_9), can2(PB_5, PB_6);
-Ticker                  send_can;
-IO                      io;
-Mode                    mode = SetzeroMode;
-long int                turn_cnt = -2;
-Motor                   motors[NumberOfMotors];
-float                   p_ctrls[NumberOfMotors];
-void                    (*operation)(void) = standUp;
-const int               count_down_CNT = -100;
+IO          io;
+Timer       timer;
+Ticker      send_can;
+CANMessage  tx_msg[NumberOfMotors];
+CANMessage  rx_msg;
+Motor       motors[NumberOfMotors];
+float       p_ctrls[NumberOfMotors];
+Serial      pc(PA_2, PA_3);
+CAN         can1(PB_8, PB_9);
+CAN         can2(PB_5, PB_6);
+
+Mode        mode                = SetzeroMode;
+long int    turn_cnt            = -2;
+void        (*operation)(void)  = standUp;
+const int   count_down_MAX_CNT  = -100;
 
 /// SET ME!!!
 static PIDController pids[] = {
@@ -266,11 +269,11 @@ void standUp()
 Motor::SetData sitDown_calc(const int count_down, const Motor::SetData &datum)
 {
     const Motor::SetData res = {
-        .p    = abs(count_down) * datum.p / abs(count_down_CNT),
-        .v    = abs(count_down) * datum.v / abs(count_down_CNT),
-        .kp   = abs(count_down) * datum.kp / abs(count_down_CNT),
-        .kd   = abs(count_down) * datum.kd / abs(count_down_CNT),
-        .t_ff = abs(count_down) * datum.t_ff / abs(count_down_CNT),
+        .p    = (datum.p    * abs(count_down)) / abs(count_down_MAX_CNT),
+        .v    = (datum.v    * abs(count_down)) / abs(count_down_MAX_CNT),
+        .kp   = (datum.kp   * abs(count_down)) / abs(count_down_MAX_CNT),
+        .kd   = (datum.kd   * abs(count_down)) / abs(count_down_MAX_CNT),
+        .t_ff = (datum.t_ff * abs(count_down)) / abs(count_down_MAX_CNT),
     };
 
     return res;
@@ -308,7 +311,7 @@ void serial_isr()
             turn_cnt = -2;
             halt();
         }
-        else if (turn_cnt >= count_down_CNT) {
+        else if (turn_cnt >= count_down_MAX_CNT) {
             observe();
             for (int i = 0; i < len(motors); i++) {
                 const Motor::SetData datum = sitDown_calc(-turn_cnt, motors[i].data_to_motor);
