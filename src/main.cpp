@@ -180,7 +180,7 @@ bool loadRefTbl(bool until)
 
 void write_txmsg()
 {
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < len(motor_handlers); i++) {
         cans[i / 3].get().write(motor_handlers[i].tx_msg);
     }
 }
