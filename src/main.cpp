@@ -167,13 +167,11 @@ void debug_txmsg()
     }
 }
 
-bool loadRefTbl1(bool until)
+bool loadRefTbl1(const bool until)
 {
     static Motor::SetData last_data[len(motor_handlers)];
 
-    until &= turn_cnt < len(reftbl1);
-
-    if (until) {
+    if ((turn_cnt < len(reftbl1)) && until) {
         for (int i = 0; i < len(motor_handlers); i++) {
             motor_handlers[i].data_to_motor = reftbl1[turn_cnt][index(i) % 3];
             last_data[i] = motor_handlers[i].data_to_motor;
