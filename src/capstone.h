@@ -6,10 +6,9 @@
 
 #include "mbed.h"
 
-#define VERSION             "0.1.4 (2024-02-01 09:00)"
+#define VERSION             "0.1.5 (2024-02-02 15:00)"
 
 #define USE_PID             0
-#define REF_TBL_ID          0
 #define RUNTIME_TICK_MAX    1000000
 #define PID_START_TICK      390
 #define Tick_dt             0.01
@@ -169,7 +168,7 @@ public:
     void write(void);
 };
 
-extern const Motor::SetData ref_tbl[1000][3];
+extern const Motor::SetData reftbl1[1000][3];
 
 extern Serial   pc;
 extern Timer    timer;

@@ -11,7 +11,7 @@ static void             halt(void);
 static void             observe(void);
 static void             debug_txmsg(void);
 
-static bool             loadRefTbl(bool until);
+static bool             loadRefTbl1(bool until);
 
 static void             jump(void);
 static void             jump1(void);
@@ -91,7 +91,6 @@ int main()
 #else
     printf("\rUSE_PID = false\n");
 #endif
-    printf("\rREF_TBL_ID = %d\n", REF_TBL_ID);
     printf("\rRUNTIME_TICK_MAX = %d\n", RUNTIME_TICK_MAX);
     printf("\rTick_dt = %lf[s]\n", Tick_dt);
     printf("\n");
@@ -168,15 +167,15 @@ void debug_txmsg()
     }
 }
 
-bool loadRefTbl(bool until)
+bool loadRefTbl1(bool until)
 {
     static Motor::SetData last_data[len(motor_handlers)] = { };
 
-    until &= turn_cnt < len(ref_tbl);
+    until &= turn_cnt < len(reftbl1);
 
     if (until) {
         for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][index(i) % 3];
+            motor_handlers[i].data_to_motor = reftbl1[turn_cnt][index(i) % 3];
             last_data[i] = motor_handlers[i].data_to_motor;
         }
         return true;
@@ -191,12 +190,12 @@ bool loadRefTbl(bool until)
 
 void jump()
 {
-    loadRefTbl(turn_cnt < len(ref_tbl));
+    loadRefTbl1(turn_cnt < len(reftbl1));
 }
 
 void jump1()
 {
-    loadRefTbl(turn_cnt <= PID_START_TICK);
+    loadRefTbl1(turn_cnt <= PID_START_TICK);
 #if USE_PID
     if (turn_cnt == PID_START_TICK) {
         for (int i = 0; i < len(motor_handlers); i++) {
@@ -375,7 +374,7 @@ void interact()
     }
 }
 
-void prompt (const char *const msg)
+void prompt(const char *const msg)
 {   
     int sscanf_res = 0;
     char var_name[16];
