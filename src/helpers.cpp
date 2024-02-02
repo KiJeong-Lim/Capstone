@@ -29,7 +29,7 @@ void MotorHandler::put_txmsg(const UCh8 rhs)
     }
 }
 
-CANMessage &MotorHandler::tx_msg_ref()
+CANMessage &MotorHandler::get_tx_msg()
 {
     return tx_msg;
 }
@@ -107,6 +107,6 @@ void CANManager::onMsgReceived()
 void CANManager::write()
 {
     for (int i = 0; i < motor_handlers_vec_size; i++) {
-        helper.my_can.write(motor_handlers_vec_ptr[i]->tx_msg_ref());
+        helper.my_can.write(motor_handlers_vec_ptr[i]->get_tx_msg());
     }
 }

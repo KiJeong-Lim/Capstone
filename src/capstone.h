@@ -1,12 +1,12 @@
 #ifndef CAPSTONE
-#define CAPSTONE "V8-double-can-ver2"
+#define CAPSTONE "V8 double-can 2ed"
 
 #include <cstdio>
 #include <cstring>
 
 #include "mbed.h"
 
-#define VERSION             "0.1.5 (2024-02-02 15:00)"
+#define VERSION             "0.2.0 (2024-02-02 20:00)"
 
 #define USE_PID             0
 #define RUNTIME_TICK_MAX    1000000
@@ -141,7 +141,7 @@ public:
 #endif
     bool isWellFormed(void) const;
     void put_txmsg(UCh8 rhs);
-    CANMessage &tx_msg_ref(void);
+    CANMessage &get_tx_msg(void);
     void send_msg(void);
     int id(void) const;
 #if USE_PID
