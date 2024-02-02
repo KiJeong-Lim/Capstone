@@ -44,17 +44,15 @@ MotorHandler motor_handlers[] = {
     MotorHandler(6, 2.00, 1.00, 0.00), // SET ME !!!
 #else
     //           #
-    MotorHandler(1), // SET ME !!!
     MotorHandler(2), // SET ME !!!
     MotorHandler(3), // SET ME !!!
-    MotorHandler(4), // SET ME !!!
     MotorHandler(5), // SET ME !!!
     MotorHandler(6), // SET ME !!!
 #endif
 };
 
-MotorHandler    *transceiver1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], }; // SET ME !!!
-MotorHandler    *transceiver2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], }; // SET ME !!!
+MotorHandler    *transceiver1[] = { &motor_handlers[0], &motor_handlers[1], }; // SET ME !!!
+MotorHandler    *transceiver2[] = { &motor_handlers[2], &motor_handlers[3], }; // SET ME !!!
 
 CANManager      cans[] = { mkCANManager(PB_8, PB_9, transceiver1), mkCANManager(PB_5, PB_6, transceiver2) }; // SET ME !!!
 void            (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2 }; // SET ME !!!
