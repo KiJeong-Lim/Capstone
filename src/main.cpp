@@ -241,6 +241,7 @@ void serial_isr()
     switch (mode) {
     case RuntimeMode:
         if (turn_cnt > RUNTIME_TICK_MAX) {
+            turn_cnt = -2;
             halt();
         }
         else if (turn_cnt >= 0) {
@@ -379,7 +380,7 @@ void prompt(const char *const msg)
     int sscanf_res = 0;
     char var_name[16];
     char op_name[16];
-    double value = 0.0;
+    float value = 0.0;
     int motor_id = 0;
     bool res = false;
 
@@ -390,7 +391,7 @@ void prompt(const char *const msg)
     }
 
 #if USE_PID
-    sscanf_res = sscanf(msg, "%s %d = %lf", var_name, &motor_id, &value);
+    sscanf_res = sscanf(msg, "%s %d = %f", var_name, &motor_id, &value);
     if (sscanf_res == 3) {
         if (areSameStr("Kp", var_name)) {
             motor_handlers[motor_id - 1].set_Kp(value);
