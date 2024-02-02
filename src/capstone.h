@@ -8,7 +8,7 @@
 
 #define VERSION             "0.2.0 (2024-02-02 20:00)"
 
-#define USE_PID             0
+#define USE_PID             1
 #define RUNTIME_TICK_MAX    1000000
 #define Tick_dt             0.01
 #define DEBUG_TXMSG         false
@@ -119,11 +119,11 @@ private:
 
 class CANHelper {
 public:
-    CAN my_can;
+    CAN can;
 public:
     CANHelper(PinName rd, PinName td);
     void init(unsigned int id, unsigned int mask, void (*to_be_attached)(void));
-    void read(CANMessage &msg);
+    void read(CANMessage *rx_msg);
 };
 
 class MotorHandler : public Motor {

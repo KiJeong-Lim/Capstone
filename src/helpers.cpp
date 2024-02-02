@@ -98,7 +98,7 @@ void CANManager::init(const unsigned int id, const unsigned int mask, void (*con
 
 void CANManager::onMsgReceived()
 {
-    helper.read(rx_msg);
+    helper.read(&rx_msg);
     for (int i = 0; i < motor_handlers_vec_size; i++) {
         motor_handlers_vec_ptr[i]->unpack(&rx_msg);
     }
@@ -107,6 +107,6 @@ void CANManager::onMsgReceived()
 void CANManager::write()
 {
     for (int i = 0; i < motor_handlers_vec_size; i++) {
-        helper.my_can.write(motor_handlers_vec_ptr[i]->get_tx_msg());
+        helper.can.write(motor_handlers_vec_ptr[i]->get_tx_msg());
     }
 }

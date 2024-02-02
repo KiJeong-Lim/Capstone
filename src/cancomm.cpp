@@ -81,19 +81,19 @@ void Motor::unpack(const CANMessage *const can_msg)
 }
 
 CANHelper::CANHelper(const PinName rd, const PinName td)
-    : my_can(rd, td)
+    : can(rd, td)
 {
 }
 
 void CANHelper::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
 {
-    const int CAN_FREQUENCY = 1000000;
-    my_can.filter(id, mask, CANStandard, 0);
-    my_can.frequency(CAN_FREQUENCY);
-    my_can.attach(to_be_attached);
+    static const int CAN_FREQUENCY = 1000000;
+    can.filter(id, mask, CANStandard, 0);
+    can.frequency(CAN_FREQUENCY);
+    can.attach(to_be_attached);
 }
 
-void CANHelper::read(CANMessage &rx_msg)
+void CANHelper::read(CANMessage *const rx_msg)
 {
-    my_can.read(rx_msg);
+    can.read(*rx_msg);
 }

@@ -167,7 +167,7 @@ void debug_txmsg()
     if (gear_dbg.go()) {
         for (int i = 0; i < len(motor_handlers); i++) {
             const Motor::SetData dbg = decode16(&motor_handlers[i].get_tx_msg().data);
-            printf("\n\r%% tx_msg of #%d = { .p=%.4lf, .v=%.4lf, .kp=%.4lf, .kd=%.4lf, .t_ff=%.4lf }\n", motor_handlers[i].motor_id, dbg.p, dbg.v, dbg.kp, dbg.kd, dbg.t_ff);
+            printf("\n\r%% txmsg of #%d = { .p=%.4lf, .v=%.4lf, .kp=%.4lf, .kd=%.4lf, .t_ff=%.4lf }\n", motor_handlers[i].motor_id, dbg.p, dbg.v, dbg.kp, dbg.kd, dbg.t_ff);
         }
         printf("\n");
     }
