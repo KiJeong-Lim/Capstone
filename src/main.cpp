@@ -341,16 +341,6 @@ void interact()
         printf("\n\r%% Run %%\n");
         mode = RuntimeMode;
         turn_cnt = 0;
-#if USE_PID
-        for (int i = 0; i < len(motor_handlers); i++) {
-            pid_okay &= motor_handlers[i].pidInit();
-        }
-        if (!pid_okay) {
-            printf("\n\r%% Initializing PID failed %%\n");
-            mode = SetzeroMode;
-            turn_cnt = -2;
-        }
-#endif
         return;
     case 'o':
         printf("\n\r%% Observe %%\n");
@@ -378,7 +368,7 @@ void prompt (const char *const msg)
     int sscanf_res = 0;
     char var_name[16];
     char op_name[16];
-    double value;
+    double value = 0.0;
     int motor_id = 0;
     bool res = false;
 

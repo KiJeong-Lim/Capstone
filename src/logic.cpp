@@ -47,7 +47,11 @@ int MotorHandler::id() const
 #if USE_PID
 bool MotorHandler::pidInit()
 {
-    return pid.init();
+    bool okay = pid.init();
+    if (!okay) {
+        printf("\rPID initializing failed\n");
+    }
+    return okay;
 }
 
 bool MotorHandler::pidCompute()
@@ -57,10 +61,12 @@ bool MotorHandler::pidCompute()
 
 bool MotorHandler::pidControl_p()
 {
-    bool res = true;
-    res = pidCompute();
-    data_to_motor.p = p_ctrl;
-    return res;
+    bool okay = true;
+    okay = pidCompute();
+    if (okay) {
+        data_to_motor.p = p_ctrl;
+    }
+    return okay;
 }
 
 void MotorHandler::set_Kp(const float Kp)

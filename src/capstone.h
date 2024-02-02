@@ -1,5 +1,5 @@
 #ifndef CAPSTONE
-#define CAPSTONE "V8-double-can-ver2-for-field-use"
+#define CAPSTONE "V8-double-can-ver2"
 
 #include <cstdio>
 #include <cstring>
