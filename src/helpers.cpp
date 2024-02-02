@@ -49,7 +49,7 @@ bool MotorHandler::pidInit()
 {
     bool okay = pid.init();
     if (!okay) {
-        printf("\rPID initializing failed\n");
+        printf("\rPID initialization failed...\n");
     }
     return okay;
 }

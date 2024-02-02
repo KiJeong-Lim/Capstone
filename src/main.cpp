@@ -169,7 +169,7 @@ void debug_txmsg()
 
 bool loadRefTbl1(bool until)
 {
-    static Motor::SetData last_data[len(motor_handlers)] = { };
+    static Motor::SetData last_data[len(motor_handlers)];
 
     until &= turn_cnt < len(reftbl1);
 
