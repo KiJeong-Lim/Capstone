@@ -438,7 +438,7 @@ void prompt(const char *const msg)
 #endif
 
 #if USE_PID
-    sscanf_res = scanf(msg, "pid start = %d tick", &pid_start_tick);
+    sscanf_res = scanf(msg, "pid start tick = %d", &pid_start_tick);
     if (sscanf_res == 0) {
         PID_START_TICK = pid_start_tick;
         res = true;
