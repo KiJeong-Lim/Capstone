@@ -10,7 +10,6 @@
 
 #define USE_PID             0
 #define RUNTIME_TICK_MAX    1000000
-#define PID_START_TICK      390
 #define Tick_dt             0.01
 #define DEBUG_TXMSG         false
 

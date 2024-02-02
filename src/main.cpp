@@ -14,8 +14,11 @@ static void             debug_txmsg(void);
 static bool             loadRefTbl1(bool until);
 
 static void             jump(void);
-static void             jump1(void);
 static void             standUp(void);
+#if USE_PID
+static void             jump1(void);
+static void             standUp1(void);
+#endif
 static Motor::SetData   sitDown_calc(int count_down, const Motor::SetData &datum);
 
 static void             serial_isr(void);
@@ -32,6 +35,9 @@ Mode        mode                = SetzeroMode;
 long int    turn_cnt            = -2;
 void        (*operation)(void)  = standUp;
 const int   count_down_MAX_CNT  = -100;
+#if USE_PID
+long int    PID_START_TICK      = 390;
+#endif
 
 MotorHandler motor_handlers[] = {
 #if USE_PID
@@ -191,23 +197,6 @@ void jump()
     loadRefTbl1(turn_cnt < len(reftbl1));
 }
 
-void jump1()
-{
-    loadRefTbl1(turn_cnt <= PID_START_TICK);
-#if USE_PID
-    if (turn_cnt == PID_START_TICK) {
-        for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].pidInit();
-        }
-    }
-    else if (turn_cnt > PID_START_TICK) {
-        for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].pidControl_p();
-        }
-    }
-#endif
-}
-
 void standUp()
 {
     const unsigned char lines[3][8] = {
@@ -220,6 +209,40 @@ void standUp()
         motor_handlers[i].data_to_motor = decode16(&lines[index(i) % 3]);
     }
 }
+
+#if USE_PID
+void jump1()
+{
+    loadRefTbl1(turn_cnt <= PID_START_TICK);
+    if (turn_cnt == PID_START_TICK) {
+        for (int i = 0; i < len(motor_handlers); i++) {
+            motor_handlers[i].pidInit();
+        }
+    }
+    else if (turn_cnt > PID_START_TICK) {
+        for (int i = 0; i < len(motor_handlers); i++) {
+            motor_handlers[i].pidControl_p();
+        }
+    }
+}
+
+void standUp1()
+{
+    if (turn_cnt <= PID_START_TICK) {
+        standUp();
+    }
+    if (turn_cnt == PID_START_TICK) {
+        for (int i = 0; i < len(motor_handlers); i++) {
+            motor_handlers[i].pidInit();
+        }
+    }
+    else if (turn_cnt > PID_START_TICK) {
+        for (int i = 0; i < len(motor_handlers); i++) {
+            motor_handlers[i].pidControl_p();
+        }
+    }
+}
+#endif
 
 Motor::SetData sitDown_calc(const int count_down, const Motor::SetData &datum)
 {
@@ -381,6 +404,7 @@ void prompt(const char *const msg)
     float value = 0.0;
     int motor_id = 0;
     bool res = false;
+    int pid_start_tick = 0;
 
     if (msg == NULL) {
         printf("\n\r%% Leaving listening mode %%\n");
@@ -413,20 +437,34 @@ void prompt(const char *const msg)
     }
 #endif
 
+#if USE_PID
+    sscanf_res = scanf(msg, "pid start = %d tick", &pid_start_tick);
+    if (sscanf_res == 0) {
+        PID_START_TICK = pid_start_tick;
+        res = true;
+    }
+#endif
+
     sscanf_res = scanf(msg, "%s", op_name);
     if (sscanf_res == 1) {
         if (areSameStr(op_name, "jump")) {
             operation = jump;
             res = true;
         }
+        else if (areSameStr(op_name, "standUp")) {
+            operation = standUp;
+            res = true;
+        }
+#if USE_PID
         else if (areSameStr(op_name, "jump1")) {
             operation = jump1;
             res = true;
         }
-        else if (areSameStr(op_name, "standup")) {
-            operation = standUp;
+        else if (areSameStr(op_name, "standUp1")) {
+            operation = standUp1;
             res = true;
         }
+#endif
         else {
             res = false;
         }
