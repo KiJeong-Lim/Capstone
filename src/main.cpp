@@ -4,11 +4,13 @@
 
 static void             onMsgReceived1(void);
 static void             onMsgReceived2(void);
-
 static void             write_txmsg(void);
+
+static void             start(void);
 static void             halt(void);
 static void             observe(void);
 static void             debug_txmsg(void);
+
 static bool             loadRefTbl(bool until);
 
 static void             jump(void);
@@ -114,6 +116,10 @@ void write_txmsg()
     }
 }
 
+void start()
+{
+}
+
 void halt()
 {
     const Motor::SetData zero_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 };
@@ -168,7 +174,7 @@ bool loadRefTbl(bool until)
     if (until) {
         for (int i = 0; i < len(motor_handlers); i++) {
             motor_handlers[i].data_to_motor = ref_tbl[turn_cnt][index(i) % 3];
-            last_data[i] = ref_tbl[turn_cnt][index(i) % 3];
+            last_data[i] = motor_handlers[i].data_to_motor;
         }
         return true;
     }
@@ -286,9 +292,6 @@ void serial_isr()
 void interact()
 {
     int ch = '\0';
-#if USE_PID
-    bool pid_okay = true;
-#endif
 
     if (mode == ReadcmdMode) {
         const bool prompt_routine_breaked = terminal.run_prompt();
@@ -341,6 +344,7 @@ void interact()
         printf("\n\r%% Run %%\n");
         mode = RuntimeMode;
         turn_cnt = 0;
+        start();
         return;
     case 'o':
         printf("\n\r%% Observe %%\n");
