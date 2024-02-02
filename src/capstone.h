@@ -15,7 +15,7 @@
 #define Tick_dt             0.01
 #define DEBUG_TXMSG         false
 
-#define ESC 	            27
+#define ESC                 27
 #define LEFT_DIRECTION      75
 #define RIGHT_DIRECTION     77
 
@@ -37,7 +37,9 @@
 #define max(x,y)    ((x) >= (y) ? (x) : (y))
 #define min(x,y)    ((y) >= (x) ? (x) : (y))
 
-struct UCh8 { unsigned char data[8]; };
+struct UCh8 {
+    unsigned char data[8];
+};
 
 class Motor {
 public:
