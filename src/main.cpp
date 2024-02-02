@@ -442,6 +442,7 @@ void prompt(const char *const msg)
     if (sscanf_res == 0) {
         PID_START_TICK = pid_start_tick;
         res = true;
+        goto RET;
     }
 #endif
 
