@@ -357,6 +357,11 @@ void interact()
         turn_cnt = -2;
         halt();
         return;
+    case '.':
+        printf("\n\r%% Sit down %%\n");
+        mode = SitdownMode;
+        turn_cnt = count_down_MAX_CNT;
+        return;
     case 'l':
         if (mode == SetzeroMode && turn_cnt < 0) {
             printf("\n\r%% Listen %%\n");
