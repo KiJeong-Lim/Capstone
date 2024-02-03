@@ -26,6 +26,8 @@ static void             serial_isr(void);
 static void             interact(void);
 static void             prompt(const char *msg);
 
+static int              id_to_index(int index);
+
 IO          terminal;
 Timer       timer;
 Ticker      send_can;
@@ -67,12 +69,6 @@ MotorHandler    *transceiver2[] = { &motor_handlers[2], &motor_handlers[3], }; /
 
 CANManager      cans[] = { mkCANManager(PB_8, PB_9, transceiver1), mkCANManager(PB_5, PB_6, transceiver2), }; // SET ME !!!
 void            (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2, }; // SET ME !!!
-
-inline
-int index(const int i)
-{
-    return motor_handlers[i].id() - 1;
-}
 
 int main()
 {
@@ -179,7 +175,7 @@ bool loadRefTbl1(const bool until)
 
     if ((turn_cnt < len(reftbl1)) && until) {
         for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].data_to_motor = reftbl1[turn_cnt][index(i) % 3];
+            motor_handlers[i].data_to_motor = reftbl1[turn_cnt][(motor_handlers[i].id() - 1) % 3];
             last_data[i] = motor_handlers[i].data_to_motor;
         }
         return true;
@@ -206,7 +202,7 @@ void standUp()
     };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_to_motor = decode16(&lines[index(i) % 3]);
+        motor_handlers[i].data_to_motor = decode16(&lines[(motor_handlers[i].id() - 1) % 3]);
     }
 }
 
@@ -397,14 +393,14 @@ void interact()
 }
 
 void prompt(const char *const msg)
-{   
-    int sscanf_res = 0;
+{
     char var_name[16];
     char op_name[16];
-    float value = 0.0;
-    int motor_id = 0;
-    bool res = false;
+    int sscanf_res = 0;
     int pid_start_tick = 0;
+    int no = 0;
+    float value = 0.0;
+    bool res = false;
 
     if (msg == NULL) {
         printf("\n\r%% Leaving listening mode %%\n");
@@ -413,20 +409,20 @@ void prompt(const char *const msg)
     }
 
 #if USE_PID
-    sscanf_res = sscanf(msg, "%s %d = %f", var_name, &motor_id, &value);
+    sscanf_res = sscanf(msg, "%s %d = %f", var_name, &no, &value);
     if (sscanf_res == 3) {
         if (areSameStr("Kp", var_name)) {
-            motor_handlers[motor_id - 1].set_Kp(value);
+            motor_handlers[id_to_index(no)].set_Kp(value);
             res = true;
             return;
         }
         else if (areSameStr("Ki", var_name)) {
-            motor_handlers[motor_id - 1].set_Ki(value);
+            motor_handlers[id_to_index(no)].set_Ki(value);
             res = true;
             return;
         }
         else if (areSameStr("Kd", var_name)) {
-            motor_handlers[motor_id - 1].set_Kd(value);
+            motor_handlers[id_to_index(no) - 1].set_Kd(value);
             res = true;
             return;
         }
@@ -479,4 +475,15 @@ RET:
     else {
         printf("\n\rUnknown command or wrong command\n");
     }
+}
+
+int id_to_index(const int id)
+    // finds the index of the motor #`id` in `motor_handlers`
+{
+    for (int i = 0; i < len(motor_handlers); i++) {
+        if (motor_handlers[i].id() == id) {
+            return i;
+        }
+    }
+    return -1;
 }
