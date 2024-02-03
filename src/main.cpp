@@ -175,7 +175,7 @@ bool loadRefTbl1(const bool until)
 
     if ((turn_cnt < len(reftbl1)) && until) {
         for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].data_to_motor = reftbl1[turn_cnt][(motor_handlers[i].id() - 1) % 3];
+            motor_handlers[i].data_to_motor = reftbl1[turn_cnt][(motor_handlers[i].id() - 1) % 3]; // SENSITIVE POINT
             last_data[i] = motor_handlers[i].data_to_motor;
         }
         return true;
@@ -202,7 +202,7 @@ void standUp()
     };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_to_motor = decode16(&lines[(motor_handlers[i].id() - 1) % 3]);
+        motor_handlers[i].data_to_motor = decode16(&lines[(motor_handlers[i].id() - 1) % 3]); // SENSITIVE POINT
     }
 }
 
@@ -352,7 +352,7 @@ void interact()
     case '5':
     case '6':
         for (int i = 0; i < len(motor_handlers); i++) {
-            if (motor_handlers[i].id() == readDigit(ch)) {
+            if (motor_handlers[i].id() == readDigit(ch)) { // SENSITIVE POINT
                 const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
                 printf("\n\r%% Motor #%c rest position %%\n", ch);
                 motor_handlers[i].put_txmsg(msg);
@@ -398,7 +398,7 @@ void prompt(const char *const msg)
     char op_name[16];
     int sscanf_res = 0;
     int pid_start_tick = 0;
-    int no = 0;
+    int motor_id = 0;
     float value = 0.0;
     bool res = false;
 
@@ -409,20 +409,20 @@ void prompt(const char *const msg)
     }
 
 #if USE_PID
-    sscanf_res = sscanf(msg, "%s %d = %f", var_name, &no, &value);
+    sscanf_res = sscanf(msg, "%s %d = %f", var_name, &motor_id, &value);
     if (sscanf_res == 3) {
         if (areSameStr("Kp", var_name)) {
-            motor_handlers[id_to_index(no)].set_Kp(value);
+            motor_handlers[id_to_index(motor_id)].set_Kp(value); // SENSITIVE POINT
             res = true;
             return;
         }
         else if (areSameStr("Ki", var_name)) {
-            motor_handlers[id_to_index(no)].set_Ki(value);
+            motor_handlers[id_to_index(motor_id)].set_Ki(value); // SENSITIVE POINT
             res = true;
             return;
         }
         else if (areSameStr("Kd", var_name)) {
-            motor_handlers[id_to_index(no) - 1].set_Kd(value);
+            motor_handlers[id_to_index(motor_id) - 1].set_Kd(value); // SENSITIVE POINT
             res = true;
             return;
         }
