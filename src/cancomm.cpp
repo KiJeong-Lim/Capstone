@@ -80,12 +80,12 @@ void Motor::unpack(const CANMessage *const can_msg)
     }
 }
 
-CANHelper::CANHelper(const PinName rd, const PinName td)
+CANHanlde::CANHanlde(const PinName rd, const PinName td)
     : can(rd, td)
 {
 }
 
-void CANHelper::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
+void CANHanlde::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
 {
     static const int CAN_FREQUENCY = 1000000;
     can.filter(id, mask, CANStandard, 0);
@@ -93,7 +93,12 @@ void CANHelper::init(const unsigned int id, const unsigned int mask, void (*cons
     can.attach(to_be_attached);
 }
 
-void CANHelper::read(CANMessage *const rx_msg)
+void CANHanlde::read(CANMessage &rx_msg)
 {
-    can.read(*rx_msg);
+    can.read(rx_msg);
+}
+
+void CANHanlde::write(CANMessage &tx_msg)
+{
+    can.write(tx_msg);
 }

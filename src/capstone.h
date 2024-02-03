@@ -39,6 +39,14 @@ struct UCh8 {
     unsigned char data[8];
 };
 
+typedef enum Mode {
+    SetzeroMode = 0,
+    RuntimeMode = 1,
+    ObserveMode = 2,
+    ReadcmdMode = 3,
+    SitdownMode = 4,
+} Mode_t;
+
 class Motor {
 public:
     struct SetData { float p; float v; float kp; float kd; float t_ff; };
@@ -53,14 +61,6 @@ public:
     void pack(CANMessage *can_msg) const;
     void unpack(const CANMessage *can_msg);
 };
-
-typedef enum Mode {
-    SetzeroMode = 0,
-    RuntimeMode = 1,
-    ObserveMode = 2,
-    ReadcmdMode = 3,
-    SitdownMode = 4,
-} Mode_t;
 
 class PIDController {
 public:
@@ -117,13 +117,14 @@ private:
     void sync(char *&msg);
 };
 
-class CANHelper {
+class CANHanlde {
 public:
     CAN can;
 public:
-    CANHelper(PinName rd, PinName td);
+    CANHanlde(PinName rd, PinName td);
     void init(unsigned int id, unsigned int mask, void (*to_be_attached)(void));
-    void read(CANMessage *rx_msg);
+    void read(CANMessage &rx_msg);
+    void write(CANMessage &tx_msg);
 };
 
 class MotorHandler : public Motor {
@@ -156,7 +157,7 @@ public:
 
 class CANManager {
 private:
-    CANHelper helper;
+    CANHanlde can_handle;
     MotorHandler *const *const motor_handlers_vec_ptr;
     const int motor_handlers_vec_size;
     CANMessage rx_msg;
@@ -164,7 +165,7 @@ public:
     CANManager(PinName rd, PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size);
     void init(unsigned int id, unsigned int mask, void (*to_be_attached)(void));
     void onMsgReceived(void);
-    void write(void);
+    void sendMsg(void);
 };
 
 extern const Motor::SetData reftbl1[1000][3];

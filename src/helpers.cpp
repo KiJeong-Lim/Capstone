@@ -61,7 +61,7 @@ bool MotorHandler::pidCompute()
 
 bool MotorHandler::pidControl_p()
 {
-    bool okay = true;
+    bool okay = false;
     okay = pidCompute();
     if (okay) {
         data_to_motor.p = p_ctrl;
@@ -86,27 +86,27 @@ void MotorHandler::set_Kd(const float Kd)
 #endif
 
 CANManager::CANManager(const PinName rd, const PinName td, MotorHandler **const motor_handlers_vec_ptr, const int motor_handlers_vec_size)
-    : helper(rd, td), motor_handlers_vec_ptr(motor_handlers_vec_ptr), motor_handlers_vec_size(motor_handlers_vec_size)
+    : can_handle(rd, td), motor_handlers_vec_ptr(motor_handlers_vec_ptr), motor_handlers_vec_size(motor_handlers_vec_size)
 {
     rx_msg.len = 6;
 }
 
 void CANManager::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
 {
-    helper.init(id, mask, to_be_attached);
+    can_handle.init(id, mask, to_be_attached);
 }
 
 void CANManager::onMsgReceived()
 {
-    helper.read(&rx_msg);
+    can_handle.read(rx_msg);
     for (int i = 0; i < motor_handlers_vec_size; i++) {
         motor_handlers_vec_ptr[i]->unpack(&rx_msg);
     }
 }
 
-void CANManager::write()
+void CANManager::sendMsg()
 {
     for (int i = 0; i < motor_handlers_vec_size; i++) {
-        helper.can.write(motor_handlers_vec_ptr[i]->get_tx_msg());
+        can_handle.write(motor_handlers_vec_ptr[i]->get_tx_msg());
     }
 }

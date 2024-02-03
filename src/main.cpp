@@ -4,7 +4,7 @@
 
 static void             onMsgReceived1(void);
 static void             onMsgReceived2(void);
-static void             write_txmsg(void);
+static void             transmitMsg(void);
 
 static void             start(void);
 static void             halt(void);
@@ -27,6 +27,11 @@ static void             interact(void);
 static void             prompt(const char *msg);
 
 static int              id_to_index(int index);
+
+#if USE_PID
+static void             pidInit(void);
+static void             pidControl_p(void);
+#endif
 
 IO          terminal;
 Timer       timer;
@@ -83,7 +88,7 @@ int main()
         const Motor::SetData init_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 };
         motor_handlers[i].data_to_motor = init_data;
     }
-    write_txmsg();
+    transmitMsg();
 
     printf("\n");
     printf("\r<< %s >>\n", CAPSTONE);
@@ -113,10 +118,10 @@ void onMsgReceived2()
     cans[1].onMsgReceived();
 }
 
-void write_txmsg()
+void transmitMsg()
 {
     for (int i = 0; i < len(cans); i++) {
-        cans[i].write();
+        cans[i].sendMsg();
     }
 }
 
@@ -211,14 +216,10 @@ void jump1()
 {
     loadRefTbl1(turn_cnt <= PID_START_TICK);
     if (turn_cnt == PID_START_TICK) {
-        for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].pidInit();
-        }
+        pidInit();
     }
     else if (turn_cnt > PID_START_TICK) {
-        for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].pidControl_p();
-        }
+        pidControl_p();
     }
 }
 
@@ -228,14 +229,10 @@ void standUp1()
         standUp();
     }
     if (turn_cnt == PID_START_TICK) {
-        for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].pidInit();
-        }
+        pidInit();
     }
     else if (turn_cnt > PID_START_TICK) {
-        for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].pidControl_p();
-        }
+        pidControl_p();
     }
 }
 #endif
@@ -306,7 +303,7 @@ void serial_isr()
 #if DEBUG_TXMSG
     debug_txmsg();
 #endif
-    write_txmsg();
+    transmitMsg();
 }
 
 void interact()
@@ -431,9 +428,7 @@ void prompt(const char *const msg)
         }
         goto RET;
     }
-#endif
 
-#if USE_PID
     sscanf_res = sscanf(msg, "pid start tick = %d", &pid_start_tick);
     if (sscanf_res == 1) {
         PID_START_TICK = pid_start_tick;
@@ -487,3 +482,19 @@ int id_to_index(const int id)
     }
     return -1;
 }
+
+#if USE_PID
+void pidInit()
+{
+    for (int i = 0; i < len(motor_handlers); i++) {
+        motor_handlers[i].pidInit();
+    }
+}
+
+void pidControl_p()
+{
+    for (int i = 0; i < len(motor_handlers); i++) {
+        motor_handlers[i].pidControl_p();
+    }
+}
+#endif
