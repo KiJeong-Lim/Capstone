@@ -6,9 +6,9 @@
 
 #include "mbed.h"
 
-#define VERSION             "0.2.0 (2024-02-02 20:00)"
+#define VERSION             "0.2.1 (2024-02-03 16:00)"
 
-#define USE_PID             1
+#define USE_PID             0
 #define RUNTIME_TICK_MAX    1000000
 #define Tick_dt             0.01
 #define DEBUG_TXMSG         false
@@ -131,7 +131,7 @@ class MotorHandler : public Motor {
 private:
 #if USE_PID
     float p_ctrl;
-    PIDController pid;
+    PIDController pid_on_p;
 #endif
     CANMessage tx_msg;
 public:
@@ -148,7 +148,6 @@ public:
 #if USE_PID
     bool pidInit(void);
     bool pidCompute(void);
-    bool pidControl_p(void);
     void set_Kp(float Kp);
     void set_Ki(float Ki);
     void set_Kd(float Kd);

@@ -19,8 +19,6 @@ static void             standUp(void);
 static void             jump1(void);
 static void             standUp1(void);
 #endif
-static Motor::SetData   sitDown_calc(int count_down, const Motor::SetData &datum);
-
 static void             serial_isr(void);
 
 static void             interact(void);
@@ -30,8 +28,9 @@ static int              id_to_index(int index);
 
 #if USE_PID
 static void             pidInit(void);
-static void             pidControl_p(void);
+static void             pidCompute(void);
 #endif
+static Motor::SetData   sitDown_calc(int count_down, const Motor::SetData &datum);
 
 IO          terminal;
 Timer       timer;
@@ -219,7 +218,7 @@ void jump1()
         pidInit();
     }
     else if (turn_cnt > PID_START_TICK) {
-        pidControl_p();
+        pidCompute();
     }
 }
 
@@ -232,23 +231,10 @@ void standUp1()
         pidInit();
     }
     else if (turn_cnt > PID_START_TICK) {
-        pidControl_p();
+        pidCompute();
     }
 }
 #endif
-
-Motor::SetData sitDown_calc(const int count_down, const Motor::SetData &datum)
-{
-    const Motor::SetData res = {
-        .p    = (datum.p    * abs(count_down)) / abs(count_down_MAX_CNT),
-        .v    = (datum.v    * abs(count_down)) / abs(count_down_MAX_CNT),
-        .kp   = (datum.kp   * abs(count_down)) / abs(count_down_MAX_CNT),
-        .kd   = (datum.kd   * abs(count_down)) / abs(count_down_MAX_CNT),
-        .t_ff = (datum.t_ff * abs(count_down)) / abs(count_down_MAX_CNT),
-    };
-
-    return res;
-}
 
 void serial_isr()
 {
@@ -491,10 +477,23 @@ void pidInit()
     }
 }
 
-void pidControl_p()
+void pidCompute()
 {
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].pidControl_p();
+        motor_handlers[i].pidCompute();
     }
 }
 #endif
+
+Motor::SetData sitDown_calc(const int count_down, const Motor::SetData &datum)
+{
+    const Motor::SetData res = {
+        .p    = (datum.p    * abs(count_down)) / abs(count_down_MAX_CNT),
+        .v    = (datum.v    * abs(count_down)) / abs(count_down_MAX_CNT),
+        .kp   = (datum.kp   * abs(count_down)) / abs(count_down_MAX_CNT),
+        .kd   = (datum.kd   * abs(count_down)) / abs(count_down_MAX_CNT),
+        .t_ff = (datum.t_ff * abs(count_down)) / abs(count_down_MAX_CNT),
+    };
+
+    return res;
+}

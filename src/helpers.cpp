@@ -2,7 +2,7 @@
 
 #if USE_PID
 MotorHandler::MotorHandler(const int id, const float Kp, const float Ki, const float Kd)
-    : p_ctrl(0.0), pid(Kp, Ki, Kd, &data_from_motor.p, &p_ctrl, &data_to_motor.p, P_MIN, P_MAX)
+    : p_ctrl(0.0), pid_on_p(Kp, Ki, Kd, &data_from_motor.p, &p_ctrl, &data_to_motor.p, P_MIN, P_MAX)
 {
     tx_msg.len = 8;
     tx_msg.id = id;
@@ -47,22 +47,16 @@ int MotorHandler::id() const
 #if USE_PID
 bool MotorHandler::pidInit()
 {
-    bool okay = pid.init();
+    bool okay = pid_on_p.init();
     if (!okay) {
-        printf("\rPID initialization failed...\n");
+        printf("\rFailed to initialize the PID controller of the motor #%d...\n", motor_id);
     }
     return okay;
 }
 
 bool MotorHandler::pidCompute()
 {
-    return pid.compute();
-}
-
-bool MotorHandler::pidControl_p()
-{
-    bool okay = false;
-    okay = pidCompute();
+    bool okay = pid_on_p.compute();
     if (okay) {
         data_to_motor.p = p_ctrl;
     }
@@ -71,17 +65,17 @@ bool MotorHandler::pidControl_p()
 
 void MotorHandler::set_Kp(const float Kp)
 {
-    pid.Kp = Kp;
+    pid_on_p.Kp = Kp;
 }
 
 void MotorHandler::set_Ki(const float Ki)
 {
-    pid.Ki = Ki;
+    pid_on_p.Ki = Ki;
 }
 
 void MotorHandler::set_Kd(const float Kd)
 {
-    pid.Kd = Kd;
+    pid_on_p.Kd = Kd;
 }
 #endif
 
