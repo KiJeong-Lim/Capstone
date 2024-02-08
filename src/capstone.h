@@ -6,7 +6,7 @@
 
 #include "mbed.h"
 
-#define VERSION             "0.2.1 (2024-02-03 16:00)"
+#define VERSION             "2.3.0 (2024-02-08 18:00)"
 
 #define USE_PID             0
 #define RUNTIME_TICK_MAX    1000000
@@ -49,10 +49,10 @@ typedef enum Mode {
 
 class Motor {
 public:
-    struct SetData { float p; float v; float kp; float kd; float t_ff; };
+    struct PutData { float p; float v; float kp; float kd; float t_ff; };
     struct GetData { float p; float v; float i; };
 public:
-    SetData data_to_motor;
+    PutData data_into_motor;
     GetData data_from_motor;
     int motor_id;
 public:
@@ -167,12 +167,12 @@ public:
     void sendMsg(void);
 };
 
-extern const Motor::SetData reftbl1[1000][3];
+extern const Motor::PutData reftbl1[1000][3];
 
 extern Serial   pc;
 extern Timer    timer;
 
-Motor::SetData  decode16(const unsigned char (*input_data)[8]);
+Motor::PutData  decode16(const unsigned char (*input_data)[8]);
 int             main(void);
 void            limitNorm(float &x, float &y, float limit);
 unsigned int    floatToUint(float x, float x_min, float x_max, int bits);

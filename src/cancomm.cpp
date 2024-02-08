@@ -1,6 +1,6 @@
 #include "capstone.h"
 
-Motor::SetData decode16(const unsigned char (*const encoded_data)[8])
+Motor::PutData decode16(const unsigned char (*const encoded_data)[8])
 {
     const unsigned char *const lines = *encoded_data;
 
@@ -10,7 +10,7 @@ Motor::SetData decode16(const unsigned char (*const encoded_data)[8])
     const unsigned int kd_int = (lines[5] << 4) | (lines[6] >> 4);
     const unsigned int t_int  = ((lines[6] & 0x0F) << 8) | (lines[7]);
 
-    const Motor::SetData res = {
+    const Motor::PutData res = {
         .p    = uintToFloat(p_int, P_MIN, P_MAX, 16),
         .v    = uintToFloat(v_int, V_MIN, V_MAX, 12),
         .kp   = uintToFloat(kp_int, KP_MIN, KP_MAX, 12),
@@ -23,18 +23,18 @@ Motor::SetData decode16(const unsigned char (*const encoded_data)[8])
 
 void Motor::setInputWithHexademical(const UCh8 &encoded_input)
 {
-    this->data_to_motor = decode16(&encoded_input.data);
+    this->data_into_motor = decode16(&encoded_input.data);
 }
 
 UCh8 Motor::encode16() const
 {
     UCh8 res = { .data = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, } };
     
-    const float p_des    = middle(P_MIN, data_to_motor.p, P_MAX);                  
-    const float v_des    = middle(V_MIN, data_to_motor.v, V_MAX);
-    const float kp_des   = middle(KP_MIN, data_to_motor.kd, KP_MAX);
-    const float kd_des   = middle(KD_MIN, data_to_motor.kd, KD_MAX);
-    const float t_ff_des = middle(T_MIN, data_to_motor.t_ff, T_MAX);
+    const float p_des    = middle(P_MIN, data_into_motor.p, P_MAX);                  
+    const float v_des    = middle(V_MIN, data_into_motor.v, V_MAX);
+    const float kp_des   = middle(KP_MIN, data_into_motor.kd, KP_MAX);
+    const float kd_des   = middle(KD_MIN, data_into_motor.kd, KD_MAX);
+    const float t_ff_des = middle(T_MIN, data_into_motor.t_ff, T_MAX);
 
     const unsigned int p_int    = floatToUint(p_des, P_MIN, P_MAX, 16);
     const unsigned int v_int    = floatToUint(v_des, V_MIN, V_MAX, 12);
@@ -50,6 +50,7 @@ UCh8 Motor::encode16() const
     res.data[5] = kd_int >> 4;
     res.data[6] = ((kd_int & 0x0F) << 4) | (t_ff_int >> 8);
     res.data[7] = t_ff_int & 0xFF;
+
     return res;
 }
 

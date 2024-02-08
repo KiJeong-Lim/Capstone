@@ -30,7 +30,7 @@ static int              id_to_index(int index);
 static void             pidInit(void);
 static void             pidCompute(void);
 #endif
-static Motor::SetData   sitDown_calc(int count_down, const Motor::SetData &datum);
+static Motor::PutData   sitDown_calc(int count_down, const Motor::PutData &datum);
 
 IO          terminal;
 Timer       timer;
@@ -84,8 +84,8 @@ int main()
     }
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        const Motor::SetData init_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 };
-        motor_handlers[i].data_to_motor = init_data;
+        const Motor::PutData init_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 };
+        motor_handlers[i].data_into_motor = init_data;
     }
     transmitMsg();
 
@@ -130,10 +130,10 @@ void start()
 
 void halt()
 {
-    const Motor::SetData zero_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 };
+    const Motor::PutData zero_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_to_motor = zero_data;
+        motor_handlers[i].data_into_motor = zero_data;
     }
     mode = SetzeroMode;
     turn_cnt = -2;
@@ -166,7 +166,7 @@ void debug_txmsg()
 
     if (gear_dbg.go()) {
         for (int i = 0; i < len(motor_handlers); i++) {
-            const Motor::SetData dbg = decode16(&motor_handlers[i].get_tx_msg().data);
+            const Motor::PutData dbg = decode16(&motor_handlers[i].get_tx_msg().data);
             printf("\n\r%% txmsg of #%d = { .p=%.4lf, .v=%.4lf, .kp=%.4lf, .kd=%.4lf, .t_ff=%.4lf }\n", motor_handlers[i].motor_id, dbg.p, dbg.v, dbg.kp, dbg.kd, dbg.t_ff);
         }
         printf("\n");
@@ -175,18 +175,18 @@ void debug_txmsg()
 
 bool loadRefTbl1(const bool until)
 {
-    static Motor::SetData last_data[len(motor_handlers)];
+    static Motor::PutData last_data[len(motor_handlers)];
 
     if ((turn_cnt < len(reftbl1)) && until) {
         for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].data_to_motor = reftbl1[turn_cnt][(motor_handlers[i].id() - 1) % 3]; // SENSITIVE POINT
-            last_data[i] = motor_handlers[i].data_to_motor;
+            motor_handlers[i].data_into_motor = reftbl1[turn_cnt][(motor_handlers[i].id() - 1) % 3]; // SENSITIVE POINT
+            last_data[i] = motor_handlers[i].data_into_motor;
         }
         return true;
     }
     else {
         for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].data_to_motor = last_data[i];
+            motor_handlers[i].data_into_motor = last_data[i];
         }
         return false;
     }
@@ -206,7 +206,7 @@ void standUp()
     };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_to_motor = decode16(&lines[(motor_handlers[i].id() - 1) % 3]); // SENSITIVE POINT
+        motor_handlers[i].data_into_motor = decode16(&lines[(motor_handlers[i].id() - 1) % 3]); // SENSITIVE POINT
     }
 }
 
@@ -272,7 +272,7 @@ void serial_isr()
         else if (turn_cnt >= count_down_MAX_CNT) {
             observe();
             for (int i = 0; i < len(motor_handlers); i++) {
-                const Motor::SetData datum = sitDown_calc(-turn_cnt, motor_handlers[i].data_to_motor);
+                const Motor::PutData datum = sitDown_calc(-turn_cnt, motor_handlers[i].data_into_motor);
                 motor_handlers[i].send_msg();
             }
             turn_cnt++;
@@ -397,17 +397,14 @@ void prompt(const char *const msg)
         if (areSameStr("Kp", var_name)) {
             motor_handlers[id_to_index(motor_id)].set_Kp(value); // SENSITIVE POINT
             res = true;
-            return;
         }
         else if (areSameStr("Ki", var_name)) {
             motor_handlers[id_to_index(motor_id)].set_Ki(value); // SENSITIVE POINT
             res = true;
-            return;
         }
         else if (areSameStr("Kd", var_name)) {
             motor_handlers[id_to_index(motor_id) - 1].set_Kd(value); // SENSITIVE POINT
             res = true;
-            return;
         }
         else {
             res = false;
@@ -417,8 +414,13 @@ void prompt(const char *const msg)
 
     sscanf_res = sscanf(msg, "pid start tick = %d", &pid_start_tick);
     if (sscanf_res == 1) {
-        PID_START_TICK = pid_start_tick;
-        res = true;
+        if (true) {
+            PID_START_TICK = pid_start_tick;
+            res = true;
+        }
+        else {
+            res = false;
+        }
         goto RET;
     }
 #endif
@@ -485,9 +487,9 @@ void pidCompute()
 }
 #endif
 
-Motor::SetData sitDown_calc(const int count_down, const Motor::SetData &datum)
+Motor::PutData sitDown_calc(const int count_down, const Motor::PutData &datum)
 {
-    const Motor::SetData res = {
+    const Motor::PutData res = {
         .p    = (datum.p    * abs(count_down)) / abs(count_down_MAX_CNT),
         .v    = (datum.v    * abs(count_down)) / abs(count_down_MAX_CNT),
         .kp   = (datum.kp   * abs(count_down)) / abs(count_down_MAX_CNT),
