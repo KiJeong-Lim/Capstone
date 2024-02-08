@@ -152,7 +152,7 @@ void observe()
             row = 0;
         }
         for (int i = 0; i < len(motor_handlers); i++) {
-            const Motor::SetData data = motor_handlers[i].data_to_motor;
+            const Motor::GetData data = motor_handlers[i].data_from_motor;
             const int id = motor_handlers[i].motor_id;
             printf("\rtheta%d(%ld) = %f; omega%d(%ld) = %f;\n", id, row, data.p, id, row, data.v);
         }
