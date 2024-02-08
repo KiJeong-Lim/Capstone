@@ -89,9 +89,9 @@ CANHanlde::CANHanlde(const PinName rd, const PinName td)
 void CANHanlde::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
 {
     static const int CAN_FREQUENCY = 1000000;
-    can.filter(id, mask, CANStandard, 0);
     can.frequency(CAN_FREQUENCY);
     can.attach(to_be_attached);
+    can.filter(id, mask, CANStandard, 0);
 }
 
 void CANHanlde::read(CANMessage &rx_msg)

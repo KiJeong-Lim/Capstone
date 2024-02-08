@@ -103,8 +103,8 @@ int main()
 
     turn_cnt = -2;
     terminal.set_prompt(prompt);
-    send_can.attach(serial_isr, Tick_dt);
     timer.start();
+    send_can.attach(serial_isr, Tick_dt);
 }
 
 void onMsgReceived1()
