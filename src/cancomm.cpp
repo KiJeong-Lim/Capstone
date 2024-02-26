@@ -1,4 +1,4 @@
-#include "capstone.h"
+#include "capstone.hpp"
 
 Motor::PutData decode16(const unsigned char (*const encoded_data)[8])
 {
@@ -21,15 +21,10 @@ Motor::PutData decode16(const unsigned char (*const encoded_data)[8])
     return res;
 }
 
-void Motor::setInputWithHexademical(const UCh8 &encoded_input)
-{
-    this->data_into_motor = decode16(&encoded_input.data);
-}
-
-UCh8 Motor::encode16() const
+UCh8 encode16(const Motor::PutData &data_into_motor)
 {
     UCh8 res = { .data = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, } };
-    
+
     const float p_des    = middle(P_MIN, data_into_motor.p, P_MAX);                  
     const float v_des    = middle(V_MIN, data_into_motor.v, V_MAX);
     const float kp_des   = middle(KP_MIN, data_into_motor.kd, KP_MAX);
@@ -54,9 +49,15 @@ UCh8 Motor::encode16() const
     return res;
 }
 
+void Motor::setInputWithHexademical(const UCh8 &encoded_input)
+{
+    this->data_into_motor = decode16(&encoded_input.data);
+}
+
 void Motor::pack(CANMessage *const can_msg) const
 {
-    const UCh8 msg = this->encode16();
+    const UCh8 msg = encode16(data_into_motor);
+
     for (int i = 0; i < len(can_msg->data); i++) {
         can_msg->data[i] = msg.data[i];
     }
@@ -68,7 +69,7 @@ void Motor::unpack(const CANMessage *const can_msg)
     const unsigned int id    = can_msg->data[0];
     const unsigned int p_int = (can_msg->data[1] << 8) | can_msg->data[2];
     const unsigned int v_int = (can_msg->data[3] << 4) | (can_msg->data[4] >> 4);
-    const unsigned int i_int = ((can_msg->data[4] & 0xF) << 8) | can_msg->data[5];
+    const unsigned int i_int = ((can_msg->data[4] & 0x0F) << 8) | can_msg->data[5];
     // convert ints to floats
     const float p = uintToFloat(p_int, P_MIN, P_MAX, 16);
     const float v = uintToFloat(v_int, V_MIN, V_MAX, 12);
@@ -88,8 +89,7 @@ CANHanlde::CANHanlde(const PinName rd, const PinName td)
 
 void CANHanlde::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
 {
-    static const int CAN_FREQUENCY = 1000000;
-    can.frequency(CAN_FREQUENCY);
+    can.frequency(1000000);
     can.attach(to_be_attached);
     can.filter(id, mask, CANStandard, 0);
 }

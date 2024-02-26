@@ -1,9 +1,9 @@
-#include "capstone.h"
+#include "capstone.hpp"
 
 void IO::set_prompt(void (*const prompt)(const char *msg))
 {
-    this->prompt = prompt;
     this->clear();
+    this->prompt = prompt;
 }
 
 bool IO::run_prompt()
@@ -78,7 +78,11 @@ bool IO::takech(const int ch)
             result = NULL;
             return false;
         }
-        if (theend + 1 >= len(buffer)) {
+        if (theend >= len(buffer)) {
+            if (cursor > 0) {
+                --cursor;
+            }
+            buffer[theend--] = '\0';
             result = NULL;
             return false;
         }
@@ -106,11 +110,7 @@ bool IO::takech(const int ch)
         printf("\n");
         result = NULL;
         return true;
-    case 224:
-        if (theend + 1 >= len(buffer)) {
-            result = NULL;
-            return false;
-        }
+    case DIRECTION_KEY:
         switch (getc()) {
         case LEFT_DIRECTION:
             if (cursor > 0) {
@@ -120,6 +120,10 @@ bool IO::takech(const int ch)
             result = NULL;
             return false;
         case RIGHT_DIRECTION:
+            if (theend >= len(buffer)) {
+                result = NULL;
+                return false;
+            }
             if (cursor < theend) {
                 cursor++;
             }

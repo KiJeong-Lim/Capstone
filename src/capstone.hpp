@@ -6,7 +6,7 @@
 
 #include "mbed.h"
 
-#define VERSION             "2.3.0 (2024-02-08 18:00)"
+#define VERSION             "2.3.1 (2024-02-16 20:00)"
 
 #define USE_PID             0
 #define RUNTIME_TICK_MAX    1000000
@@ -14,6 +14,7 @@
 #define DEBUG_TXMSG         false
 
 #define ESC                 27
+#define DIRECTION_KEY       224
 #define LEFT_DIRECTION      75
 #define RIGHT_DIRECTION     77
 
@@ -32,8 +33,8 @@
 #define I_MAX       (40.0f)
 
 #define len(arr)    (sizeof(arr) / sizeof((arr)[0]))
-#define max(x,y)    ((x) >= (y) ? (x) : (y))
-#define min(x,y)    ((y) >= (x) ? (x) : (y))
+#define max(x,y)    (((x) >= (y)) ? (x) : (y))
+#define min(x,y)    (((y) >= (x)) ? (x) : (y))
 
 struct UCh8 {
     unsigned char data[8];
@@ -57,7 +58,6 @@ public:
     int motor_id;
 public:
     void setInputWithHexademical(const UCh8 &encoded_input);
-    UCh8 encode16(void) const;
     void pack(CANMessage *can_msg) const;
     void unpack(const CANMessage *can_msg);
 };
@@ -161,7 +161,7 @@ private:
     const int motor_handlers_vec_size;
     CANMessage rx_msg;
 public:
-    CANManager(PinName rd, PinName td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size);
+    CANManager(const PinName &rd, const PinName &td, MotorHandler **motor_handlers_vec_ptr, int motor_handlers_vec_size);
     void init(unsigned int id, unsigned int mask, void (*to_be_attached)(void));
     void onMsgReceived(void);
     void sendMsg(void);
@@ -173,7 +173,7 @@ extern Serial   pc;
 extern Timer    timer;
 
 Motor::PutData  decode16(const unsigned char (*input_data)[8]);
-int             main(void);
+UCh8            encode16(const Motor::PutData &input_data);
 void            limitNorm(float &x, float &y, float limit);
 unsigned int    floatToUint(float x, float x_min, float x_max, int bits);
 float           uintToFloat(int x_int, float x_min, float x_max, int bits);

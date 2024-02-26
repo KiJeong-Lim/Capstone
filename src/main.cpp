@@ -1,4 +1,4 @@
-#include "capstone.h"
+#include "capstone.hpp"
 
 #define mkCANManager(rd,td,transceiver) (CANManager(rd, td, transceiver, len(transceiver)))
 
@@ -9,7 +9,9 @@ static void             transmitMsg(void);
 static void             start(void);
 static void             halt(void);
 static void             observe(void);
+#if DEBUG_TXMSG
 static void             debug_txmsg(void);
+#endif
 
 static bool             loadRefTbl1(bool until);
 
@@ -74,7 +76,7 @@ MotorHandler    *transceiver2[] = { &motor_handlers[2], &motor_handlers[3], }; /
 CANManager      cans[] = { mkCANManager(PB_8, PB_9, transceiver1), mkCANManager(PB_5, PB_6, transceiver2), }; // SET ME !!!
 void            (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2, }; // SET ME !!!
 
-int main()
+int main(void)
 {
     pc.baud(921600);
     pc.attach(interact);
@@ -126,6 +128,7 @@ void transmitMsg()
 
 void start()
 {
+    return;
 }
 
 void halt()
@@ -160,6 +163,7 @@ void observe()
     }
 }
 
+#if DEBUG_TXMSG
 void debug_txmsg()
 {
     static Gear gear_dbg = Gear(20);
@@ -172,6 +176,7 @@ void debug_txmsg()
         printf("\n");
     }
 }
+#endif
 
 bool loadRefTbl1(const bool until)
 {
@@ -311,7 +316,7 @@ void interact()
             const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, } };
             motor_handlers[i].put_txmsg(msg);
         }
-        turn_cnt = -1;
+        turn_cnt = -2;
         return;
     case 'm':
         printf("\n\r%% Entering motor mode %%\n");
@@ -319,7 +324,7 @@ void interact()
             const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC, } };
             motor_handlers[i].put_txmsg(msg);
         }
-        turn_cnt = -1;
+        turn_cnt = -2;
         return;
     case 'z':
         printf("\n\r%% Set zero %%\n");

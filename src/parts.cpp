@@ -1,4 +1,4 @@
-#include "capstone.h"
+#include "capstone.hpp"
 
 #if USE_PID
 MotorHandler::MotorHandler(const int id, const float Kp, const float Ki, const float Kd)
@@ -79,7 +79,7 @@ void MotorHandler::set_Kd(const float Kd)
 }
 #endif
 
-CANManager::CANManager(const PinName rd, const PinName td, MotorHandler **const motor_handlers_vec_ptr, const int motor_handlers_vec_size)
+CANManager::CANManager(const PinName &rd, const PinName &td, MotorHandler **const motor_handlers_vec_ptr, const int motor_handlers_vec_size)
     : can_handle(rd, td), motor_handlers_vec_ptr(motor_handlers_vec_ptr), motor_handlers_vec_size(motor_handlers_vec_size)
 {
     rx_msg.len = 6;
