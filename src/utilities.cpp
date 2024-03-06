@@ -34,7 +34,7 @@ float uintToFloat(const int x_int, const float x_min, const float x_max, const i
 float middle(const float x, const float y, const float z)
     // returns the 2nd largest value among x, y and z
 {
-	if (y <= x && x <= z || z <= x && x <= y) {
+    if (y <= x && x <= z || z <= x && x <= y) {
         return x;
     }
     if (x <= y && y <= z || z <= y && y <= x) {
