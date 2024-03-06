@@ -6,12 +6,11 @@
 
 #include "mbed.h"
 
-#define VERSION             "2.4.1 (2024-03-06 20:00)"
+#define VERSION             "2.4.2 (2024-03-07 00:00)"
 
-#define USE_PID             0
+#define USE_PID             false
 #define RUNTIME_TICK_MAX    1000000
 #define Tick_dt             0.01
-#define DEBUG_TXMSG         false
 
 #define ESC                 (27)
 #define LEFT_DIRECTION      (75)
@@ -19,7 +18,7 @@
 #define DEL_KEY             (83)
 #define NOT_A_SPECIAL_KEY   (-1)
 
-#define pi          (3.14159265359f)
+#define pi          (3.14159265359)
 
 #define P_MIN       (-12.5f)
 #define P_MAX       (12.5f)
@@ -184,6 +183,6 @@ float           uintToFloat(unsigned int x_int, float x_min, float x_max, int bi
 float           middle(float x, float y, float z);
 double          getTime(void);
 bool            areSameStr(const char *lhs, const char *rhs);
-bool            inRange(float left, float x, float rhs);
+bool            inRange(float left, float x, float right);
 
 #endif

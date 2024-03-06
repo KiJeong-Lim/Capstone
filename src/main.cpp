@@ -9,9 +9,6 @@ static void             transmitMsg(void);
 static void             start(void);
 static void             halt(void);
 static void             observe(void);
-#if DEBUG_TXMSG
-static void             debug_txmsg(void);
-#endif
 
 static bool             loadRefTbl1(bool until);
 
@@ -163,21 +160,6 @@ void observe()
     }
 }
 
-#if DEBUG_TXMSG
-void debug_txmsg()
-{
-    static Gear gear_dbg = Gear(20);
-
-    if (gear_dbg.go()) {
-        for (int i = 0; i < len(motor_handlers); i++) {
-            const Motor::PutData dbg = decode16(&motor_handlers[i].get_tx_msg().data);
-            printf("\n\r%% txmsg of #%d = { .p=%.4lf, .v=%.4lf, .kp=%.4lf, .kd=%.4lf, .t_ff=%.4lf }\n", motor_handlers[i].motor_id, dbg.p, dbg.v, dbg.kp, dbg.kd, dbg.t_ff);
-        }
-        printf("\n");
-    }
-}
-#endif
-
 bool loadRefTbl1(const bool until)
 {
     static Motor::PutData last_data[len(motor_handlers)];
@@ -295,9 +277,6 @@ void serial_isr()
         break;
     }
 
-#if DEBUG_TXMSG
-    debug_txmsg();
-#endif
     transmitMsg();
 }
 
@@ -454,7 +433,7 @@ void prompt(const char *const msg)
 
     sscanf_res = sscanf(msg, "%s", op_name);
     if (sscanf_res == 1) {
-        if (areSameStr(op_name, "quit")) {
+        if (areSameStr(op_name, "skip")) {
             res = true;
             goto RET;
         }

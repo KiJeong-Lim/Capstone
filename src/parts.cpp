@@ -2,7 +2,7 @@
 
 #if USE_PID
 MotorHandler::MotorHandler(const int id, const float Kp, const float Ki, const float Kd)
-    : p_ctrl(0.0), pid_on_p(Kp, Ki, Kd, &data_from_motor.p, &p_ctrl, &data_to_motor.p, P_MIN, P_MAX)
+    : p_ctrl(0.0), pid_on_p(Kp, Ki, Kd, &data_from_motor.p, &p_ctrl, &data_into_motor.p, P_MIN, P_MAX)
 {
     tx_msg.len = 8;
     tx_msg.id = id;
@@ -58,7 +58,7 @@ bool MotorHandler::pidCompute()
 {
     bool okay = pid_on_p.compute();
     if (okay) {
-        data_to_motor.p = p_ctrl;
+        data_into_motor.p = p_ctrl;
     }
     return okay;
 }
