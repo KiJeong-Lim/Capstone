@@ -26,7 +26,7 @@ static void             serial_isr(void);
 static void             interact(void);
 static void             prompt(const char *msg);
 
-static int              id_to_index(int index);
+static int              id_to_index(int id);
 
 #if USE_PID
 static void             pidInit(void);
