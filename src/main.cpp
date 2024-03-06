@@ -148,10 +148,10 @@ void observe()
     static Gear gear_obs = Gear(20);
 
     if (gear_obs.go()) {
-        if (turn_cnt >= 0 || turn_cnt < -2) { // run
+        if (turn_cnt >= 0 || turn_cnt < -2) {
             row++;
         }
-        else { // take a rest
+        else {
             row = 0;
         }
         for (int i = 0; i < len(motor_handlers); i++) {
