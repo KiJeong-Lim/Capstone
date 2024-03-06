@@ -310,74 +310,78 @@ void interact()
         return;
     }
     ch = IO::getc();
-    switch (ch) {
-    case ESC:
-        printf("\n\r%% Exiting motor mode %%\n");
-        for (int i = 0; i < len(motor_handlers); i++) {
-            const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, } };
-            motor_handlers[i].put_txmsg(msg);
-        }
-        turn_cnt = -2;
-        return;
-    case 'm':
-        printf("\n\r%% Entering motor mode %%\n");
-        for (int i = 0; i < len(motor_handlers); i++) {
-            const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC, } };
-            motor_handlers[i].put_txmsg(msg);
-        }
-        turn_cnt = -2;
-        return;
-    case 'z':
-        printf("\n\r%% Set zero %%\n");
-        for (int i = 0; i < len(motor_handlers); i++) {
-            const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE, } };
-            motor_handlers[i].put_txmsg(msg);
-        }
-        turn_cnt = -2;
-        return;
-    case '1':
-    case '2':
-    case '3':
-    case '4':
-    case '5':
-    case '6':
-        for (int i = 0; i < len(motor_handlers); i++) {
-            if (motor_handlers[i].id() == readDigit(ch)) { // SENSITIVE POINT
-                const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
-                printf("\n\r%% Motor #%c rest position %%\n", ch);
+    if (special_key_flag == NOT_A_SPECIAL_KEY)
+        switch (ch) {
+        case ESC:
+            printf("\n\r%% Exiting motor mode %%\n");
+            for (int i = 0; i < len(motor_handlers); i++) {
+                const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, } };
                 motor_handlers[i].put_txmsg(msg);
-                break;
             }
-        }
-        return;
-    case 'r':
-        printf("\n\r%% Run %%\n");
-        mode = RuntimeMode;
-        turn_cnt = 0;
-        start();
-        return;
-    case 'o':
-        printf("\n\r%% Observe %%\n");
-        mode = ObserveMode;
-        turn_cnt = -2;
-        return;
-    case 'b':
-        printf("\n\r%% Break %%\n");
-        mode = SetzeroMode;
-        turn_cnt = -2;
-        halt();
-        return;
-    case '.':
-        printf("\n\r%% Sit down %%\n");
-        mode = SitdownMode;
-        turn_cnt = count_down_MAX_CNT;
-        return;
-    case 'l':
-        if (mode == SetzeroMode && turn_cnt < 0) {
-            printf("\n\r%% Listen %%\n");
-            mode = ReadcmdMode;
             turn_cnt = -2;
-        }
+            return;
+        case 'm':
+            printf("\n\r%% Entering motor mode %%\n");
+            for (int i = 0; i < len(motor_handlers); i++) {
+                const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC, } };
+                motor_handlers[i].put_txmsg(msg);
+            }
+            turn_cnt = -2;
+            return;
+        case 'z':
+            printf("\n\r%% Set zero %%\n");
+            for (int i = 0; i < len(motor_handlers); i++) {
+                const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE, } };
+                motor_handlers[i].put_txmsg(msg);
+            }
+            turn_cnt = -2;
+            return;
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+            for (int i = 0; i < len(motor_handlers); i++) {
+                if (motor_handlers[i].id() == readDigit(ch)) { // SENSITIVE POINT
+                    const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
+                    printf("\n\r%% Motor #%c rest position %%\n", ch);
+                    motor_handlers[i].put_txmsg(msg);
+                    break;
+                }
+            }
+            return;
+        case 'r':
+            printf("\n\r%% Run %%\n");
+            mode = RuntimeMode;
+            turn_cnt = 0;
+            start();
+            return;
+        case 'o':
+            printf("\n\r%% Observe %%\n");
+            mode = ObserveMode;
+            turn_cnt = -2;
+            return;
+        case 'b':
+            printf("\n\r%% Break %%\n");
+            mode = SetzeroMode;
+            turn_cnt = -2;
+            halt();
+            return;
+        case '.':
+            printf("\n\r%% Sit down %%\n");
+            mode = SitdownMode;
+            turn_cnt = count_down_MAX_CNT;
+            return;
+        case 'l':
+            if (mode == SetzeroMode && turn_cnt < 0) {
+                printf("\n\r%% Listen %%\n");
+                mode = ReadcmdMode;
+                turn_cnt = -2;
+            }
+            return;
+    }
+    else {
         return;
     }
 }
