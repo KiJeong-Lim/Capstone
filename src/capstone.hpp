@@ -6,17 +6,19 @@
 
 #include "mbed.h"
 
-#define VERSION             "2.3.1 (2024-02-16 20:00)"
+#define VERSION             "2.4.0 (2024-03-06 16:00)"
 
 #define USE_PID             0
 #define RUNTIME_TICK_MAX    1000000
 #define Tick_dt             0.01
 #define DEBUG_TXMSG         false
 
-#define ESC                 27
-#define DIRECTION_KEY       224
-#define LEFT_DIRECTION      75
-#define RIGHT_DIRECTION     77
+#define ESC                 (27)
+#define DIRECTION_KEY       (224)
+#define LEFT_DIRECTION      (75)
+#define RIGHT_DIRECTION     (77)
+#define DEL_KEY             (83)
+#define NOT_A_SPECIAL_KEY   (-1)
 
 #define pi          (3.14159265359f)
 
@@ -32,7 +34,7 @@
 #define T_MAX       (18.0f)
 #define I_MAX       (40.0f)
 
-#define len(arr)    (sizeof(arr) / sizeof((arr)[0]))
+#define len(arr)    ((sizeof(arr)) / (sizeof((arr)[0])))
 #define max(x,y)    (((x) >= (y)) ? (x) : (y))
 #define min(x,y)    (((y) >= (x)) ? (x) : (y))
 
@@ -107,14 +109,14 @@ class IO {
     char *result;
     void (*prompt)(const char *msg);
 public:
-    void set_prompt(void (*prompt)(const char *msg));
-    bool run_prompt(void);
+    void setPrompt(void (*prompt)(const char *msg));
+    bool runPrompt(void);
     static int getc(void);
 private:
     bool takech(int ch);
-    void print(void);
+    void print(void) const;
     void clear(void);
-    void sync(char *&msg);
+    void sync(char *&msg) const;
 };
 
 class CANHanlde {
@@ -167,7 +169,8 @@ public:
     void sendMsg(void);
 };
 
-extern const Motor::PutData reftbl1[1000][3];
+extern const    Motor::PutData reftbl1[1000][3];
+extern int      special_key_flag;
 
 extern Serial   pc;
 extern Timer    timer;

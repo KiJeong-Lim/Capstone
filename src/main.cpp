@@ -104,7 +104,7 @@ int main(void)
     printf("\n");
 
     turn_cnt = -2;
-    terminal.set_prompt(prompt);
+    terminal.setPrompt(prompt);
     timer.start();
     send_can.attach(serial_isr, Tick_dt);
 }
@@ -148,14 +148,14 @@ void observe()
     static Gear gear_obs = Gear(20);
 
     if (gear_obs.go()) {
-        if (turn_cnt >= 0) {
+        if (turn_cnt >= 0 || turn_cnt < -2) { // run
             row++;
         }
-        else {
+        else { // take a rest
             row = 0;
         }
         for (int i = 0; i < len(motor_handlers); i++) {
-            const Motor::GetData data = motor_handlers[i].data_from_motor;
+            const Motor::GetData data = motor_handlers[i].data_from_motor; // SENSITIVE POINT
             const int id = motor_handlers[i].motor_id;
             printf("\rtheta%d(%ld) = %f; omega%d(%ld) = %f;\n", id, row, data.p, id, row, data.v);
         }
@@ -302,10 +302,11 @@ void interact()
     int ch = '\0';
 
     if (mode == ReadcmdMode) {
-        const bool prompt_routine_breaked = terminal.run_prompt();
+        const bool prompt_routine_breaked = terminal.runPrompt();
         if (prompt_routine_breaked) {
             mode = SetzeroMode;
         }
+        turn_cnt = -2;
         return;
     }
     ch = IO::getc();
@@ -332,6 +333,7 @@ void interact()
             const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE, } };
             motor_handlers[i].put_txmsg(msg);
         }
+        turn_cnt = -2;
         return;
     case '1':
     case '2':
@@ -408,7 +410,7 @@ void prompt(const char *const msg)
             res = true;
         }
         else if (areSameStr("Kd", var_name)) {
-            motor_handlers[id_to_index(motor_id) - 1].set_Kd(value); // SENSITIVE POINT
+            motor_handlers[id_to_index(motor_id)].set_Kd(value); // SENSITIVE POINT
             res = true;
         }
         else {
