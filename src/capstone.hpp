@@ -31,6 +31,7 @@
 #define KD_MAX      (5.0f)
 #define T_MIN       (-18.0f)
 #define T_MAX       (18.0f)
+#define I_MIN       (-40.0f)
 #define I_MAX       (40.0f)
 
 #define len(arr)    ((sizeof(arr)) / (sizeof((arr)[0])))
@@ -102,6 +103,7 @@ public:
 };
 
 class IO {
+private:
     char buffer[64];
     int cursor;
     int theend;
@@ -183,6 +185,5 @@ float           middle(float x, float y, float z);
 double          getTime(void);
 bool            areSameStr(const char *lhs, const char *rhs);
 bool            inRange(float left, float x, float rhs);
-int             readDigit(char ch);
 
 #endif

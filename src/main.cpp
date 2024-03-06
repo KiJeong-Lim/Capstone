@@ -229,14 +229,18 @@ void jump1()
 
 void standUp1()
 {
-    if (turn_cnt <= PID_START_TICK) {
+    if (turn_cnt < PID_START_TICK) {
         standUp();
+        return;
     }
     if (turn_cnt == PID_START_TICK) {
+        standUp();
         pidInit();
+        return;
     }
-    else if (turn_cnt > PID_START_TICK) {
+    if (turn_cnt > PID_START_TICK) {
         pidCompute();
+        return;
     }
 }
 #endif
@@ -345,7 +349,7 @@ void interact()
         case '5':
         case '6':
             for (int i = 0; i < len(motor_handlers); i++) {
-                if (motor_handlers[i].id() == readDigit(ch)) { // SENSITIVE POINT
+                if (motor_handlers[i].id() + '0' == ch) { // SENSITIVE POINT
                     const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
                     printf("\n\r%% Motor #%c rest position %%\n", ch);
                     motor_handlers[i].put_txmsg(msg);

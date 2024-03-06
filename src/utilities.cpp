@@ -1,10 +1,5 @@
 #include "capstone.hpp"
 
-int readDigit(const char ch)
-{
-    return ch - '0';
-}
-
 void limitNorm(float &x, float &y, const float limit)
     // scales the lenght of vector (x, y) to be <= limit
 {

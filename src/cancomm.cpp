@@ -25,7 +25,7 @@ UCh8 encode16(const Motor::PutData &data_into_motor)
 {
     UCh8 res = { .data = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, } };
 
-    const float p_des    = middle(P_MIN, data_into_motor.p, P_MAX);                  
+    const float p_des    = middle(P_MIN, data_into_motor.p, P_MAX);
     const float v_des    = middle(V_MIN, data_into_motor.v, V_MAX);
     const float kp_des   = middle(KP_MIN, data_into_motor.kd, KP_MAX);
     const float kd_des   = middle(KD_MIN, data_into_motor.kd, KD_MAX);
@@ -73,7 +73,7 @@ void Motor::unpack(const CANMessage &can_msg)
     // convert unsigned ints to floats
     const float p = uintToFloat(p_int, P_MIN, P_MAX, 16);
     const float v = uintToFloat(v_int, V_MIN, V_MAX, 12);
-    const float i = uintToFloat(i_int, -I_MAX, I_MAX, 12);
+    const float i = uintToFloat(i_int, I_MIN, I_MAX, 12);
     // update p, v, i
     if (this->motor_id == id) {
         this->data_from_motor.p = p;
