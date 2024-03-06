@@ -59,9 +59,9 @@ void IO::clear()
 bool IO::takech(const int ch)
 {
     switch (special_key_flag) {
-    case 0x00:
+    case 0:
         break;
-    case 0xE0:
+    case 224:
         switch (ch) {
         case DEL_KEY:
             if (theend > cursor)

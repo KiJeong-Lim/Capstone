@@ -14,7 +14,6 @@
 #define DEBUG_TXMSG         false
 
 #define ESC                 (27)
-#define DIRECTION_KEY       (224)
 #define LEFT_DIRECTION      (75)
 #define RIGHT_DIRECTION     (77)
 #define DEL_KEY             (83)
