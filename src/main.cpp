@@ -148,7 +148,7 @@ void observe()
     static Gear gear_obs = Gear(20);
 
     if (gear_obs.go()) {
-        if (turn_cnt >= 0 || turn_cnt < -2) {
+        if (turn_cnt >= 0) {
             row++;
         }
         else {
