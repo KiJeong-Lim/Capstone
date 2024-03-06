@@ -22,7 +22,7 @@
 /// PV = y(t): Process variable -- measured value;
 /// MV = u(t): Manipulated variable -- PID output;
 /// SP = r(t): Setpoint -- reference value.
-PIDController::PIDController(const Real_t Kp, const Real_t Ki, const Real_t Kd, volatile Real_t *const PV, volatile Real_t *const MV, volatile Real_t *const SP, const Real_t MV_MIN, const Real_t MV_MAX)
+PIDController::PIDController(const float Kp, const float Ki, const float Kd, volatile float *const PV, volatile float *const MV, volatile float *const SP, const float MV_MIN, const float MV_MAX)
     : last_time(0.0), last_error(0.0), error_sum(0.0), Kp(Kp), Ki(Ki), Kd(Kd), PV(PV), MV(MV), SP(SP), MV_MIN(MV_MIN), MV_MAX(MV_MAX)
 {
 }
