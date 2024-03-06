@@ -169,9 +169,9 @@ public:
     void sendMsg(void);
 };
 
-extern const    Motor::PutData reftbl1[1000][3];
+extern const
+Motor::PutData  reftbl1[1000][3];
 extern int      special_key_flag;
-
 extern Serial   pc;
 extern Timer    timer;
 
@@ -181,7 +181,7 @@ void            limitNorm(float &x, float &y, float limit);
 unsigned int    floatToUint(float x, float x_min, float x_max, int bits);
 float           uintToFloat(int x_int, float x_min, float x_max, int bits);
 float           middle(float x, float y, float z);
-float           getTime(void);
+double          getTime(void);
 bool            areSameStr(const char *lhs, const char *rhs);
 bool            inRange(float left, float x, float rhs);
 int             readDigit(char ch);

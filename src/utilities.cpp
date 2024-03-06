@@ -1,5 +1,10 @@
 #include "capstone.hpp"
 
+int readDigit(const char ch)
+{
+    return ch - '0';
+}
+
 void limitNorm(float &x, float &y, const float limit)
     // scales the lenght of vector (x, y) to be <= limit
 {
@@ -15,7 +20,7 @@ unsigned int floatToUint(const float x, const float x_min, const float x_max, co
 {
     const float span = x_max - x_min;
     const float offset = x_min;
-    return (int)((x - offset) * ((float)((1 << bits) - 1)) / span);
+    return static_cast<unsigned int>(static_cast<int>((x - offset) * ((1 << bits) - 1) / span));
 }
 
 float uintToFloat(const int x_int, const float x_min, const float x_max, const int bits)
@@ -23,7 +28,7 @@ float uintToFloat(const int x_int, const float x_min, const float x_max, const i
 {
     const float span = x_max - x_min;
     const float offset = x_min;
-    return ((float)x_int) * span / ((float)((1 << bits) - 1)) + offset;
+    return ((x_int * span) / ((1 << bits) - 1)) + offset;
 }
 
 float middle(const float x, const float y, const float z)
@@ -38,10 +43,10 @@ float middle(const float x, const float y, const float z)
     return z;
 }
 
-float getTime()
+double getTime()
     // returns the current time
 {
-    return (float)(timer.read());
+    return timer.read();
 }
 
 bool areSameStr(const char *const lhs, const char *const rhs)
@@ -60,14 +65,12 @@ bool inRange(const float left, const float x, const float right)
 }
 
 Gear::Gear(const int gear)
-    : gear(gear)
-    , gear_cnt(0)
+    : gear(gear), gear_cnt(0)
 {
 }
 
 Gear::Gear(const Gear &other)
-    : gear(other.gear)
-    , gear_cnt(other.gear_cnt)
+    : gear(other.gear), gear_cnt(other.gear_cnt)
 {
 }
 
@@ -93,9 +96,4 @@ bool Gear::go()
 void Gear::reset()
 {
     gear_cnt = 0;
-}
-
-int readDigit(const char ch)
-{
-    return ch - '0';
 }
