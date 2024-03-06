@@ -82,7 +82,7 @@ void Motor::unpack(const CANMessage &can_msg)
     }
 }
 
-CANHanlde::CANHanlde(const PinName rd, const PinName td)
+CANHanlde::CANHanlde(const PinName &rd, const PinName &td)
     : can(rd, td)
 {
 }

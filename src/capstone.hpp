@@ -122,7 +122,7 @@ class CANHanlde {
 public:
     CAN can;
 public:
-    CANHanlde(PinName rd, PinName td);
+    CANHanlde(const PinName &rd, const PinName &td);
     void init(unsigned int id, unsigned int mask, void (*to_be_attached)(void));
     void read(CANMessage &rx_msg);
     void write(CANMessage &tx_msg);
