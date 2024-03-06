@@ -406,61 +406,78 @@ void prompt(const char *const msg)
 #if USE_PID
     sscanf_res = sscanf(msg, "%s %d = %f", var_name, &motor_id, &value);
     if (sscanf_res == 3) {
-        if (areSameStr("Kp", var_name)) {
-            motor_handlers[id_to_index(motor_id)].set_Kp(value); // SENSITIVE POINT
+        const int idx = id_to_index(motor_id);
+        if (idx < 0) {
+            res = false;
+            goto RET;
+        }
+        else if (areSameStr("Kp", var_name)) {
+            motor_handlers[idx].set_Kp(value); // SENSITIVE POINT
             res = true;
+            goto RET;
         }
         else if (areSameStr("Ki", var_name)) {
-            motor_handlers[id_to_index(motor_id)].set_Ki(value); // SENSITIVE POINT
+            motor_handlers[idx].set_Ki(value); // SENSITIVE POINT
             res = true;
+            goto RET;
         }
         else if (areSameStr("Kd", var_name)) {
-            motor_handlers[id_to_index(motor_id)].set_Kd(value); // SENSITIVE POINT
+            motor_handlers[idx].set_Kd(value); // SENSITIVE POINT
             res = true;
+            goto RET;
         }
         else {
             res = false;
+            goto RET;
         }
-        goto RET;
     }
 
     sscanf_res = sscanf(msg, "pid start tick = %d", &pid_start_tick);
     if (sscanf_res == 1) {
-        if (true) {
+        if (PID_START_TICK > 0) {
             PID_START_TICK = pid_start_tick;
             res = true;
+            goto RET;
         }
         else {
             res = false;
+            goto RET;
         }
-        goto RET;
     }
 #endif
 
-    sscanf_res = scanf(msg, "%s", op_name);
+    sscanf_res = sscanf(msg, "%s", op_name);
     if (sscanf_res == 1) {
-        if (areSameStr(op_name, "jump")) {
+        if (areSameStr(op_name, "quit")) {
+            res = true;
+            goto RET;
+        }
+        else if (areSameStr(op_name, "jump")) {
             operation = jump;
             res = true;
+            goto RET;
         }
         else if (areSameStr(op_name, "standUp")) {
             operation = standUp;
             res = true;
+            goto RET;
         }
 #if USE_PID
         else if (areSameStr(op_name, "jump1")) {
             operation = jump1;
             res = true;
+            goto RET;
         }
         else if (areSameStr(op_name, "standUp1")) {
             operation = standUp1;
             res = true;
+            goto RET;
         }
 #endif
         else {
             res = false;
+            goto RET;
         }
-        goto RET;
     }
 
 RET:
