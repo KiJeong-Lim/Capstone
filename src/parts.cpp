@@ -36,7 +36,7 @@ CANMessage &MotorHandler::get_tx_msg()
 
 void MotorHandler::send_msg()
 {
-    this->pack(&tx_msg);
+    this->pack(tx_msg);
 }
 
 int MotorHandler::id() const
@@ -94,7 +94,7 @@ void CANManager::onMsgReceived()
 {
     can_handle.read(rx_msg);
     for (int i = 0; i < motor_handlers_vec_size; i++) {
-        motor_handlers_vec_ptr[i]->unpack(&rx_msg);
+        motor_handlers_vec_ptr[i]->unpack(rx_msg);
     }
 }
 

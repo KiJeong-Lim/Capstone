@@ -32,8 +32,8 @@ int IO::getc()
     if (pc.readable()) {
         const int ch = pc.getc();
         switch (ch) {
-        case 0x00:
-        case 0xE0:
+        case 0:
+        case 224:
             special_key_flag = ch;
             return pc.getc();
         default:

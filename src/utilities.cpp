@@ -20,15 +20,15 @@ unsigned int floatToUint(const float x, const float x_min, const float x_max, co
 {
     const float span = x_max - x_min;
     const float offset = x_min;
-    return static_cast<unsigned int>(static_cast<int>((x - offset) * ((1 << bits) - 1) / span));
+    return static_cast<int>((x - offset) * ((1 << bits) - 1) / span);
 }
 
-float uintToFloat(const int x_int, const float x_min, const float x_max, const int bits)
+float uintToFloat(const unsigned int x_int, const float x_min, const float x_max, const int bits)
     // converts unsigned int to float, given range and number of bits
 {
     const float span = x_max - x_min;
     const float offset = x_min;
-    return ((x_int * span) / ((1 << bits) - 1)) + offset;
+    return ((static_cast<int>(x_int) * span) / ((1 << bits) - 1)) + offset;
 }
 
 float middle(const float x, const float y, const float z)

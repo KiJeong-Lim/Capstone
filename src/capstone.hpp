@@ -6,7 +6,7 @@
 
 #include "mbed.h"
 
-#define VERSION             "2.4.0 (2024-03-06 16:00)"
+#define VERSION             "2.4.1 (2024-03-06 20:00)"
 
 #define USE_PID             0
 #define RUNTIME_TICK_MAX    1000000
@@ -59,8 +59,8 @@ public:
     int motor_id;
 public:
     void setInputWithHexademical(const UCh8 &encoded_input);
-    void pack(CANMessage *can_msg) const;
-    void unpack(const CANMessage *can_msg);
+    void pack(CANMessage &can_msg) const;
+    void unpack(const CANMessage &can_msg);
 };
 
 class PIDController {
@@ -178,7 +178,7 @@ Motor::PutData  decode16(const unsigned char (*input_data)[8]);
 UCh8            encode16(const Motor::PutData &input_data);
 void            limitNorm(float &x, float &y, float limit);
 unsigned int    floatToUint(float x, float x_min, float x_max, int bits);
-float           uintToFloat(int x_int, float x_min, float x_max, int bits);
+float           uintToFloat(unsigned int x_int, float x_min, float x_max, int bits);
 float           middle(float x, float y, float z);
 double          getTime(void);
 bool            areSameStr(const char *lhs, const char *rhs);

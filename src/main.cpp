@@ -299,7 +299,7 @@ void serial_isr()
 
 void interact()
 {
-    int ch = '\0';
+    int ch = 0;
 
     if (mode == ReadcmdMode) {
         const bool prompt_routine_breaked = terminal.runPrompt();
@@ -309,7 +309,9 @@ void interact()
         turn_cnt = -2;
         return;
     }
+
     ch = IO::getc();
+
     if (special_key_flag == NOT_A_SPECIAL_KEY) {
         switch (ch) {
         case ESC:
