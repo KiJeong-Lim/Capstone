@@ -39,7 +39,7 @@ float middle(const float x, const float y, const float z)
     }
     if (x <= y && y <= z || z <= y && y <= x) {
         return y;
-	}
+    }
     return z;
 }
 
