@@ -310,7 +310,7 @@ void interact()
         return;
     }
     ch = IO::getc();
-    if (special_key_flag == NOT_A_SPECIAL_KEY)
+    if (special_key_flag == NOT_A_SPECIAL_KEY) {
         switch (ch) {
         case ESC:
             printf("\n\r%% Exiting motor mode %%\n");
@@ -380,6 +380,7 @@ void interact()
                 turn_cnt = -2;
             }
             return;
+        }
     }
     else {
         return;
