@@ -41,7 +41,10 @@ int IO::getc()
             return ch;
         }
     }
-    return 0;
+    else {
+        special_key_flag = NOT_A_SPECIAL_KEY;
+        return 0;
+    }
 }
 
 void IO::clear()
