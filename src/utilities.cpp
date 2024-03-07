@@ -1,5 +1,7 @@
 #include "capstone.hpp"
 
+typedef union { int i; unsigned int u; } iu_t;
+
 void limitNorm(float &x, float &y, const float limit)
     // scales the lenght of vector (x, y) to be <= limit
 {
@@ -15,15 +17,17 @@ unsigned int floatToUint(const float x, const float x_min, const float x_max, co
 {
     const float span = x_max - x_min;
     const float offset = x_min;
-    return static_cast<int>((x - offset) * ((1 << bits) - 1) / span);
+    const iu_t output = { .i = static_cast<int>((x - offset) * ((1 << bits) - 1) / span) };
+    return output.u;
 }
 
 float uintToFloat(const unsigned int x_int, const float x_min, const float x_max, const int bits)
     // converts unsigned int to float, given range and number of bits
 {
+    const iu_t input = { .u = x_int };
     const float span = x_max - x_min;
     const float offset = x_min;
-    return ((static_cast<int>(x_int) * span) / ((1 << bits) - 1)) + offset;
+    return ((input.i * span) / ((1 << bits) - 1)) + offset;
 }
 
 float middle(const float x, const float y, const float z)

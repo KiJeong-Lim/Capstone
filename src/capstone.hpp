@@ -6,7 +6,7 @@
 
 #include "mbed.h"
 
-#define VERSION             "2.4.3 (2024-03-07 20:00)"
+#define VERSION             "2.4.4 (2024-03-07 21:00)"
 
 #define USE_PID             false
 #define RUNTIME_TICK_MAX    1000000
