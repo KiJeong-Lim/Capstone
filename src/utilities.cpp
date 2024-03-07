@@ -24,7 +24,7 @@ unsigned int floatToUint(const float x, const float x_min, const float x_max, co
 float uintToFloat(const unsigned int x_int, const float x_min, const float x_max, const int bits)
     // converts unsigned int to float, given range and number of bits
 {
-    const iu_t input = { .u = x_int };
+    const iu_t input = { .u = static_cast<int>(x_int) };
     const float span = x_max - x_min;
     const float offset = x_min;
     return ((input.i * span) / ((1 << bits) - 1)) + offset;
