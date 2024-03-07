@@ -6,7 +6,7 @@
 
 #include "mbed.h"
 
-#define VERSION             "2.4.2 (2024-03-07 00:00)"
+#define VERSION             "2.4.3 (2024-03-07 20:00)"
 
 #define USE_PID             false
 #define RUNTIME_TICK_MAX    1000000
@@ -36,6 +36,10 @@
 #define len(arr)    ((sizeof(arr)) / (sizeof((arr)[0])))
 #define max(x,y)    (((x) >= (y)) ? (x) : (y))
 #define min(x,y)    (((y) >= (x)) ? (x) : (y))
+
+#ifndef USE_PID
+#define USE_PID 0
+#endif
 
 struct UCh8 {
     unsigned char data[8];
@@ -130,7 +134,7 @@ public:
 };
 
 class MotorHandler : public Motor {
-private:
+public:
 #if USE_PID
     float p_ctrl;
     PIDController pid_on_p;
@@ -143,9 +147,8 @@ public:
     MotorHandler(int id);
 #endif
     bool isWellFormed(void) const;
-    void put_txmsg(UCh8 rhs);
-    CANMessage &get_tx_msg(void);
-    void send_msg(void);
+    void putTxMsg(const UCh8 &rhs);
+    void sendMsg(void);
     int id(void) const;
 #if USE_PID
     bool pidInit(void);

@@ -83,7 +83,7 @@ int main(void)
     }
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        const Motor::PutData init_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 };
+        const Motor::PutData init_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0, };
         motor_handlers[i].data_into_motor = init_data;
     }
     transmitMsg();
@@ -241,7 +241,7 @@ void serial_isr()
             turn_cnt++;
         }
         for (int i = 0; i < len(motor_handlers); i++) {
-            motor_handlers[i].send_msg();
+            motor_handlers[i].sendMsg();
         }
         break;
     case ObserveMode:
@@ -264,7 +264,7 @@ void serial_isr()
             observe();
             for (int i = 0; i < len(motor_handlers); i++) {
                 const Motor::PutData datum = sitDown_calc(-turn_cnt, motor_handlers[i].data_into_motor);
-                motor_handlers[i].send_msg();
+                motor_handlers[i].sendMsg();
             }
             turn_cnt++;
         }
@@ -301,7 +301,7 @@ void interact()
             printf("\n\r%% Exiting motor mode %%\n");
             for (int i = 0; i < len(motor_handlers); i++) {
                 const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, } };
-                motor_handlers[i].put_txmsg(msg);
+                motor_handlers[i].putTxMsg(msg);
             }
             turn_cnt = -2;
             return;
@@ -309,7 +309,7 @@ void interact()
             printf("\n\r%% Entering motor mode %%\n");
             for (int i = 0; i < len(motor_handlers); i++) {
                 const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC, } };
-                motor_handlers[i].put_txmsg(msg);
+                motor_handlers[i].putTxMsg(msg);
             }
             turn_cnt = -2;
             return;
@@ -317,7 +317,7 @@ void interact()
             printf("\n\r%% Set zero %%\n");
             for (int i = 0; i < len(motor_handlers); i++) {
                 const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE, } };
-                motor_handlers[i].put_txmsg(msg);
+                motor_handlers[i].putTxMsg(msg);
             }
             turn_cnt = -2;
             return;
@@ -331,7 +331,7 @@ void interact()
                 if (motor_handlers[i].id() + '0' == ch) { // SENSITIVE POINT
                     const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
                     printf("\n\r%% Motor #%c rest position %%\n", ch);
-                    motor_handlers[i].put_txmsg(msg);
+                    motor_handlers[i].putTxMsg(msg);
                     break;
                 }
             }
