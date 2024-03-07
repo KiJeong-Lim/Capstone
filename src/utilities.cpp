@@ -17,7 +17,7 @@ unsigned int floatToUint(const float x, const float x_min, const float x_max, co
 {
     const float span = x_max - x_min;
     const float offset = x_min;
-    const iu_t output = { .i = static_cast<int>((x - offset) * ((1 << bits) - 1) / span) };
+    const iu_t output = { .i = (x - offset) * ((1 << bits) - 1) / span };
     return output.u;
 }
 
