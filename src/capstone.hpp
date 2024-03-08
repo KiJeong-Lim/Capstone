@@ -6,7 +6,7 @@
 
 #include "mbed.h"
 
-#define VERSION             "2.4.4 (2024-03-07 21:00)"
+#define VERSION             "2.5.0 (2024-03-08 12:00)"
 
 #define USE_PID             false
 #define RUNTIME_TICK_MAX    1000000
@@ -181,8 +181,8 @@ extern Timer    timer;
 Motor::PutData  decode16(const unsigned char (*input_data)[8]);
 UCh8            encode16(const Motor::PutData &input_data);
 void            limitNorm(float &x, float &y, float limit);
-unsigned int    floatToUint(float x, float x_min, float x_max, int bits);
-float           uintToFloat(unsigned int x_int, float x_min, float x_max, int bits);
+unsigned int    float2uint(float x, float x_min, float x_max, int bits);
+float           uint2float(unsigned int x_int, float x_min, float x_max, int bits);
 float           middle(float x, float y, float z);
 double          getTime(void);
 bool            areSameStr(const char *lhs, const char *rhs);

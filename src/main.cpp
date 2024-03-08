@@ -31,47 +31,50 @@ static void             pidCompute(void);
 #endif
 static Motor::PutData   sitDown_calc(int count_down, const Motor::PutData &datum);
 
-IO          terminal;
-Timer       timer;
-Ticker      send_can;
-Serial      pc(PA_2, PA_3);
+IO                      terminal;
+Timer                   timer;
+Ticker                  send_can;
+Serial                  pc(PA_2, PA_3);
 
-Mode        mode                = SetzeroMode;
-long int    turn_cnt            = -2;
-void        (*operation)(void)  = standUp;
-const int   count_down_MAX_CNT  = -100;
+static bool             h_shifted           = false;
+static Mode             mode                = SetzeroMode;
+static long int         turn_cnt            = -2;
+void                    (*operation)(void)  = standUp;
+static const int        count_down_MAX_CNT  = -100;
 #if USE_PID
-long int    PID_START_TICK      = 390;
+static long int         PID_START_TICK      = 390;
 #endif
 
 MotorHandler motor_handlers[] = {
 #if USE_PID
     //           #  Kp    Ki    Kd
-    MotorHandler(1, 1.30, 0.10, 0.00), // SET ME !!!
-    MotorHandler(2, 1.25, 0.30, 0.00), // SET ME !!!
-    MotorHandler(3, 2.00, 1.00, 0.00), // SET ME !!!
-    MotorHandler(4, 1.30, 0.10, 0.00), // SET ME !!!
-    MotorHandler(5, 1.25, 0.30, 0.00), // SET ME !!!
-    MotorHandler(6, 2.00, 1.00, 0.00), // SET ME !!!
+    MotorHandler(1, 1.30, 0.10, 0.00),
+    MotorHandler(2, 1.25, 0.30, 0.00),
+    MotorHandler(3, 2.00, 1.00, 0.00),
+    MotorHandler(4, 1.30, 0.10, 0.00),
+    MotorHandler(5, 1.25, 0.30, 0.00),
+    MotorHandler(6, 2.00, 1.00, 0.00),
 #else
     //           #
-    MotorHandler(2), // SET ME !!!
-    MotorHandler(3), // SET ME !!!
-    MotorHandler(5), // SET ME !!!
-    MotorHandler(6), // SET ME !!!
+    MotorHandler(1),
+    MotorHandler(2),
+    MotorHandler(3),
+    MotorHandler(4),
+    MotorHandler(5),
+    MotorHandler(6),
 #endif
 };
 
 #if USE_PID
-MotorHandler    *transceiver1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], }; // SET ME !!!
-MotorHandler    *transceiver2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], }; // SET ME !!!
+MotorHandler    *transceiver1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], };
+MotorHandler    *transceiver2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], };
 #else
-MotorHandler    *transceiver1[] = { &motor_handlers[0], &motor_handlers[1], }; // SET ME !!!
-MotorHandler    *transceiver2[] = { &motor_handlers[2], &motor_handlers[3], }; // SET ME !!!
+MotorHandler    *transceiver1[] = { &motor_handlers[0], &motor_handlers[1], &motor_handlers[2], };
+MotorHandler    *transceiver2[] = { &motor_handlers[3], &motor_handlers[4], &motor_handlers[5], };
 #endif
 
-CANManager      cans[] = { mkCANManager(PB_8, PB_9, transceiver1), mkCANManager(PB_5, PB_6, transceiver2), }; // SET ME !!!
-void            (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2, }; // SET ME !!!
+CANManager      cans[] = { mkCANManager(PB_8, PB_9, transceiver1), mkCANManager(PB_5, PB_6, transceiver2), };
+void            (*const onMsgReceived[])(void) = { onMsgReceived1, onMsgReceived2, };
 
 int main(void)
 {
@@ -327,12 +330,24 @@ void interact()
         case '4':
         case '5':
         case '6':
-            for (int i = 0; i < len(motor_handlers); i++) {
-                if (motor_handlers[i].id() + '0' == ch) { // SENSITIVE POINT
-                    const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
-                    printf("\n\r%% Motor #%c rest position %%\n", ch);
-                    motor_handlers[i].putTxMsg(msg);
-                    break;
+            if (h_shifted) {
+                for (int i = 0; i < len(motor_handlers); i++) {
+                    if (motor_handlers[i].id() + '0' == ch) { // SENSITIVE POINT
+                        const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC, } };
+                        printf("\n\r%% Entering motor mode #%c %%\n", ch);
+                        motor_handlers[i].putTxMsg(msg);
+                        break;
+                    }
+                }
+            }
+            else {
+                for (int i = 0; i < len(motor_handlers); i++) {
+                    if (motor_handlers[i].id() + '0' == ch) { // SENSITIVE POINT
+                        const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
+                        printf("\n\r%% Motor #%c rest position %%\n", ch);
+                        motor_handlers[i].putTxMsg(msg);
+                        break;
+                    }
                 }
             }
             return;
@@ -363,6 +378,16 @@ void interact()
                 printf("\n\r%% Listen %%\n");
                 mode = ReadcmdMode;
                 turn_cnt = -2;
+            }
+            return;
+        case 'h':
+            if (h_shifted) {
+                printf("\n\r%% h_shifted : true --> false\n");
+                h_shifted = false;
+            }
+            else {
+                printf("\n\r%% h_shifted : false --> true\n");
+                h_shifted = true;
             }
             return;
         }

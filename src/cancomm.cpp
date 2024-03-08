@@ -11,11 +11,11 @@ Motor::PutData decode16(const unsigned char (*const encoded_data)[8])
     const unsigned int t_int  = ((lines[6] & 0x0F) << 8) | (lines[7]);
 
     const Motor::PutData res = {
-        .p    = uintToFloat(p_int, P_MIN, P_MAX, 16),
-        .v    = uintToFloat(v_int, V_MIN, V_MAX, 12),
-        .kp   = uintToFloat(kp_int, KP_MIN, KP_MAX, 12),
-        .kd   = uintToFloat(kd_int, KD_MIN, KD_MAX, 12),
-        .t_ff = uintToFloat(t_int, T_MIN, T_MAX, 12),
+        .p    = uint2float(p_int, P_MIN, P_MAX, 16),
+        .v    = uint2float(v_int, V_MIN, V_MAX, 12),
+        .kp   = uint2float(kp_int, KP_MIN, KP_MAX, 12),
+        .kd   = uint2float(kd_int, KD_MIN, KD_MAX, 12),
+        .t_ff = uint2float(t_int, T_MIN, T_MAX, 12),
     };
 
     return res;
@@ -31,11 +31,11 @@ UCh8 encode16(const Motor::PutData &data_into_motor)
     const float kd_des   = middle(KD_MIN, data_into_motor.kd, KD_MAX);
     const float t_ff_des = middle(T_MIN, data_into_motor.t_ff, T_MAX);
 
-    const unsigned int p_int    = floatToUint(p_des, P_MIN, P_MAX, 16);
-    const unsigned int v_int    = floatToUint(v_des, V_MIN, V_MAX, 12);
-    const unsigned int kp_int   = floatToUint(kp_des, KP_MIN, KP_MAX, 12);
-    const unsigned int kd_int   = floatToUint(kd_des, KD_MIN, KD_MAX, 12);
-    const unsigned int t_ff_int = floatToUint(t_ff_des, T_MIN, T_MAX, 12);
+    const unsigned int p_int    = float2uint(p_des, P_MIN, P_MAX, 16);
+    const unsigned int v_int    = float2uint(v_des, V_MIN, V_MAX, 12);
+    const unsigned int kp_int   = float2uint(kp_des, KP_MIN, KP_MAX, 12);
+    const unsigned int kd_int   = float2uint(kd_des, KD_MIN, KD_MAX, 12);
+    const unsigned int t_ff_int = float2uint(t_ff_des, T_MIN, T_MAX, 12);
 
     res.data[0] = p_int >> 8;
     res.data[1] = p_int & 0xFF;
@@ -71,9 +71,9 @@ void Motor::unpack(const CANMessage &can_msg)
     const unsigned int v_int = (can_msg.data[3] << 4) | (can_msg.data[4] >> 4);
     const unsigned int i_int = ((can_msg.data[4] & 0x0F) << 8) | can_msg.data[5];
     // convert unsigned ints to floats
-    const float p = uintToFloat(p_int, P_MIN, P_MAX, 16);
-    const float v = uintToFloat(v_int, V_MIN, V_MAX, 12);
-    const float i = uintToFloat(i_int, I_MIN, I_MAX, 12);
+    const float p = uint2float(p_int, P_MIN, P_MAX, 16);
+    const float v = uint2float(v_int, V_MIN, V_MAX, 12);
+    const float i = uint2float(i_int, I_MIN, I_MAX, 12);
     // update p, v, i
     if (this->motor_id == id) {
         this->data_from_motor.p = p;

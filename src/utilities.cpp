@@ -1,6 +1,46 @@
 #include "capstone.hpp"
 
+#if 0
+
+int float2uint(float x, float x_min, float x_max, int bits)
+    // Converts a float to an unsigned int, given range and number of bits
+{
+    float span = x_max - x_min;
+    float offset = x_min;
+    return (int) ((x-offset)*((float)((1<<bits)-1))/span);
+}
+
+float uint2float(int x_int, float x_min, float x_max, int bits)
+    // converts unsigned int to float, given range and number of bits //
+{
+    float span = x_max - x_min;
+    float offset = x_min;
+    return ((float)x_int)*span/((float)((1<<bits)-1)) + offset;
+}
+
+#else
+
 typedef union { int i; unsigned int u; } iu_t;
+
+unsigned int float2uint(const float x, const float x_min, const float x_max, const int bits)
+    // converts a float to an unsigned int, given range and number of bits
+{
+    const float span = x_max - x_min;
+    const float offset = x_min;
+    const iu_t output = { .i = (x - offset) * ((1 << bits) - 1) / span };
+    return output.u;
+}
+
+float uint2float(const unsigned int x_int, const float x_min, const float x_max, const int bits)
+    // converts unsigned int to float, given range and number of bits
+{
+    const iu_t input = { .u = x_int };
+    const float span = x_max - x_min;
+    const float offset = x_min;
+    return ((input.i * span) / ((1 << bits) - 1)) + offset;
+}
+
+#endif
 
 void limitNorm(float &x, float &y, const float limit)
     // scales the lenght of vector (x, y) to be <= limit
@@ -10,24 +50,6 @@ void limitNorm(float &x, float &y, const float limit)
         x *= limit / norm;
         y *= limit / norm;
     }
-}
-
-unsigned int floatToUint(const float x, const float x_min, const float x_max, const int bits)
-    // converts a float to an unsigned int, given range and number of bits
-{
-    const float span = x_max - x_min;
-    const float offset = x_min;
-    const iu_t output = { .i = (x - offset) * ((1 << bits) - 1) / span };
-    return output.u;
-}
-
-float uintToFloat(const unsigned int x_int, const float x_min, const float x_max, const int bits)
-    // converts unsigned int to float, given range and number of bits
-{
-    const iu_t input = { .u = x_int };
-    const float span = x_max - x_min;
-    const float offset = x_min;
-    return ((input.i * span) / ((1 << bits) - 1)) + offset;
 }
 
 float middle(const float x, const float y, const float z)
