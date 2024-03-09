@@ -9,7 +9,6 @@
 #include "changelog.h"
 
 #define USE_PID             false
-#define DEBUG_TXMSG         false
 #define RUNTIME_TICK_MAX    1000000
 #define Tick_dt             0.01
 
@@ -40,9 +39,6 @@
 
 #ifndef USE_PID
 #define USE_PID     0
-#endif
-#ifndef DEBUG_TXMSG
-#define DEBUG_TXMSG 0
 #endif
 
 struct UCh8 {

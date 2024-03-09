@@ -39,6 +39,7 @@ Timer                   timer;
 Ticker                  send_can;
 Serial                  pc(PA_2, PA_3);
 
+static bool             debug               = false;
 static bool             h_shifted           = false;
 static Mode             mode                = SetzeroMode;
 static long int         turn_cnt            = -2;
@@ -310,9 +311,9 @@ void serial_isr()
         break;
     }
 
-#if DEBUG_TXMSG
-    overwatch();
-#endif
+    if (debug) {
+        overwatch();
+    }
     transmitMsg();
 }
 
@@ -491,8 +492,13 @@ void prompt(const char *const msg)
 
     sscanf_res = sscanf(msg, "%s", op_name);
     if (sscanf_res == 1) {
-        if (areSameStr(op_name, "skip")) {
-            res = true;
+        if (areSameStr(op_name, "debug")) {
+            if (debug) {
+                debug = false;
+            }
+            else {
+                debug = true;
+            }
             goto RET;
         }
         else if (areSameStr(op_name, "jump")) {

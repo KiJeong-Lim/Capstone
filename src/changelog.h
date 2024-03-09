@@ -35,10 +35,16 @@ Fix: Remove warning "single-precision operand implicitly converted to double-pre
 Modify: Change the default operation
     -- Details:
         Before:
-            void                    (*operation)(void)  = standUp;
+            void (*operation)(void) = standUp;
         After:
-            void                    (*operation)(void)  = standUp2;
+            void (*operation)(void) = standUp2;
+Modify: add command `standUp2` in function `prompt` in `main.cpp`
+*/
 
+/* VERSION=2.7.2
+Add: variable `static bool debug = false;` in `main.cpp`
+Remove: macro constant `DEBUG_TXMSG` in `capstone.hpp`
+Modify: add command `debug` in function `prompt` in `main.cpp`
 */
 
 #endif
