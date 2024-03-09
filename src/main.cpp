@@ -173,8 +173,8 @@ void overwatch()
 
     if (gear_dbg.go()) {
         for (int i = 0; i < len(motor_handlers); i++) {
-            const Motor::PutData data = decode16(&motor_handlers[i].tx_msg.data);
-            printf("\n\r%%txmsg#%d={.p=%.4lf,.v=%.4lf,.kp=%.4lf,.kd=%.4lf,.t_ff=%.4lf}\n", motor_handlers[i].motor_id, data.p, data.v, data.kp, data.kd, data.t_ff);
+            const Motor::PutData data = decodetx(&motor_handlers[i].tx_msg.data);
+            printf("\n\r%%motor#%d={.p=%.4lf,.v=%.4lf,.kp=%.4lf,.kd=%.4lf,.t_ff=%.4lf}\n", motor_handlers[i].motor_id, data.p, data.v, data.kp, data.kd, data.t_ff);
         }
         printf("\n");
     }
@@ -213,7 +213,7 @@ void standUp()
     };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_into_motor = decode16(&lines[(motor_handlers[i].id() - 1) % 3]); // SENSITIVE POINT
+        motor_handlers[i].data_into_motor = decodetx(&lines[(motor_handlers[i].id() - 1) % 3]); // SENSITIVE POINT
     }
 }
 

@@ -41,9 +41,7 @@
 #define USE_PID     0
 #endif
 
-struct UCh8 {
-    unsigned char data[8];
-};
+struct UCh8 { unsigned char data[8]; };
 
 typedef enum Mode {
     SetzeroMode = 0,
@@ -52,6 +50,8 @@ typedef enum Mode {
     ReadcmdMode = 3,
     SitdownMode = 4,
 } Mode_t;
+
+struct GetDataWithId { int motor_id; float p; float v; float i; };
 
 class Motor {
 public:
@@ -178,11 +178,12 @@ extern int      special_key_flag;
 extern Serial   pc;
 extern Timer    timer;
 
-Motor::PutData  decode16(const unsigned char (*input_data)[8]);
-UCh8            encode16(const Motor::PutData &input_data);
+Motor::PutData  decodetx(const unsigned char (*input_data)[8]);
+UCh8            encodetx(const Motor::PutData &input_data);
+GetDataWithId   decoderx(const unsigned char *output_data);
 void            limitNorm(float &x, float &y, float limit);
-int             float2int(float x, float x_min, float x_max, int bits);
-float           int2float(int x_int, float x_min, float x_max, int bits);
+unsigned int    float2uint(float x, float x_min, float x_max, int bits);
+float           uint2float(unsigned int x_int, float x_min, float x_max, int bits);
 float           middle(float x, float y, float z);
 double          getTime(void);
 bool            areSameStr(const char *lhs, const char *rhs);

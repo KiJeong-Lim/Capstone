@@ -1,19 +1,19 @@
 #include "capstone.hpp"
 
-int float2int(const float x, const float x_min, const float x_max, const int bits)
+unsigned int float2uint(const float x, const float x_min, const float x_max, const int bits)
     // converts a float to an unsigned int, given range and number of bits
 {
-    float span = x_max - x_min;
-    float offset = x_min;
-    return (int)((x-offset)*((float)((1<<bits)-1))/span);
+    const float span = x_max - x_min;
+    const float offset = x_min;
+    return (static_cast<int>((x - offset) * ((1 << bits) - 1) / span));
 }
 
-float int2float(const int x_int, const float x_min, const float x_max, const int bits)
+float uint2float(const unsigned int x_int, const float x_min, const float x_max, const int bits)
     // converts unsigned int to float, given range and number of bits
 {
-    float span = x_max - x_min;
-    float offset = x_min;
-    return ((float)x_int)*span/((float)((1<<bits)-1))+offset;
+    const float span = x_max - x_min;
+    const float offset = x_min;
+    return (((static_cast<int>(x_int) * span) / ((1 << bits) - 1)) + offset);
 }
 
 void limitNorm(float &x, float &y, const float limit)
