@@ -6,9 +6,10 @@
 
 #include "mbed.h"
 
-#define VERSION             "2.5.0 (2024-03-08 12:00)"
+#include "changelog.h"
 
 #define USE_PID             false
+#define DEBUG_TXMSG         false
 #define RUNTIME_TICK_MAX    1000000
 #define Tick_dt             0.01
 
@@ -38,7 +39,10 @@
 #define min(x,y)    (((y) >= (x)) ? (x) : (y))
 
 #ifndef USE_PID
-#define USE_PID 0
+#define USE_PID     0
+#endif
+#ifndef DEBUG_TXMSG
+#define DEBUG_TXMSG 0
 #endif
 
 struct UCh8 {
@@ -172,8 +176,8 @@ public:
     void sendMsg(void);
 };
 
-extern const
-Motor::PutData  reftbl1[1000][3];
+extern const Motor::PutData reftbl1[1000][3];
+
 extern int      special_key_flag;
 extern Serial   pc;
 extern Timer    timer;
@@ -181,8 +185,8 @@ extern Timer    timer;
 Motor::PutData  decode16(const unsigned char (*input_data)[8]);
 UCh8            encode16(const Motor::PutData &input_data);
 void            limitNorm(float &x, float &y, float limit);
-unsigned int    float2uint(float x, float x_min, float x_max, int bits);
-float           uint2float(unsigned int x_int, float x_min, float x_max, int bits);
+int             float2int(float x, float x_min, float x_max, int bits);
+float           int2float(int x_int, float x_min, float x_max, int bits);
 float           middle(float x, float y, float z);
 double          getTime(void);
 bool            areSameStr(const char *lhs, const char *rhs);

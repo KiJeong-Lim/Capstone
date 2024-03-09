@@ -28,8 +28,7 @@ void pack_cmd(txMsg_t *msg, double p, double v, double kp, double kd, double t_f
 
 void loop(int x)
 {
-#if 1
-
+#if 0
     if (0<x && x<99) {
         pack_cmd(&txMsg1, 0, 0, 0, 0, 0);
         pack_cmd(&txMsg2, 0, 0, 0, 0, 0);
@@ -43,7 +42,7 @@ void loop(int x)
         pack_cmd(&txMsg2, -0.05, 0, 10, 1.5, -2);
         pack_cmd(&txMsg3, 0, 0, 10, 1, 0);
     }
-#elif 0
+#elif 1
     if (0<x && x<99) {
         pack_cmd(&txMsg1, 0, 0, 0, 0, 0);
         pack_cmd(&txMsg2, 0, 0, 0, 0, 0);
@@ -102,8 +101,9 @@ void serial_isr()
 {
     int x = 0, i = 0;
 
-    for (x = 0; x < 400; x++) {
+    for (x = 0; x < 1000; x++) {
         loop(x);
+#if 0
         for (i = 0; i < sizeof(txMsg) / sizeof(txMsg[0]); i++) {
             fprintf(file, "%lf\t", txMsg[i].p);
             fprintf(file, "%lf\t", txMsg[i].v);
@@ -111,6 +111,15 @@ void serial_isr()
             fprintf(file, "%lf\t", txMsg[i].kd);
             fprintf(file, "%lf\t", txMsg[i].t_ff);
         }
+#elif 1
+        for (i = 0; i < sizeof(txMsg) / sizeof(txMsg[0]); i++) {
+            fprintf(file, "%lf\t", txMsg[i].p / 4.0);
+            fprintf(file, "%lf\t", txMsg[i].v / 4.0);
+            fprintf(file, "%lf\t", txMsg[i].kp / 4.0);
+            fprintf(file, "%lf\t", txMsg[i].kd / 4.0);
+            fprintf(file, "%lf\t", txMsg[i].t_ff / 4.0);
+        }
+#endif
         fprintf(file, " where x = %d\n", x);
     }
 }

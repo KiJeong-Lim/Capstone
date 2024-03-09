@@ -4,18 +4,18 @@ Motor::PutData decode16(const unsigned char (*const encoded_data)[8])
 {
     const unsigned char *const lines = *encoded_data;
 
-    const unsigned int p_int  = (lines[0] << 8) | (lines[1]);
-    const unsigned int v_int  = (lines[2] << 4) | (lines[3] >> 4);
-    const unsigned int kp_int = ((lines[3] & 0x0F) << 8) | (lines[4]);
-    const unsigned int kd_int = (lines[5] << 4) | (lines[6] >> 4);
-    const unsigned int t_int  = ((lines[6] & 0x0F) << 8) | (lines[7]);
+    const int p_int  = (lines[0] << 8) | (lines[1]);
+    const int v_int  = (lines[2] << 4) | (lines[3] >> 4);
+    const int kp_int = ((lines[3] & 0x0F) << 8) | (lines[4]);
+    const int kd_int = (lines[5] << 4) | (lines[6] >> 4);
+    const int t_int  = ((lines[6] & 0x0F) << 8) | (lines[7]);
 
     const Motor::PutData res = {
-        .p    = uint2float(p_int, P_MIN, P_MAX, 16),
-        .v    = uint2float(v_int, V_MIN, V_MAX, 12),
-        .kp   = uint2float(kp_int, KP_MIN, KP_MAX, 12),
-        .kd   = uint2float(kd_int, KD_MIN, KD_MAX, 12),
-        .t_ff = uint2float(t_int, T_MIN, T_MAX, 12),
+        .p    = int2float(p_int, P_MIN, P_MAX, 16),
+        .v    = int2float(v_int, V_MIN, V_MAX, 12),
+        .kp   = int2float(kp_int, KP_MIN, KP_MAX, 12),
+        .kd   = int2float(kd_int, KD_MIN, KD_MAX, 12),
+        .t_ff = int2float(t_int, T_MIN, T_MAX, 12),
     };
 
     return res;
@@ -31,11 +31,11 @@ UCh8 encode16(const Motor::PutData &data_into_motor)
     const float kd_des   = middle(KD_MIN, data_into_motor.kd, KD_MAX);
     const float t_ff_des = middle(T_MIN, data_into_motor.t_ff, T_MAX);
 
-    const unsigned int p_int    = float2uint(p_des, P_MIN, P_MAX, 16);
-    const unsigned int v_int    = float2uint(v_des, V_MIN, V_MAX, 12);
-    const unsigned int kp_int   = float2uint(kp_des, KP_MIN, KP_MAX, 12);
-    const unsigned int kd_int   = float2uint(kd_des, KD_MIN, KD_MAX, 12);
-    const unsigned int t_ff_int = float2uint(t_ff_des, T_MIN, T_MAX, 12);
+    const int p_int    = float2int(p_des, P_MIN, P_MAX, 16);
+    const int v_int    = float2int(v_des, V_MIN, V_MAX, 12);
+    const int kp_int   = float2int(kp_des, KP_MIN, KP_MAX, 12);
+    const int kd_int   = float2int(kd_des, KD_MIN, KD_MAX, 12);
+    const int t_ff_int = float2int(t_ff_des, T_MIN, T_MAX, 12);
 
     res.data[0] = p_int >> 8;
     res.data[1] = p_int & 0xFF;
@@ -71,9 +71,9 @@ void Motor::unpack(const CANMessage &can_msg)
     const unsigned int v_int = (can_msg.data[3] << 4) | (can_msg.data[4] >> 4);
     const unsigned int i_int = ((can_msg.data[4] & 0x0F) << 8) | can_msg.data[5];
     // convert unsigned ints to floats
-    const float p = uint2float(p_int, P_MIN, P_MAX, 16);
-    const float v = uint2float(v_int, V_MIN, V_MAX, 12);
-    const float i = uint2float(i_int, I_MIN, I_MAX, 12);
+    const float p = int2float(p_int, P_MIN, P_MAX, 16);
+    const float v = int2float(v_int, V_MIN, V_MAX, 12);
+    const float i = int2float(i_int, I_MIN, I_MAX, 12);
     // update p, v, i
     if (this->motor_id == id) {
         this->data_from_motor.p = p;

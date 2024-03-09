@@ -9,6 +9,7 @@ static void             transmitMsg(void);
 static void             start(void);
 static void             halt(void);
 static void             observe(void);
+static void             overwatch(void);
 
 static bool             loadRefTbl1(bool until);
 
@@ -18,6 +19,8 @@ static void             standUp(void);
 static void             jump1(void);
 static void             standUp1(void);
 #endif
+static void             standUp2(void);
+
 static void             serial_isr(void);
 
 static void             interact(void);
@@ -163,6 +166,19 @@ void observe()
     }
 }
 
+void overwatch()
+{
+    static Gear gear_dbg = Gear(20);
+
+    if (gear_dbg.go()) {
+        for (int i = 0; i < len(motor_handlers); i++) {
+            const Motor::PutData data = decode16(&motor_handlers[i].tx_msg.data);
+            printf("\n\r%%txmsg#%d={.p=%.4lf,.v=%.4lf,.kp=%.4lf,.kd=%.4lf,.t_ff=%.4lf}\n", motor_handlers[i].motor_id, data.p, data.v, data.kp, data.kd, data.t_ff);
+        }
+        printf("\n");
+    }
+}
+
 bool loadRefTbl1(const bool until)
 {
     static Motor::PutData last_data[len(motor_handlers)];
@@ -230,6 +246,19 @@ void standUp1()
 }
 #endif
 
+void standUp2()
+{
+    standUp();
+
+    for (int i = 0; i < len(motor_handlers); i++) {
+        motor_handlers[i].data_into_motor.p *= 0.25;
+        motor_handlers[i].data_into_motor.v *= 0.25;
+        motor_handlers[i].data_into_motor.kp *= 0.25;
+        motor_handlers[i].data_into_motor.kd *= 0.25;
+        motor_handlers[i].data_into_motor.t_ff *= 0.25;
+    }
+}
+
 void serial_isr()
 {
     switch (mode) {
@@ -237,8 +266,9 @@ void serial_isr()
         if (turn_cnt > RUNTIME_TICK_MAX) {
             turn_cnt = -2;
             halt();
+            break;
         }
-        else if (turn_cnt >= 0) {
+        if (turn_cnt >= 0) {
             operation();
             observe();
             turn_cnt++;
@@ -280,6 +310,9 @@ void serial_isr()
         break;
     }
 
+#if DEBUG_TXMSG
+    overwatch();
+#endif
     transmitMsg();
 }
 
