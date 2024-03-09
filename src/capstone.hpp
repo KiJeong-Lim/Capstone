@@ -43,15 +43,9 @@
 
 struct UCh8 { unsigned char data[8]; };
 
-typedef enum Mode {
-    SetzeroMode = 0,
-    RuntimeMode = 1,
-    ObserveMode = 2,
-    ReadcmdMode = 3,
-    SitdownMode = 4,
-} Mode_t;
-
 struct GetDataWithId { int motor_id; float p; float v; float i; };
+
+typedef enum { SetzeroMode = 0, RuntimeMode = 1, ObserveMode = 2, ReadcmdMode = 3, SitdownMode = 4, } Mode_t;
 
 class Motor {
 public:

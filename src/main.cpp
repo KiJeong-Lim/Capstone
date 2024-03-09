@@ -41,7 +41,7 @@ Serial                  pc(PA_2, PA_3);
 
 static bool             debug               = false;
 static bool             h_shifted           = false;
-static Mode             mode                = SetzeroMode;
+static Mode_t           mode                = SetzeroMode;
 static long int         turn_cnt            = -2;
 void                    (*operation)(void)  = standUp2;
 static const int        count_down_MAX_CNT  = -100;
