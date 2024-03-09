@@ -42,7 +42,8 @@ Modify: add command `standUp2` in function `prompt` in `main.cpp`
 */
 
 /* VERSION=2.7.2
-Add: variable `static bool debug = false;` in `main.cpp`
+Add: variable `debug` in `main.cpp`
+    -- Details: static bool debug = false;
 Remove: macro constant `DEBUG_TXMSG` in `capstone.hpp`
 Modify: add command `debug` in function `prompt` in `main.cpp`
 */
