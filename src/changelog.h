@@ -1,5 +1,5 @@
 #ifndef VERSION
-#define VERSION "2.7.2 (2024-03-08 20:00)"
+#define VERSION "2.7.3 (2024-03-09 00:00)"
 
 /* VERSION=2.6.0
 Modify: roll back functions `float2uint` and `uint2float`
@@ -46,6 +46,14 @@ Add: variable `debug` in `main.cpp`
     -- Details: static bool debug = false;
 Remove: macro constant `DEBUG_TXMSG` in `capstone.hpp`
 Modify: add command `debug` in function `prompt` in `main.cpp`
+*/
+
+/* VERSION=2.7.3
+Modify: Rename: `int2float` -> `uint2float`, `float2int` -> `float2uint`
+Remove: functions `encode16`, `decode16`
+Add: functions `encodetx`, `decodetx`, `encoderx`
+Add: struct `GetDataWithId`
+    -- Details: struct GetDataWithId { int motor_id; float p; float v; float i; };
 */
 
 #endif
