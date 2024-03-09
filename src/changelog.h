@@ -1,5 +1,5 @@
 #ifndef VERSION
-#define VERSION "2.7.3 (2024-03-09 00:00)"
+#define VERSION "2.7.4 (2024-03-10 00:00)"
 
 /* VERSION=2.6.0
 Modify: roll back functions `float2uint` and `uint2float`
@@ -55,6 +55,10 @@ Add: functions `encodetx`, `decodetx`, `encoderx`
 Add: struct `GetDataWithId`
     -- Details: struct GetDataWithId { int motor_id; float p; float v; float i; };
 Add: Global Declartion of variables: `terminal`, `send_can`
+*/
+
+/* VERSION=2.7.4
+Modify: Add the `volatile` type qualifier in `PIDController`
 */
 
 #endif

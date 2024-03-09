@@ -65,13 +65,13 @@ class PIDController {
 public:
     typedef float Real_t;
 private:
-    Real_t last_time;
-    Real_t last_error;
-    Real_t error_sum;
+    volatile Real_t last_time;
+    volatile Real_t last_error;
+    volatile Real_t error_sum;
 public:
-    Real_t Kp;
-    Real_t Ki;
-    Real_t Kd;
+    volatile Real_t Kp;
+    volatile Real_t Ki;
+    volatile Real_t Kd;
     volatile Real_t *PV;
     volatile Real_t *MV;
     volatile Real_t *SP;
@@ -167,22 +167,21 @@ public:
 };
 
 extern const Motor::PutData reftbl1[1000][3];
+extern int                  special_key_flag;
+extern IO                   terminal;
+extern Timer                timer;
+extern Ticker               send_can;
+extern Serial               pc;
 
-extern int      special_key_flag;
-extern IO       terminal;
-extern Timer    timer;
-extern Ticker   send_can;
-extern Serial   pc;
-
-Motor::PutData  decodetx(const unsigned char (*input_data)[8]);
-UCh8            encodetx(const Motor::PutData &input_data);
-GetDataWithId   decoderx(const unsigned char *output_data);
-void            limitNorm(float &x, float &y, float limit);
-unsigned int    float2uint(float x, float x_min, float x_max, int bits);
-float           uint2float(unsigned int x_int, float x_min, float x_max, int bits);
-float           middle(float x, float y, float z);
-double          getTime(void);
-bool            areSameStr(const char *lhs, const char *rhs);
-bool            inRange(float left, float x, float right);
+Motor::PutData              decodetx(const unsigned char (*input_data)[8]);
+UCh8                        encodetx(const Motor::PutData &input_data);
+GetDataWithId               decoderx(const unsigned char *output_data);
+void                        limitNorm(float &x, float &y, float limit);
+unsigned int                float2uint(float x, float x_min, float x_max, int bits);
+float                       uint2float(unsigned int x_int, float x_min, float x_max, int bits);
+float                       middle(float x, float y, float z);
+double                      getTime(void);
+bool                        areSameStr(const char *lhs, const char *rhs);
+bool                        inRange(float left, float x, float right);
 
 #endif
