@@ -1,5 +1,5 @@
 #ifndef VERSION
-#define VERSION "2.7.0 (2024-03-08 18:00)"
+#define VERSION "2.7.2 (2024-03-08 20:00)"
 
 /* VERSION=2.6.0
 Modify: roll back functions `float2uint` and `uint2float`
