@@ -42,7 +42,7 @@ Serial                  pc(PA_2, PA_3);
 static bool             h_shifted           = false;
 static Mode             mode                = SetzeroMode;
 static long int         turn_cnt            = -2;
-void                    (*operation)(void)  = standUp;
+void                    (*operation)(void)  = standUp2;
 static const int        count_down_MAX_CNT  = -100;
 #if USE_PID
 static long int         PID_START_TICK      = 390;
@@ -251,11 +251,11 @@ void standUp2()
     standUp();
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_into_motor.p *= 0.25;
-        motor_handlers[i].data_into_motor.v *= 0.25;
-        motor_handlers[i].data_into_motor.kp *= 0.25;
-        motor_handlers[i].data_into_motor.kd *= 0.25;
-        motor_handlers[i].data_into_motor.t_ff *= 0.25;
+        motor_handlers[i].data_into_motor.p *= 0.25f;
+        motor_handlers[i].data_into_motor.v *= 0.25f;
+        motor_handlers[i].data_into_motor.kp *= 0.25f;
+        motor_handlers[i].data_into_motor.kd *= 0.25f;
+        motor_handlers[i].data_into_motor.t_ff *= 0.25f;
     }
 }
 
@@ -517,6 +517,11 @@ void prompt(const char *const msg)
             goto RET;
         }
 #endif
+        else if (areSameStr(op_name, "standUp2")) {
+            operation = standUp2;
+            res = true;
+            goto RET;
+        }
         else {
             res = false;
             goto RET;

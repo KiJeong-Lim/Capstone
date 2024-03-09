@@ -13,8 +13,32 @@ Modify: roll back functions `float2uint` and `uint2float`
 */
 
 /* VERSION=2.7.0
-Rename: `float2uint` -> `float2int`, `uint2float` -> `int2float`
+Change: Rename `float2uint` -> `float2int`, `uint2float` -> `int2float`
 Add: function `standUp2`
+*/
+
+/* VERSION=2.7.1
+Fix: Remove warning "single-precision operand implicitly converted to double-precision" by changing 0.25 -> 0.25f
+    -- Details:
+        void standUp2()
+        {
+            standUp();
+
+            for (int i = 0; i < len(motor_handlers); i++) {
+                motor_handlers[i].data_into_motor.p *= 0.25f;
+                motor_handlers[i].data_into_motor.v *= 0.25f;
+                motor_handlers[i].data_into_motor.kp *= 0.25f;
+                motor_handlers[i].data_into_motor.kd *= 0.25f;
+                motor_handlers[i].data_into_motor.t_ff *= 0.25f;
+            }
+        }
+Modify: Change the default operation
+    -- Details:
+        Before:
+            void                    (*operation)(void)  = standUp;
+        After:
+            void                    (*operation)(void)  = standUp2;
+
 */
 
 #endif
