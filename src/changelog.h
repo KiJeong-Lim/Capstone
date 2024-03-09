@@ -54,6 +54,7 @@ Remove: functions `encode16`, `decode16`
 Add: functions `encodetx`, `decodetx`, `encoderx`
 Add: struct `GetDataWithId`
     -- Details: struct GetDataWithId { int motor_id; float p; float v; float i; };
+Add: Global Declartion of variables: `terminal`, `send_can`
 */
 
 #endif

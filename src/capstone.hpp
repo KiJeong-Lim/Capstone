@@ -169,8 +169,10 @@ public:
 extern const Motor::PutData reftbl1[1000][3];
 
 extern int      special_key_flag;
-extern Serial   pc;
+extern IO       terminal;
 extern Timer    timer;
+extern Ticker   send_can;
+extern Serial   pc;
 
 Motor::PutData  decodetx(const unsigned char (*input_data)[8]);
 UCh8            encodetx(const Motor::PutData &input_data);
