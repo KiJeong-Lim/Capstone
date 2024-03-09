@@ -75,8 +75,8 @@ public:
     volatile Real_t *PV;
     volatile Real_t *MV;
     volatile Real_t *SP;
-    Real_t MV_MIN;
-    Real_t MV_MAX;
+    const Real_t MV_MIN;
+    const Real_t MV_MAX;
 public:
     PIDController(Real_t Kp, Real_t Ki, Real_t Kd, volatile Real_t *PV, volatile Real_t *MV, volatile Real_t *SP, Real_t MV_MIN, Real_t MV_MAX);
     bool init(void);
