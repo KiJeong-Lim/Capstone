@@ -82,7 +82,13 @@ CANManager::CANManager(const PinName &rd, const PinName &td, MotorHandler **cons
 
 void CANManager::init(const unsigned int id, const unsigned int mask, void (*const to_be_attached)(void))
 {
+    const Motor::PutData zero_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0 };
+    const UCh8 data = encodeTx(zero_data);
     can_handle.init(id, mask, to_be_attached);
+    for (int i = 0; i < motor_handlers_vec_size; i++) {
+        motor_handlers_vec_ptr[i]->putTxMsg(data);
+        can_handle.write(motor_handlers_vec_ptr[i]->tx_msg);
+    }
 }
 
 void CANManager::onMsgReceived()

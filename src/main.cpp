@@ -29,8 +29,6 @@ static void             serial_isr(void);
 static void             interact(void);
 static void             prompt(const char *msg);
 
-static int              id_to_index(int id);
-
 #if USE_PID
 static void             pidInit(void);
 static void             pidCompute(void);
@@ -523,7 +521,13 @@ void prompt(const char *const msg)
 #if USE_PID
     sscanf_res = sscanf(msg, "%s %d = %f", var_name, &motor_id, &value);
     if (sscanf_res == 3) {
-        const int idx = id_to_index(motor_id);
+        int idx = -1;
+        for (int i = 0; i < len(motor_handlers); i++) {
+            if (motor_handlers[i].id() == id) {
+                idx = i;
+                break;
+            }
+        }
         if (idx < 0) {
             res = false;
             goto RET;
@@ -622,17 +626,6 @@ RET:
     else {
         printf("\n\rUnknown command or wrong command\n");
     }
-}
-
-int id_to_index(const int id)
-    // finds the index of the motor #`id` in `motor_handlers`
-{
-    for (int i = 0; i < len(motor_handlers); i++) {
-        if (motor_handlers[i].id() == id) {
-            return i;
-        }
-    }
-    return -1;
 }
 
 #if USE_PID
