@@ -1,23 +1,23 @@
 #include "capstone.hpp"
 
-unsigned int float2uint(const float x, const float x_min, const float x_max, const int bits)
-    // converts a float to an unsigned int, given range and number of bits
+/// converts float to int, given range and number of bits
+int float2int(const float x, const float x_min, const float x_max, const int bits) // don't touch me
 {
     const float span = x_max - x_min;
     const float offset = x_min;
-    return (static_cast<int>((x - offset) * ((1 << bits) - 1) / span));
+    return (int)((x - offset) * ((float)((1 << bits) - 1)) / span);
 }
 
-float uint2float(const unsigned int x_int, const float x_min, const float x_max, const int bits)
-    // converts unsigned int to float, given range and number of bits
+/// converts unsigned int to float, given range and number of bits
+float int2float(const int x_int, const float x_min, const float x_max, const int bits) // don't touch me
 {
     const float span = x_max - x_min;
     const float offset = x_min;
-    return (((static_cast<int>(x_int) * span) / ((1 << bits) - 1)) + offset);
+    return ((float)x_int) * span / ((float)((1 << bits) - 1)) + offset;
 }
 
+/// scales the lenght of vector (x, y) to be <= limit
 void limitNorm(float &x, float &y, const float limit)
-    // scales the lenght of vector (x, y) to be <= limit
 {
     const float norm = sqrt(x * x + y * y);
     if (norm > limit) {
@@ -26,8 +26,8 @@ void limitNorm(float &x, float &y, const float limit)
     }
 }
 
+/// returns the 2nd largest value among x, y and z
 float middle(const float x, const float y, const float z)
-    // returns the 2nd largest value among x, y and z
 {
     if (y <= x && x <= z || z <= x && x <= y) {
         return x;
@@ -38,14 +38,14 @@ float middle(const float x, const float y, const float z)
     return z;
 }
 
+/// returns the current time
 double getTime()
-    // returns the current time
 {
     return timer.read();
 }
 
+/// returns whether the two astrings are the same
 bool areSameStr(const char *const lhs, const char *const rhs)
-    // returns whether the two astrings are the same
 {
     if (lhs == NULL || rhs == NULL) {
         return false;
@@ -53,8 +53,8 @@ bool areSameStr(const char *const lhs, const char *const rhs)
     return strcmp(lhs, rhs) == 0;
 }
 
+/// returns wheter x is in the interval [left, right]
 bool inRange(const float left, const float x, const float right)
-    // returns wheter x is in the interval [left, right]
 {
     return (left <= x) && (x <= right);
 }

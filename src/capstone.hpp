@@ -9,7 +9,7 @@
 #include "changelog.h"
 
 #define USE_PID             false
-#define RUNTIME_TICK_MAX    1000000
+#define RUNTIME_TICK_MAX    1000
 #define Tick_dt             0.01
 
 #define ESC                 (27)
@@ -173,12 +173,12 @@ extern Timer                timer;
 extern Ticker               send_can;
 extern Serial               pc;
 
-Motor::PutData              decodetx(const unsigned char (*input_data)[8]);
-UCh8                        encodetx(const Motor::PutData &input_data);
-GetDataWithId               decoderx(const unsigned char *output_data);
+Motor::PutData              decodeTx(const unsigned char (*input_data)[8]);
+UCh8                        encodeTx(const Motor::PutData &input_data);
+GetDataWithId               decodeRx(const unsigned char *output_data);
 void                        limitNorm(float &x, float &y, float limit);
-unsigned int                float2uint(float x, float x_min, float x_max, int bits);
-float                       uint2float(unsigned int x_int, float x_min, float x_max, int bits);
+int                         float2int(float x, float x_min, float x_max, int bits);
+float                       int2float(int x_int, float x_min, float x_max, int bits);
 float                       middle(float x, float y, float z);
 double                      getTime(void);
 bool                        areSameStr(const char *lhs, const char *rhs);

@@ -2,6 +2,8 @@
 
 #define mkCANManager(rd,td,transceiver) (CANManager(rd, td, transceiver, len(transceiver)))
 
+static void             printManual(void);
+
 static void             onMsgReceived1(void);
 static void             onMsgReceived2(void);
 static void             transmitMsg(void);
@@ -19,6 +21,7 @@ static void             standUp(void);
 static void             jump1(void);
 static void             standUp1(void);
 #endif
+static void             jump2(void);
 static void             standUp2(void);
 
 static void             serial_isr(void);
@@ -40,10 +43,9 @@ Ticker                  send_can;
 Serial                  pc(PA_2, PA_3);
 
 static bool             debug               = false;
-static bool             h_shifted           = false;
 static Mode_t           mode                = SetzeroMode;
 static long int         turn_cnt            = -2;
-void                    (*operation)(void)  = standUp2;
+void                    (*operation)(void)  = jump2;
 static const int        count_down_MAX_CNT  = -100;
 #if USE_PID
 static long int         PID_START_TICK      = 390;
@@ -89,14 +91,7 @@ int main(void)
         cans[i].init(0x01 << 21, 0xFFE00004, onMsgReceived[i]);
     }
 
-    for (int i = 0; i < len(motor_handlers); i++) {
-        const Motor::PutData init_data = { .p = 0.0, .v = 0.0, .kp = 0.0, .kd = 0.0, .t_ff = 0.0, };
-        motor_handlers[i].data_into_motor = init_data;
-    }
-    transmitMsg();
-
-    printf("\n");
-    printf("\r<< %s >>\n", CAPSTONE);
+    printf("\n\r<< %s >>\n", CAPSTONE);
     printf("\rVERSION = %s\n", VERSION);
 #if USE_PID
     printf("\rUSE_PID = true\n");
@@ -107,10 +102,51 @@ int main(void)
     printf("\rTick_dt = %lf[s]\n", Tick_dt);
     printf("\n");
 
+    printManual();
+
     turn_cnt = -2;
     terminal.setPrompt(prompt);
     timer.start();
     send_can.attach(serial_isr, Tick_dt);
+}
+
+void printManual()
+{
+    printf(
+        "\r[[MANUAL]]\n"
+        "\r[#1 Tera term setting]\n"
+        "\r  SERIAL.BAUDRATE    = 921600\n"
+        "\r  TERMINAL.NEWLINE.R = LF\n"
+        "\r  TERMINAL.NEWLINE.M = LF\n"
+        "\r[#2 Key and action]\n"
+        "\r  r                  = Start operation\n"
+        "\r  b                  = Send p=0,v=0,kp=0,kd=0,t=0\n"
+        "\r  o                  = Print angles and angular velocities\n"
+        "\r  (Back space)       = Turn the debugger off\n"
+        "\r  (Esc)              = Let all motors exit motor mode\n"
+        "\r  m                  = Let all motors enter motor mode\n"
+        "\r  1                  = Let 1st motor be rest\n"
+        "\r  1                  = Let 2nd motor be rest\n"
+        "\r  2                  = Let 3rd motor be rest\n"
+        "\r  3                  = Let 4th motor be rest\n"
+        "\r  4                  = Let 5th motor be rest\n"
+        "\r  5                  = Let 6th motor be rest\n"
+        "\r  6                  = Read command\n"
+        "\r  (Space bar)        = Turn all motors off\n"
+        "\r  (Shift+)$id        = Let $id-th motor enter motor mode\n"
+        "\r  z                  = Let motor set zero\n"
+        "\r  .                  = Decrease p,v,kp,kd,t -> 0\n"
+        "\r[#3 Command]\n"
+        "\r  (Esc)              = Quit reading\n"
+        "\r  debug              = Turn the debugger on\n"
+        "\r  pid start = $n     = Let pid start be $n\n"
+        "\r  Kp $id = $val      = Set Kp of $id-th motor to $val\n"
+        "\r  Ki $id = $val      = Set Ki of $id-th motor to $val\n"
+        "\r  Kd $id = $val      = Set Kd of $id-th motor to $val\n"
+        "\r  $operation         = Let operation be $operation\n"
+        "\r  help               = Print manual\n"
+    );
+    printf("\n");
 }
 
 void onMsgReceived1()
@@ -132,6 +168,7 @@ void transmitMsg()
 
 void start()
 {
+    turn_cnt = 0;
     return;
 }
 
@@ -172,9 +209,22 @@ void overwatch()
     static Gear gear_dbg = Gear(20);
 
     if (gear_dbg.go()) {
-        for (int i = 0; i < len(motor_handlers); i++) {
-            const Motor::PutData data = decodetx(&motor_handlers[i].tx_msg.data);
-            printf("\n\r%%motor#%d={.p=%.4lf,.v=%.4lf,.kp=%.4lf,.kd=%.4lf,.t_ff=%.4lf}\n", motor_handlers[i].motor_id, data.p, data.v, data.kp, data.kd, data.t_ff);
+        if (turn_cnt < 0) {
+            printf("\t1\t2\t3\t4\t5\t6\t7\t8\n");
+            for (int i = 0; i < len(motor_handlers); i++) {
+                const unsigned char *const data = motor_handlers[i].tx_msg.data;
+                printf("#%d\t", i);
+                for (int j = 0; j < len(motor_handlers[i].tx_msg.data); j++) {
+                    printf("%X\t", motor_handlers[i].tx_msg.data[j]);
+                }
+                printf("\n");
+            }
+        }
+        else {
+            for (int i = 0; i < len(motor_handlers); i++) {
+                const Motor::PutData data = decodeTx(&motor_handlers[i].tx_msg.data);
+                printf("\n\r%%motor#%d = { .p=%.2lf, .v=%.2lf, .kp=%.2lf, .kd=%.2lf, .t_ff=%.2lf }\n", motor_handlers[i].motor_id, data.p, data.v, data.kp, data.kd, data.t_ff);
+            }
         }
         printf("\n");
     }
@@ -213,7 +263,7 @@ void standUp()
     };
 
     for (int i = 0; i < len(motor_handlers); i++) {
-        motor_handlers[i].data_into_motor = decodetx(&lines[(motor_handlers[i].id() - 1) % 3]); // SENSITIVE POINT
+        motor_handlers[i].data_into_motor = decodeTx(&lines[(motor_handlers[i].id() - 1) % 3]); // SENSITIVE POINT
     }
 }
 
@@ -246,6 +296,11 @@ void standUp1()
     }
 }
 #endif
+
+void jump2()
+{
+    loadRefTbl1(turn_cnt < 199);
+}
 
 void standUp2()
 {
@@ -319,7 +374,7 @@ void serial_isr()
 
 void interact()
 {
-    int ch = 0;
+    int ch = 0, k = -1;
 
     if (mode == ReadcmdMode) {
         const bool prompt_routine_breaked = terminal.runPrompt();
@@ -334,6 +389,9 @@ void interact()
 
     if (special_key_flag == NOT_A_SPECIAL_KEY) {
         switch (ch) {
+        case '\b':
+            debug = false;
+            return;
         case ESC:
             printf("\n\r%% Exiting motor mode %%\n");
             for (int i = 0; i < len(motor_handlers); i++) {
@@ -364,31 +422,41 @@ void interact()
         case '4':
         case '5':
         case '6':
-            if (h_shifted) {
-                for (int i = 0; i < len(motor_handlers); i++) {
-                    if (motor_handlers[i].id() + '0' == ch) { // SENSITIVE POINT
-                        const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC, } };
-                        printf("\n\r%% Entering motor mode #%c %%\n", ch);
-                        motor_handlers[i].putTxMsg(msg);
-                        break;
-                    }
+            for (int i = 0; i < len(motor_handlers); i++) {
+                if ("123456"[i] == ch) {
+                    k = i;
+                    break;
                 }
             }
-            else {
-                for (int i = 0; i < len(motor_handlers); i++) {
-                    if (motor_handlers[i].id() + '0' == ch) { // SENSITIVE POINT
-                        const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
-                        printf("\n\r%% Motor #%c rest position %%\n", ch);
-                        motor_handlers[i].putTxMsg(msg);
-                        break;
-                    }
+            if (k >= 0) {
+                const UCh8 msg = { .data = { 0x7F, 0xFF, 0x7F, 0xF0, 0x00, 0x00, 0x07, 0xFF, } };
+                printf("\n\r%% Motor #%c rest position %%\n", ch);
+                motor_handlers[k].putTxMsg(msg);
+            }
+            k = -1;
+            return;
+        case '!':
+        case '@':
+        case '#':
+        case '$':
+        case '%':
+        case '^':
+            for (int i = 0; i < len(motor_handlers); i++) {
+                if ("!@#$%^"[i] == ch) {
+                    k = i;
+                    break;
                 }
             }
+            if (k >= 0) {
+                const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC, } };
+                printf("\n\r%% Entering motor mode: motor #%d %%\n", k);
+                motor_handlers[k].putTxMsg(msg);
+            }
+            k = -1;
             return;
         case 'r':
             printf("\n\r%% Run %%\n");
             mode = RuntimeMode;
-            turn_cnt = 0;
             start();
             return;
         case 'o':
@@ -402,6 +470,18 @@ void interact()
             turn_cnt = -2;
             halt();
             return;
+        case ' ':
+            halt();
+            transmitMsg();
+            for (int i = 0; i < len(motor_handlers); i++) {
+                const UCh8 msg = { .data = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, } };
+                motor_handlers[i].putTxMsg(msg);
+            }
+            transmitMsg();
+            printf("\n\r%% Abort %%\n");
+            mode = SetzeroMode;
+            turn_cnt = -2;
+            return;
         case '.':
             printf("\n\r%% Sit down %%\n");
             mode = SitdownMode;
@@ -412,16 +492,7 @@ void interact()
                 printf("\n\r%% Listen %%\n");
                 mode = ReadcmdMode;
                 turn_cnt = -2;
-            }
-            return;
-        case 'h':
-            if (h_shifted) {
-                printf("\n\r%% h_shifted : true --> false\n");
-                h_shifted = false;
-            }
-            else {
-                printf("\n\r%% h_shifted : false --> true\n");
-                h_shifted = true;
+                debug = false;
             }
             return;
         }
@@ -476,7 +547,7 @@ void prompt(const char *const msg)
         }
     }
 
-    sscanf_res = sscanf(msg, "pid start tick = %d", &pid_start_tick);
+    sscanf_res = sscanf(msg, "pid start = %d", &pid_start_tick);
     if (sscanf_res == 1) {
         if (PID_START_TICK >= 0) {
             PID_START_TICK = pid_start_tick;
@@ -492,7 +563,10 @@ void prompt(const char *const msg)
 
     sscanf_res = sscanf(msg, "%s", op_name);
     if (sscanf_res == 1) {
-        if (areSameStr(op_name, "debug")) {
+        if (areSameStr(op_name, "help")) {
+            printManual();
+        }
+        else if (areSameStr(op_name, "debug")) {
             if (debug) {
                 debug = false;
             }
@@ -523,6 +597,11 @@ void prompt(const char *const msg)
             goto RET;
         }
 #endif
+        else if (areSameStr(op_name, "jump2")) {
+            operation = jump2;
+            res = true;
+            goto RET;
+        }
         else if (areSameStr(op_name, "standUp2")) {
             operation = standUp2;
             res = true;
