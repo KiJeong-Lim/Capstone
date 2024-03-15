@@ -63,22 +63,22 @@ public:
 
 class PIDController {
 public:
-    typedef float Real_t;
+    typedef float volatile Real_t;
 private:
-    volatile Real_t last_time;
-    volatile Real_t last_error;
-    volatile Real_t error_sum;
+    Real_t last_time;
+    Real_t last_error;
+    Real_t error_sum;
 public:
-    volatile Real_t Kp;
-    volatile Real_t Ki;
-    volatile Real_t Kd;
-    volatile Real_t *PV;
-    volatile Real_t *MV;
-    volatile Real_t *SP;
+    Real_t Kp;
+    Real_t Ki;
+    Real_t Kd;
+    Real_t *PV;
+    Real_t *MV;
+    Real_t *SP;
     const Real_t MV_MIN;
     const Real_t MV_MAX;
 public:
-    PIDController(Real_t Kp, Real_t Ki, Real_t Kd, volatile Real_t *PV, volatile Real_t *MV, volatile Real_t *SP, Real_t MV_MIN, Real_t MV_MAX);
+    PIDController(Real_t Kp, Real_t Ki, Real_t Kd, Real_t *PV, Real_t *MV, Real_t *SP, Real_t MV_MIN, Real_t MV_MAX);
     bool init(void);
     bool compute(void);
     Real_t get_last_time(void) const;
