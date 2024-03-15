@@ -212,8 +212,7 @@ void overwatch()
         if (turn_cnt < 0) {
             printf("\t1\t2\t3\t4\t5\t6\t7\t8\n");
             for (int i = 0; i < len(motor_handlers); i++) {
-                const unsigned char *const data = motor_handlers[i].tx_msg.data;
-                printf("#%d\t", i);
+                printf("#%d\t", motor_handlers[i].id());
                 for (int j = 0; j < len(motor_handlers[i].tx_msg.data); j++) {
                     printf("%X\t", motor_handlers[i].tx_msg.data[j]);
                 }
@@ -523,7 +522,7 @@ void prompt(const char *const msg)
     if (sscanf_res == 3) {
         int idx = -1;
         for (int i = 0; i < len(motor_handlers); i++) {
-            if (motor_handlers[i].id() == id) {
+            if (motor_handlers[i].id() == motor_id) {
                 idx = i;
                 break;
             }

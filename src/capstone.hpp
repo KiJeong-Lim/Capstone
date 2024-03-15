@@ -131,7 +131,7 @@ class MotorHandler : public Motor {
 public:
 #if USE_PID
     float p_ctrl;
-    PIDController pid_on_p;
+    PIDController pid_for_p;
 #endif
     CANMessage tx_msg;
 public:
