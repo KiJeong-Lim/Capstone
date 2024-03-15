@@ -134,7 +134,7 @@ void printManual()
         "\r  6                  = Read command\n"
         "\r  (Space bar)        = Turn all motors off\n"
         "\r  (Shift+)$id        = Let $id-th motor enter motor mode\n"
-        "\r  z                  = Let motor set zero\n"
+        "\r  z                  = Set zero\n"
         "\r  .                  = Decrease p,v,kp,kd,t -> 0\n"
         "\r[#3 Command]\n"
         "\r  (Esc)              = Quit reading\n"
