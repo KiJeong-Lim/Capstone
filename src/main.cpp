@@ -139,10 +139,12 @@ void printManual()
         "\r[#3 Command]\n"
         "\r  (Esc)              = Quit listening\n"
         "\r  debug              = Turn the debugger on\n"
-        "\r  pid start = $n     = Let pid start be $n\n"
+#if USE_PID
+        "\r  pid start = $n     = Let pid start at $n-th tick\n"
         "\r  Kp $id = $val      = Set Kp of $id-th motor to $val\n"
         "\r  Ki $id = $val      = Set Ki of $id-th motor to $val\n"
         "\r  Kd $id = $val      = Set Kd of $id-th motor to $val\n"
+#endif
         "\r  $operation         = Let operation be $operation\n"
         "\r  help               = Print manual\n"
     );
